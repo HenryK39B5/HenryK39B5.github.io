@@ -45,11 +45,11 @@
 <meta property="og:title" content="搭建记录">
 <meta property="og:url" content="https://henryk39b5.github.io/2023/08/05/%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Henry&#39;s cabin">
-<meta property="og:description" content="搭建记录参考文章Hexo官方文档 GitHub+Hexo 搭建个人网站详细教程 从零开始免费搭建自己的博客(一)——本地搭建hexo框架 优秀网站volantishttps:&#x2F;&#x2F;wndbac.cn&#x2F; 网站右键菜单 https:&#x2F;&#x2F;lingjun.life&#x2F; 文章末的说明很严谨！ https:&#x2F;&#x2F;xingpingcn.top&#x2F; 右下角站点信息 https:&#x2F;&#x2F;pistachio0812.github">
+<meta property="og:description" content="搭建记录开头的碎碎念本来学术项目和实习就有点忙不过来，又因为心血来潮初步搭了个自己的个人博客，时间就更不够用了[哭]，博客现在已经初步搭建好了，接下来还需要进一步进行些调整，这是博客的第一篇文章，想要记录一下自己搭建个人博客的过程，但最近几天没有时间了，会慢慢写完这篇博客~ 参考文章Hexo官方文档 Volantis官方文档 重点： https:&#x2F;&#x2F;easyhexo.com&#x2F;2-Theme-use">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2023-08-05T06:57:43.000Z">
-<meta property="article:modified_time" content="2023-08-07T22:29:18.268Z">
+<meta property="article:modified_time" content="2023-08-08T04:06:14.889Z">
 <meta property="article:author" content="Henry">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="个人博客搭建">
@@ -1881,7 +1881,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1691454522880),
+    lastupdate: new Date(1691467600443),
     sidebar: {
       for_page: ["blogger","category","tagcloud","webinfo"],
       for_post: ["category","toc"],
@@ -1902,7 +1902,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
       
       
-      rightmenus: {"enable":true,"order":["plugins.navigation","hr","plugins.inputBox","plugins.seletctText","plugins.elementCheck","plugins.elementImage","menus.link","hr","menus.darkMode","plugins.articlePage","music"],"options":{"iconPrefix":"fa-solid","articleShowLink":true,"musicAlwaysShow":false},"plugins":{"navigation":[{"id":"left","name":"转到上一页","icon":"fa-solid fa-arrow-left","event":"history.back()","group":"navigation"},{"id":"right","name":"转到下一页","icon":"fa-solid fa-arrow-right","event":"history.forward()","group":"navigation"},{"id":"redo","name":"刷新当前页面","icon":"fa-solid fa-redo","event":"window.location.reload()","group":"navigation"},{"id":"up","name":"回到顶部","icon":"fa-solid fa-arrow-up","event":"VolantisApp.scrolltoElement(volantis.dom.bodyAnchor)","group":"navigation"}],"inputBox":[{"id":"copyPaste","name":"粘贴文本","icon":"fa-solid fa-paste","event":"copyPaste","group":"inputBox"},{"id":"copyAll","name":"全选文本","icon":"fa-solid fa-object-ungroup","event":"copyAll","group":"inputBox"},{"id":"copyCut","name":"剪切文本","icon":"fa-solid fa-cut","event":"copyCut","group":"inputBox"}],"seletctText":[{"id":"copyText","name":"复制文本","icon":"fa-solid fa-copy","event":"copyText","group":"seletctText"},{"id":"searchWord","name":"站内搜索","icon":"fa-solid fa-search","event":"OpenSearch(__text__)","group":"seletctText"},{"id":"bingSearch","name":"必应搜索","icon":"fa-solid fa-search","event":"window.open(`https://cn.bing.com/search?q=${__text__}`)","group":"seletctText"}],"elementCheck":[{"id":"openTab","name":"新标签页打开","icon":"fa-solid fa-external-link-square-alt","event":"window.open(__link__)","group":"elementCheck"},{"id":"copyLink","name":"复制链接地址","icon":"fa-solid fa-link","event":"copyLink","group":"elementCheck"}],"elementImage":[{"id":"copyImg","name":"复制图片","icon":"fa-solid fa-image","event":"copyImg","group":"elementImage"},{"id":"googleImg","name":"谷歌识图","icon":"fa-solid fa-images","event":"window.open(`https://www.google.com.hk/searchbyimage?image_url=${__link__}`)","group":"elementImage"}],"articlePage":[{"id":"printMode","name":"打印页面","icon":"fa-solid fa-print","event":"printMode","group":"articlePage"},{"id":"readMode","name":"阅读模式","icon":"fa-solid fa-book-open","event":"readMode","group":"articlePage"}]},"menus":{"link":[{"id":"help","name":"常见问题","icon":"fa-solid fa-question","link":"https://volantis.js.org/faqs/","group":"link"},{"id":"examples","name":"示例博客","icon":"fa-solid fa-rss","link":"https://volantis.js.org/examples/","group":"link"},{"id":"contributors","name":"加入社区","icon":"fa-solid fa-fan","link":"https://volantis.js.org/contributors/","group":"link"},"hr",{"id":"source_docs","name":"本站源码","icon":"fa-solid fa-code-branch","link":"https://github.com/volantis-x/volantis-docs/","group":"link"},{"id":"source_theme","name":"主题源码","icon":"fa-solid fa-code-branch","link":"https://github.com/volantis-x/hexo-theme-volantis/","group":"link"}],"darkMode":[{"id":"darkMode","name":"暗黑模式","icon":"fa-solid fa-moon","event":"volantis.dark.toggle()","group":"darkMode"}]}}
+      rightmenus: {"enable":true,"order":["menus.prevNext","plugins.navigation","hr","plugins.inputBox","plugins.seletctText","plugins.elementCheck","plugins.elementImage","menus.link","hr","menus.darkMode","plugins.articlePage","music"],"options":{"iconPrefix":"fa-solid","articleShowLink":true,"musicAlwaysShow":false},"plugins":{"navigation":[{"id":"left","name":"转到上一页","icon":"fa-solid fa-arrow-left","event":"history.back()","group":"navigation"},{"id":"right","name":"转到下一页","icon":"fa-solid fa-arrow-right","event":"history.forward()","group":"navigation"},{"id":"redo","name":"刷新当前页面","icon":"fa-solid fa-redo","event":"window.location.reload()","group":"navigation"},{"id":"up","name":"回到顶部","icon":"fa-solid fa-arrow-up","event":"VolantisApp.scrolltoElement(volantis.dom.bodyAnchor)","group":"navigation"}],"inputBox":[{"id":"copyPaste","name":"粘贴文本","icon":"fa-solid fa-paste","event":"copyPaste","group":"inputBox"},{"id":"copyAll","name":"全选文本","icon":"fa-solid fa-object-ungroup","event":"copyAll","group":"inputBox"},{"id":"copyCut","name":"剪切文本","icon":"fa-solid fa-cut","event":"copyCut","group":"inputBox"}],"seletctText":[{"id":"copyText","name":"复制文本","icon":"fa-solid fa-copy","event":"copyText","group":"seletctText"},{"id":"searchWord","name":"站内搜索","icon":"fa-solid fa-search","event":"OpenSearch(__text__)","group":"seletctText"},{"id":"bingSearch","name":"必应搜索","icon":"fa-solid fa-search","event":"window.open(`https://cn.bing.com/search?q=${__text__}`)","group":"seletctText"}],"elementCheck":[{"id":"openTab","name":"新标签页打开","icon":"fa-solid fa-external-link-square-alt","event":"window.open(__link__)","group":"elementCheck"},{"id":"copyLink","name":"复制链接地址","icon":"fa-solid fa-link","event":"copyLink","group":"elementCheck"}],"elementImage":[{"id":"copyImg","name":"复制图片","icon":"fa-solid fa-image","event":"copyImg","group":"elementImage"},{"id":"googleImg","name":"谷歌识图","icon":"fa-solid fa-images","event":"window.open(`https://www.google.com.hk/searchbyimage?image_url=${__link__}`)","group":"elementImage"}],"articlePage":[{"id":"printMode","name":"打印页面","icon":"fa-solid fa-print","event":"printMode","group":"articlePage"},{"id":"readMode","name":"阅读模式","icon":"fa-solid fa-book-open","event":"readMode","group":"articlePage"}]},"menus":{"link":[{"id":"help","name":"常见问题","icon":"fa-solid fa-question","link":"https://volantis.js.org/faqs/","group":"link"},{"id":"examples","name":"示例博客","icon":"fa-solid fa-rss","link":"https://volantis.js.org/examples/","group":"link"},{"id":"contributors","name":"加入社区","icon":"fa-solid fa-fan","link":"https://volantis.js.org/contributors/","group":"link"},"hr",{"id":"source_docs","name":"本站源码","icon":"fa-solid fa-code-branch","link":"https://github.com/volantis-x/volantis-docs/","group":"link"},{"id":"source_theme","name":"主题源码","icon":"fa-solid fa-code-branch","link":"https://github.com/volantis-x/hexo-theme-volantis/","group":"link"}],"darkMode":[{"id":"darkMode","name":"暗黑模式","icon":"fa-solid fa-moon","event":"volantis.dark.toggle()","group":"darkMode"}],"prevNext":[{"id":"prev","name":"查看上一篇","icon":"fa-solid fa-angles-left","event":"volantis.rightmenu.jump('prev')","group":"prevNext"},{"id":"next","name":"查看下一篇","icon":"fa-solid fa-angles-right","event":"volantis.rightmenu.jump('next')","group":"prevNext"}]}}
       
     }
   }
@@ -2735,7 +2735,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：137 字</p>
+      <p>字数：438 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
@@ -2758,9 +2758,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h1 id="搭建记录"><a href="#搭建记录" class="headerlink" title="搭建记录"></a>搭建记录</h1><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo官方文档</a></p>
+    <h1 id="搭建记录"><a href="#搭建记录" class="headerlink" title="搭建记录"></a>搭建记录</h1><h2 id="开头的碎碎念"><a href="#开头的碎碎念" class="headerlink" title="开头的碎碎念"></a>开头的碎碎念</h2><p>本来学术项目和实习就有点忙不过来，又因为心血来潮初步搭了个自己的个人博客，时间就更不够用了[哭]，博客现在已经初步搭建好了，接下来还需要进一步进行些调整，这是博客的第一篇文章，想要记录一下自己搭建个人博客的过程，但最近几天没有时间了，会慢慢写完这篇博客~</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://volantis.js.org/v6/getting-started/">Volantis官方文档</a></p>
+<p>重点： <a target="_blank" rel="noopener" href="https://easyhexo.com/2-Theme-use-and-config/2-6-hexo-theme-volantis/#%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE">https://easyhexo.com/2-Theme-use-and-config/2-6-hexo-theme-volantis/#%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE</a></p>
+<p>目标网站源码：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/volantis-x/volantis-x.github.io/blob/main/_config.volantis.yml">https://github.com/volantis-x/volantis-x.github.io/blob/main/_config.volantis.yml</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">GitHub+Hexo 搭建个人网站详细教程</a></p>
 <p><a target="_blank" rel="noopener" href="https://yushuaige.github.io/2020/12/31/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2(%E4%B8%80)%E2%80%94%E2%80%94%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BAhexo%E6%A1%86%E6%9E%B6/#%E4%B8%80%E3%80%81Hexo-%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B">从零开始免费搭建自己的博客(一)——本地搭建hexo框架</a></p>
+<h3 id="进阶玩法"><a href="#进阶玩法" class="headerlink" title="进阶玩法"></a>进阶玩法</h3><p><a target="_blank" rel="noopener" href="https://www.itbob.cn/article/003/">Hexo博客主题个性化</a></p>
+<p><a target="_blank" rel="noopener" href="https://volantis.js.org/categories/%E8%BF%9B%E9%98%B6%E7%8E%A9%E6%B3%95/">https://volantis.js.org/categories/%E8%BF%9B%E9%98%B6%E7%8E%A9%E6%B3%95/</a></p>
+<p><a target="_blank" rel="noopener" href="https://inkss.cn/post/610620a9/">https://inkss.cn/post/610620a9/</a></p>
 <h2 id="优秀网站"><a href="#优秀网站" class="headerlink" title="优秀网站"></a>优秀网站</h2><h3 id="volantis"><a href="#volantis" class="headerlink" title="volantis"></a>volantis</h3><p><a target="_blank" rel="noopener" href="https://wndbac.cn/">https://wndbac.cn/</a></p>
 <p>网站右键菜单</p>
 <p><a target="_blank" rel="noopener" href="https://lingjun.life/">https://lingjun.life/</a></p>
@@ -2774,12 +2782,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <p>底部音乐嵌入</p>
 <h3 id="next"><a href="#next" class="headerlink" title="next"></a>next</h3><p><a target="_blank" rel="noopener" href="https://benn314.github.io/">https://benn314.github.io/</a></p>
 <h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p><a target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis">https://github.com/volantis-x/hexo-theme-volantis</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2><p>主题安装方式</p>
+<p>nodejs mould 加入环境变量path中</p>
+<h2 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h2><p><a target="_blank" rel="noopener" href="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/HNuVoted2mUxILl.jpg">https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/HNuVoted2mUxILl.jpg</a></p>
+<p><a target="_blank" rel="noopener" href="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/dNJyR4LHtarTqPu.jpg">https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/dNJyR4LHtarTqPu.jpg</a></p>
+<p><a target="_blank" rel="noopener" href="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/yXx4GwgZYdi81Qs.jpg">https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/yXx4GwgZYdi81Qs.jpg</a></p>
+<p><a target="_blank" rel="noopener" href="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/RP7JpGvWaCYfuB6.jpg">https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/RP7JpGvWaCYfuB6.jpg</a></p>
+<h2 id="github更新慢的问题"><a href="#github更新慢的问题" class="headerlink" title="github更新慢的问题"></a>github更新慢的问题</h2><h3 id="GitHub有刷新时间"><a href="#GitHub有刷新时间" class="headerlink" title="GitHub有刷新时间"></a>GitHub有刷新时间</h3><p>需要时间部署</p>
+<h3 id="强制刷新，ctrl-f5"><a href="#强制刷新，ctrl-f5" class="headerlink" title="强制刷新，ctrl+f5"></a>强制刷新，ctrl+f5</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ruvikm/article/details/122419378">https://blog.csdn.net/ruvikm/article/details/122419378</a></p>
 
   </div>
   
@@ -2804,7 +2814,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-08-08T06:29:18+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-08-08T12:06:14+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2023年8月8日</p>
@@ -2884,16 +2894,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   
 
-  
-    <div class="prev-next">
-      
-      
-        <a class='next' href='/2023/08/05/hello-world/'>
-          <p class='title'>Hello World<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
-        </a>
-      
-    </div>
   
   <!-- Custom Files postEnd begin-->
   
@@ -2978,7 +2978,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">参考文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%A7%80%E7%BD%91%E7%AB%99"><span class="toc-number">2.</span> <span class="toc-text">优秀网站</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#volantis"><span class="toc-number">2.1.</span> <span class="toc-text">volantis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#next"><span class="toc-number">2.2.</span> <span class="toc-text">next</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">主题</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A4%B4%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">开头的碎碎念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">参考文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E7%8E%A9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">进阶玩法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%A7%80%E7%BD%91%E7%AB%99"><span class="toc-number">3.</span> <span class="toc-text">优秀网站</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#volantis"><span class="toc-number">3.1.</span> <span class="toc-text">volantis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#next"><span class="toc-number">3.2.</span> <span class="toc-text">next</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A6%81%E7%82%B9"><span class="toc-number">5.</span> <span class="toc-text">要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87"><span class="toc-number">6.</span> <span class="toc-text">背景图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#github%E6%9B%B4%E6%96%B0%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">github更新慢的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub%E6%9C%89%E5%88%B7%E6%96%B0%E6%97%B6%E9%97%B4"><span class="toc-number">7.1.</span> <span class="toc-text">GitHub有刷新时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%88%B7%E6%96%B0%EF%BC%8Cctrl-f5"><span class="toc-number">7.2.</span> <span class="toc-text">强制刷新，ctrl+f5</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -3194,6 +3194,24 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <div id="rightmenu-wrapper">
   <ul class="list-v rightmenu" id="rightmenu-content">
     
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="prev" data-event="volantis.rightmenu.jump('prev')" data-group="prevNext">
+      <i class="fa-solid fa-angles-left fa-fw"></i>
+      查看上一篇
+    </span>
+  </li>
+
+
+
+  <li class="menuLoad-Content">
+    <span class="vlts-menu fix-cursor-default event" id="next" data-event="volantis.rightmenu.jump('next')" data-group="prevNext">
+      <i class="fa-solid fa-angles-right fa-fw"></i>
+      查看下一篇
+    </span>
+  </li>
+
+
   <li class='navigation menuNavigation-Content'>
 
 
@@ -3422,6 +3440,18 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <script>
   const RightMenusFunction = {};
   
+
+
+  RightMenusFunction['prev'] = () => {volantis.rightmenu.jump('prev')}
+
+
+
+
+
+  RightMenusFunction['next'] = () => {volantis.rightmenu.jump('next')}
+
+
+
 
 
 
@@ -3871,7 +3901,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/007.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/053.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/009.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/032.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/013.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/013.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/008.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/011.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/021.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/050.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/023.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/015.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/020.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/015.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/028.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/014.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/031.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/010.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/011.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/008.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/037.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/048.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/009.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/036.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/041.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/043.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/030.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/047.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/022.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/027.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/049.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/017.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/045.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/040.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/007.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/010.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/044.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/026.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/029.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/024.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/055.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/018.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/014.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/027.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/040.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/031.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/023.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/008.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/053.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/049.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/014.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/011.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/013.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/007.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/022.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/045.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/018.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/037.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/009.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/013.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/043.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/014.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/020.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/021.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/008.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/007.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/010.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/028.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/044.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/032.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/011.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/050.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/048.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/017.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/030.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/055.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/015.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/024.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/015.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/009.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/029.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/041.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/036.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/047.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/026.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/md/010.webp"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4098,7 +4128,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/博客搭建/","name":"博客搭建"}},{"@type":"ListItem","position":3,"item":{"@id":"https://henryk39b5.github.io/2023/08/05/搭建记录/","name":"搭建记录"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":""},"publisher":{"@type":"Organization","name":"Henry's cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"搭建记录","description":"","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryk39b5.github.io/2023/08/05/%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://henryk39b5.github.io/2023/08/05/%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/","wordCount":0,"datePublished":"2023-08-05T06:57:43.000Z","dateModified":"2023-08-07T22:29:18.268Z","articleSection":"博客搭建","keywords":"Hexo,个人博客搭建","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/博客搭建/","name":"博客搭建"}},{"@type":"ListItem","position":3,"item":{"@id":"https://henryk39b5.github.io/2023/08/05/搭建记录/","name":"搭建记录"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":""},"publisher":{"@type":"Organization","name":"Henry's cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"搭建记录","description":"","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryk39b5.github.io/2023/08/05/%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://henryk39b5.github.io/2023/08/05/%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/","wordCount":0,"datePublished":"2023-08-05T06:57:43.000Z","dateModified":"2023-08-08T04:06:14.889Z","articleSection":"博客搭建","keywords":"Hexo,个人博客搭建","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
@@ -4181,30 +4211,30 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
     <!-- import body_end end-->
     <!-- Custom Files bodyEnd begin-->
     <script> 
-    volantis.rightmenu.jump = (type) => { 
-      const selector = type === 'prev' ? 'article .prev-next a.prev' : 'article .prev-next a.next';
-      const item = document.querySelector(selector); 
-      if(!!item) { 
-        if(typeof pjax !== 'undefined') { 
-          pjax.loadUrl(item.href) 
-        } else { 
-          window.location.href = item.href; 
-        } 
+  volantis.rightmenu.jump = (type) => { 
+    const selector = type === 'prev' ? 'article .prev-next a.prev' : 'article .prev-next a.next';
+    const item = document.querySelector(selector); 
+    if(!!item) { 
+      if(typeof pjax !== 'undefined') { 
+        pjax.loadUrl(item.href) 
+      } else { 
+        window.location.href = item.href; 
       } 
     } 
-   
-    volantis.rightmenu.handle(() => { 
-      const prev = document.querySelector('#prev').parentElement, 
-        next = document.querySelector('#next').parentElement, 
-        articlePrev = document.querySelector('article .prev-next a.prev p.title'), 
-        articleNext = document.querySelector('article .prev-next a.next p.title'); 
-   
-      prev.style.display = articlePrev ? 'block' : 'none'; 
-      prev.title = articlePrev ? articlePrev.innerText : null; 
-      next.style.display = articleNext ? 'block' : 'none'; 
-      next.title = articleNext ? articleNext.innerText : null; 
-    }, 'prevNext', false) 
-  </script> 
+  } 
+ 
+  volantis.rightmenu.handle(() => { 
+    const prev = document.querySelector('#prev').parentElement, 
+      next = document.querySelector('#next').parentElement, 
+      articlePrev = document.querySelector('article .prev-next a.prev p.title'), 
+      articleNext = document.querySelector('article .prev-next a.next p.title'); 
+ 
+    prev.style.display = articlePrev ? 'block' : 'none'; 
+    prev.title = articlePrev ? articlePrev.innerText : null; 
+    next.style.display = articleNext ? 'block' : 'none'; 
+    next.title = articleNext ? articleNext.innerText : null; 
+  }, 'prevNext', false) 
+</script> 
     <!-- Custom Files bodyEnd end-->
     <!-- front-matter body_end begin -->
     <!-- front-matter body_end end -->
