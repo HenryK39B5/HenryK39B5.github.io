@@ -1,0 +1,80 @@
+.blogverse-share-meta {
+  display: inline-flex;
+  margin-top: 0;
+}
+
+.blogverse-copy-share {
+  display: inline-flex;
+}
+
+.blogverse-share-copy-button {
+  --blogverse-share-bg: var(--color-card, var(--card, rgba(255, 255, 255, 0.72)));
+  --blogverse-share-bg-hover: var(--color-block, rgba(127, 127, 127, 0.08));
+  --blogverse-share-border: rgba(127, 127, 127, 0.22);
+  --blogverse-share-border-hover: rgba(127, 127, 127, 0.4);
+  --blogverse-share-shadow: rgba(0, 0, 0, 0.04);
+  --blogverse-share-shadow-hover: rgba(0, 0, 0, 0.08);
+  --blogverse-share-success: #2f855a;
+  align-items: center;
+  background: var(--blogverse-share-bg);
+  border: 1px solid var(--blogverse-share-border);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px var(--blogverse-share-shadow);
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 0.35rem;
+  font: inherit;
+  margin: 0;
+  min-height: 30px;
+  padding: 0.25rem 0.72rem;
+  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+}
+
+.blogverse-share-copy-button:hover {
+  background: var(--blogverse-share-bg-hover);
+  border-color: var(--blogverse-share-border-hover);
+  box-shadow: 0 4px 14px var(--blogverse-share-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.blogverse-share-copy-button:active {
+  box-shadow: 0 1px 4px var(--blogverse-share-shadow-hover);
+  transform: translateY(0);
+}
+
+.blogverse-share-copy-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.blogverse-share-copy-button.is-copied {
+  border-color: var(--blogverse-share-success);
+  color: var(--blogverse-share-success);
+}
+
+.blogverse-share-copy-button p {
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([color-scheme]) .blogverse-share-copy-button {
+    --blogverse-share-bg: var(--color-card, rgba(36, 36, 36, 0.86));
+    --blogverse-share-bg-hover: var(--color-block, rgba(255, 255, 255, 0.08));
+    --blogverse-share-border: rgba(255, 255, 255, 0.16);
+    --blogverse-share-border-hover: rgba(255, 255, 255, 0.3);
+    --blogverse-share-shadow: rgba(0, 0, 0, 0.2);
+    --blogverse-share-shadow-hover: rgba(0, 0, 0, 0.32);
+    --blogverse-share-success: #68d391;
+  }
+}
+
+[color-scheme='dark'] .blogverse-share-copy-button {
+  --blogverse-share-bg: var(--color-card, rgba(36, 36, 36, 0.86));
+  --blogverse-share-bg-hover: var(--color-block, rgba(255, 255, 255, 0.08));
+  --blogverse-share-border: rgba(255, 255, 255, 0.16);
+  --blogverse-share-border-hover: rgba(255, 255, 255, 0.3);
+  --blogverse-share-shadow: rgba(0, 0, 0, 0.2);
+  --blogverse-share-shadow-hover: rgba(0, 0, 0, 0.32);
+  --blogverse-share-success: #68d391;
+}
