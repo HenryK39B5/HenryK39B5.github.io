@@ -48,11 +48,11 @@
 <meta property="og:title" content="AI 中转站使用笔记">
 <meta property="og:url" content="https://henryk39b5.github.io/2026/04/22/Tools/AI/AI%20%E4%B8%AD%E8%BD%AC%E7%AB%99%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Henry&#39;s Cabin">
-<meta property="og:description" content="AI 中转站使用笔记OpenAI 在 2026 年 4 月 23 日发布了 GPT-5.5。与此同时，Codex app 最近也更新了对话组织方式：对话不再一定要先绑定某个文件夹，而是可以统一放在 Chats 下拉栏里管理。 这件事让我重新理解了“中转站”这件事。 它不只是一个便宜使用模型的入口。对想要尝试 vibe coding 的人来说，中转站更像是一个 API provider：它可以把 G">
+<meta property="og:description" content="AI 中转站使用笔记这篇文章现在只讨论一个具体问题：在中国大陆环境下，如果希望通过中转站 API 使用 Codex App、Cherry Studio、Claude Code、Cline、Cursor 等工具，应该如何理解中转站、如何管理 provider，以及遇到 Codex App 的会话和插件问题时，可以参考哪些工具。 它不是一篇 AI 灰产发展史，也不是完整的 AI 编程工具综述。低价 T">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2026-04-22T07:50:54.000Z">
-<meta property="article:modified_time" content="2026-05-06T14:16:56.023Z">
+<meta property="article:modified_time" content="2026-05-29T08:31:14.950Z">
 <meta property="article:author" content="Henry">
 <meta property="article:tag" content="Codex">
 <meta property="article:tag" content="AI 工具">
@@ -1773,7 +1773,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.7a2c825e.js","parallax":"/js/plugins/parallax.8bf0ab10.js","rightMenu":"/js/plugins/rightMenu.d9437285.js","rightMenus":"/js/plugins/rightMenus.80d861b1.js","sites":"/js/plugins/tags/sites.76bf19b8.js","friends":"/js/plugins/tags/friends.f372da57.js","contributors":"/js/plugins/tags/contributors.aec80453.js","search":"/js/search/hexo.85946653.js"},"css":{"style":"/css/style.3b1ca89f.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1779718620037),
+    lastupdate: new Date(1780043489734),
     sidebar: {
       for_page: ["blogger","category","tagcloud","webinfo","lastupdate"],
       for_post: ["category","tagcloud","toc"],
@@ -2615,13 +2615,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：4.6k 字</p>
+      <p>字数：3.6k 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：17 分钟</p>
+      <p>时长：13 分钟</p>
     </a>
   </div>
 
@@ -2638,72 +2638,46 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <h1 id="AI-中转站使用笔记"><a href="#AI-中转站使用笔记" class="headerlink" title="AI 中转站使用笔记"></a>AI 中转站使用笔记</h1><p>OpenAI 在 2026 年 4 月 23 日发布了 GPT-5.5。与此同时，Codex app 最近也更新了对话组织方式：对话不再一定要先绑定某个文件夹，而是可以统一放在 <code>Chats</code> 下拉栏里管理。</p>
-<p>这件事让我重新理解了“中转站”这件事。</p>
-<p>它不只是一个便宜使用模型的入口。对想要尝试 <code>vibe coding</code> 的人来说，中转站更像是一个 API provider：它可以把 GPT、Claude 这类模型接到 Codex、Cherry Studio、Claude Code、Cline、Cursor 等工具里。真正要想清楚的，不只是“哪个中转站便宜”，而是“我要在哪个工具里使用模型”。</p>
-<p>所以这篇文章会按这个顺序写：</p>
+    <h1 id="AI-中转站使用笔记"><a href="#AI-中转站使用笔记" class="headerlink" title="AI 中转站使用笔记"></a>AI 中转站使用笔记</h1><p>这篇文章现在只讨论一个具体问题：在中国大陆环境下，如果希望通过中转站 API 使用 Codex App、Cherry Studio、Claude Code、Cline、Cursor 等工具，应该如何理解中转站、如何管理 provider，以及遇到 Codex App 的会话和插件问题时，可以参考哪些工具。</p>
+<p>它不是一篇 AI 灰产发展史，也不是完整的 AI 编程工具综述。低价 Team、Plus 代充这类渠道在过去确实存在过，但它们更像阶段性的临时方案，不适合作为长期工作流的底座。对希望稳定接入本地工具的人来说，更值得讨论的是中转站 API 以及围绕它产生的一套工具链。</p>
+<p>本文只做信息整理，不构成购买建议。中转站不是官方服务，稳定性、隐私、售后和账号风险都需要自行判断。</p>
+<h2 id="核心资源"><a href="#核心资源" class="headerlink" title="核心资源"></a>核心资源</h2><p>这篇文章涉及的资源可以先放在这里，后文再解释它们分别解决什么问题。</p>
 <ul>
-<li>先讲 vibe coding 里常见的几个工具入口</li>
-<li>再讲中转站在这个工作流里扮演什么角色</li>
-<li>最后分享我目前用过或会参考的中转站、测评网站和配置工具</li>
+<li><p><strong>YyBbCode 中转站</strong>：<a target="_blank" rel="noopener" href="https://yybb.codes/dashboard">https://yybb.codes/dashboard</a><br>站主 QQ：<code>3326006666</code>；官方一群：<code>1094654215</code>（可能已满）；官方二群：<code>1054170488</code>。</p>
+</li>
+<li><p><strong>AICode007 中转站</strong>：<a target="_blank" rel="noopener" href="https://aicode007.com/dashboard">https://aicode007.com/dashboard</a><br>站主是 B 站 up 主 <code>labuladong</code>，更适合关注 GPT &#x2F; Claude 编程场景的用户。</p>
+</li>
+<li><p><strong>Help AIO 中转站评测</strong>：<a target="_blank" rel="noopener" href="https://www.helpaio.com/transit">https://www.helpaio.com/transit</a><br>用来横向查看 Claude、Gemini、Codex 等中转站的排名、模型比价和可用性监测。</p>
+</li>
+<li><p><strong>CC Switch</strong>：<a target="_blank" rel="noopener" href="https://github.com/farion1231/cc-switch">https://github.com/farion1231/cc-switch</a><br>用来管理 Codex、Claude Code、Gemini CLI 等工具的 API Provider 配置。</p>
+</li>
+<li><p><strong>codex-provider-sync</strong>：<a target="_blank" rel="noopener" href="https://github.com/Dailin521/codex-provider-sync">https://github.com/Dailin521/codex-provider-sync</a><br>用于修复 Codex 切换 provider 后历史会话不可见的问题。</p>
+</li>
+<li><p><strong>cc-sessions</strong>：<a target="_blank" rel="noopener" href="https://github.com/ccpopy/cc-sessions">https://github.com/ccpopy/cc-sessions</a><br>用于 Codex &#x2F; Claude 会话管理、备份、修复、导出、统计等。</p>
+</li>
+<li><p>**Codex++**：<a target="_blank" rel="noopener" href="https://github.com/BigPizzaV3/CodexPlusPlus">https://github.com/BigPizzaV3/CodexPlusPlus</a><br>用于增强 Codex App，包括 API 模式下插件入口、会话删除&#x2F;导出&#x2F;移动等功能。</p>
+</li>
 </ul>
-<p>本文只做信息分享，不构成购买建议。中转站、代充、低价账号都不是官方服务，稳定性、隐私、售后和账号风险需要自己判断。</p>
-<h2 id="先放核心资源"><a href="#先放核心资源" class="headerlink" title="先放核心资源"></a>先放核心资源</h2><ul>
-<li><p><strong>YyBbCode 中转站</strong>：<a target="_blank" rel="noopener" href="https://yybb.codes/dashboard">https://yybb.codes/dashboard</a><br>站主 QQ：<code>3326006666</code>；售后群 QQ：<code>1094654215</code>。如果使用我的邀请链接注册，可以获得 <code>0.5 元</code>额度：<a target="_blank" rel="noopener" href="https://yybb.codes/register?aff=725e6503">https://yybb.codes/register?aff=725e6503</a>。后续充值我会获得 <code>5%</code>分成。</p>
-</li>
-<li><p><strong>AICode007 中转站</strong>：<a target="_blank" rel="noopener" href="https://aicode007.com/dashboard">https://aicode007.com/dashboard</a><br>站主是 B 站 up 主 <code>labuladong</code>。它更适合想测试 GPT &#x2F; Claude 编程场景的用户。</p>
-</li>
-<li><p><strong>Help AIO 中转站评测</strong>：<a target="_blank" rel="noopener" href="https://www.helpaio.com/transit">https://www.helpaio.com/transit</a><br>用来横向查看 Claude、Gemini、Codex 等中转站的排名、模型比价和可用性监测。榜单只能作为参考，最终还是要自己小额实测。</p>
-</li>
-<li><p><strong>CC Switch</strong>：<a target="_blank" rel="noopener" href="https://github.com/farion1231/cc-switch">https://github.com/farion1231/cc-switch</a><br>用来管理 Codex、Claude Code、Gemini CLI 等工具的 API Provider 配置。多个中转站、多个模型、多个命令行工具混用时，它能减少很多手动改配置的麻烦。</p>
-</li>
-</ul>
-<h2 id="vibe-coding-不是只有一个入口"><a href="#vibe-coding-不是只有一个入口" class="headerlink" title="vibe coding 不是只有一个入口"></a>vibe coding 不是只有一个入口</h2><p>很多人刚开始接触 AI 编程时，会把“模型能力”和“工具形态”混在一起。比如 ChatGPT、Codex 插件、Codex CLI、Codex desktop app，它们都可能使用很强的模型，但适合的场景并不一样。</p>
-<p>我现在会这样区分。</p>
-<h3 id="1-网页端-ChatGPT：适合对话和研究"><a href="#1-网页端-ChatGPT：适合对话和研究" class="headerlink" title="1. 网页端 ChatGPT：适合对话和研究"></a>1. 网页端 ChatGPT：适合对话和研究</h3><p>网页端 ChatGPT 最适合做通用对话、方案讨论、写作、资料整理和 Deep Research。</p>
-<p>如果我要从零开始一个新项目，我一般不会直接让 coding agent 开写。我更愿意先用 ChatGPT 网页端的 Deep Research 调研类似项目：别人用了什么技术栈，架构怎么设计，核心难点在哪里，有哪些开源实现可以参考。这个阶段更像“研究”和“决策”，不是马上写代码。</p>
-<p>网页端的优势是信息检索和报告组织能力更强，尤其是 Deep Research 这种专门面向系统调研的功能。它的问题是，它不直接生活在本地项目里。你最终还是要把研究结论带回代码环境。</p>
-<h3 id="2-VS-Code-里的-Codex-插件：适合在-IDE-里改代码"><a href="#2-VS-Code-里的-Codex-插件：适合在-IDE-里改代码" class="headerlink" title="2. VS Code 里的 Codex 插件：适合在 IDE 里改代码"></a>2. VS Code 里的 Codex 插件：适合在 IDE 里改代码</h3><p>Codex 的 IDE extension 可以把 Codex agent 带进 VS Code、Cursor 以及一些 VS Code fork 里。它适合你已经在某个项目里写代码，希望模型直接理解当前文件、查看 diff、修改代码。</p>
-<p>它的优势是贴近编辑器，反馈直接。你一边看代码，一边让 agent 处理局部修改，心智负担比较低。</p>
-<h3 id="3-Codex-CLI：适合终端和自动化工作流"><a href="#3-Codex-CLI：适合终端和自动化工作流" class="headerlink" title="3. Codex CLI：适合终端和自动化工作流"></a>3. Codex CLI：适合终端和自动化工作流</h3><p>Codex CLI 更适合习惯在终端里工作的场景。比如让 agent 在仓库里读文件、改代码、跑测试、查错误、再继续修。</p>
-<p>它不是最“图形化”的入口，但很适合把 AI 放进真实工程流程里。对我来说，CLI 的价值在于它接近 <code>build</code>、<code>test</code>、<code>git</code>、脚本和本地文件系统。很多时候，vibe coding 真正有用的地方，不是模型单次回答多漂亮，而是它能不能进入项目现场，把事情一轮一轮推进下去。</p>
-<h3 id="4-Codex-desktop-app：越来越像一个统一入口"><a href="#4-Codex-desktop-app：越来越像一个统一入口" class="headerlink" title="4. Codex desktop app：越来越像一个统一入口"></a>4. Codex desktop app：越来越像一个统一入口</h3><p>最近 Codex app 的更新让我觉得它的定位在变化。以前它更像是“进入某个项目之后再工作”的工具；现在对话可以统一放在 <code>Chats</code> 下拉栏里，不再必须先指定某个文件夹。</p>
-<p>这意味着，如果中转站已经支持 GPT 5.5，并且接口可以被 Codex 正常接入，那么 Codex desktop app 就不只是 coding agent，也可以成为一个本地的 GPT 5.5 对话入口。它既可以做一般对话，也可以在需要时进入具体项目。</p>
-<p>当然，中转站能不能稳定提供 GPT 5.5，要看站点自己的上游、号池、代理方案和适配进度。OpenAI 发布页在 4 月 24 日更新称 GPT-5.5 已经可用于 API，但中转站的“可用”不是官方 API 的同义词，仍然要小额测试。</p>
-<h3 id="5-Cherry-Studio：适合普通对话和多模型切换"><a href="#5-Cherry-Studio：适合普通对话和多模型切换" class="headerlink" title="5. Cherry Studio：适合普通对话和多模型切换"></a>5. Cherry Studio：适合普通对话和多模型切换</h3><p>如果只是想把中转站 API 接进一个更像聊天软件的客户端，<a target="_blank" rel="noopener" href="https://cherry-ai.com/">Cherry Studio</a> 这类工具会更直观。它适合普通对话、模型切换、长文本整理、日常问答。</p>
-<p>对不写代码的人来说，Cherry Studio 可能比 Codex 更容易上手。对写代码的人来说，Codex 的优势在于它更接近项目现场，可以读文件、改文件、跑命令、验证结果。</p>
-<p>我的判断是：<strong>ChatGPT 网页端适合研究，Cherry Studio 适合对话，Codex 适合进入项目。中转站 API 解决的是把模型接进这些工具的问题。</strong></p>
-<h2 id="中转站解决的是“接入”问题"><a href="#中转站解决的是“接入”问题" class="headerlink" title="中转站解决的是“接入”问题"></a>中转站解决的是“接入”问题</h2><p>生活在中国大陆的用户，直接使用 OpenAI、Claude 这类服务会遇到几类现实问题：支付不方便，网络不稳定，网页端会员不一定能接入本地工具，官方 API 也不一定适合所有人直接使用。</p>
-<p>中转站的价值就在这里。它通常帮用户做三件事：</p>
-<ul>
-<li>用人民币充值</li>
-<li>聚合多个模型</li>
-<li>提供一个兼容 OpenAI API 格式的接口</li>
-</ul>
-<p>这样一来，你就可以把模型接进 Codex、Cherry Studio、Cline、Cursor、Chatbox 等工具里。</p>
-<p>不过，中转站不是官方平替。它降低了门槛，也引入了第三方服务商的信用风险。</p>
-<h2 id="中转站大致是怎么工作的"><a href="#中转站大致是怎么工作的" class="headerlink" title="中转站大致是怎么工作的"></a>中转站大致是怎么工作的</h2><p>中转站并不是一种单一方案。</p>
-<p>相对正规的一类，是普通 API 代理：站主向 OpenAI、Anthropic 或其他上游购买 API，再加一点服务费转卖给用户。这种模式比较容易理解，成本也接近官方 API，优势主要是支付、网络和配置更方便。</p>
-<p>另一类是模型聚合：中转站同时接入 GPT、Claude、Gemini、Qwen、DeepSeek、智谱、通义等模型，用户看到的是统一接口，背后根据模型名和路由规则分发到不同供应商。这种模式本身没有问题，关键在于透明度。如果你选择的是 Claude，站点就应该明确告诉你实际调用的是什么模型、价格怎么算、上下文和限速是多少。</p>
-<p>还有一类低价站点，可能使用“号池 + 反代”的方式。简单说，就是站主维护一批 ChatGPT Pro、Team、Claude Max、Claude Pro 或类似订阅账号，通过反向代理把网页端或订阅端能力包装成 API。用户请求先发到中转站，中转站再分配给号池里的某个账号执行，最后把结果返回给用户。</p>
-<p>这种模式能解释为什么一些中转站价格会低于直接调用官方 API。官方 API 通常按 Token 计费，而订阅账号是按月固定费用。如果站主能把多个用户请求分摊到一批订阅账号上，单位成本就可能被压低。</p>
-<p>但它的问题也很明显：号池账号可能被封，反代接口可能被风控，高峰期可能被超卖打爆；所谓“满血模型”“非残血模型”多数时候只是站点宣传，普通用户很难验证。更严重一点，有些低价站点可能出售或利用用户数据，或者在你选择 GPT &#x2F; Claude 时偷偷路由到更便宜的模型。</p>
-<p>所以判断中转站时，不要只看价格。价格异常低时，至少要想到四种可能：号池反代、订阅套利、超卖、数据或模型不透明。</p>
-<h2 id="我目前整理的中转站"><a href="#我目前整理的中转站" class="headerlink" title="我目前整理的中转站"></a>我目前整理的中转站</h2><p>下面两个站点是我目前实际体验过、或具有一定可追溯信息的中转站。它们不代表长期背书。建议读者如果要尝试，先小额充值，确认模型、速度、扣费和客服体验后再继续使用。</p>
+<h2 id="中转站-API-和-vibe-coding-的关系"><a href="#中转站-API-和-vibe-coding-的关系" class="headerlink" title="中转站 API 和 vibe coding 的关系"></a>中转站 API 和 vibe coding 的关系</h2><p><code>vibe coding</code> 不是单纯“让 AI 写代码”。更准确地说，它是一种把模型接进真实开发环境，让模型参与读文件、改代码、跑命令、查资料、修 bug、推进任务的工作方式。</p>
+<p>这里容易混淆的是：模型能力、工具形态、API provider 是三件不同的事。</p>
+<p>网页端 ChatGPT 适合对话、写作、方案讨论和 Deep Research。比如开发一个新项目之前，可以先用 Deep Research 调研类似项目的技术实现方案、常见架构、开源实现和技术栈选择。这个阶段更像研究和决策。</p>
+<p>Codex App、Codex CLI、VS Code 里的 Codex 插件更接近项目现场。它们适合让模型读取本地项目、修改文件、运行命令、检查错误。Codex App 最近的对话管理方式也有变化：对话不再一定要先绑定某个文件夹，而是可以统一放在 <code>Chats</code> 下拉栏里。这让它更像一个兼具通用对话和项目协作的入口。</p>
+<p>Cherry Studio、Chatbox 这类客户端则更适合普通对话、多模型切换、长文本整理和日常问答。它们不像 Codex 那样深入项目现场，但对只想稳定使用多个模型的人来说更直观。</p>
+<p>中转站 API 处在这些工具的下层。它解决的是“模型从哪里来、怎么接进工具”的问题。换句话说，中转站不是 vibe coding 的全部，但它会直接影响能不能把模型接进 Codex App、Cherry Studio、Claude Code 这些工具里。</p>
+<h2 id="第一步：选择中转站"><a href="#第一步：选择中转站" class="headerlink" title="第一步：选择中转站"></a>第一步：选择中转站</h2><p>选择中转站时，最重要的不是看宣传语，而是看三个东西：模型是否可用、扣费是否透明、出问题时有没有反馈入口。</p>
 <h3 id="YyBbCode"><a href="#YyBbCode" class="headerlink" title="YyBbCode"></a>YyBbCode</h3><ul>
 <li><strong>网站地址</strong>：<a target="_blank" rel="noopener" href="https://yybb.codes/dashboard">https://yybb.codes/dashboard</a></li>
-<li><strong>邀请链接</strong>：<a target="_blank" rel="noopener" href="https://yybb.codes/register?aff=725e6503">https://yybb.codes/register?aff=725e6503</a></li>
 <li><strong>站主 QQ</strong>：<code>3326006666</code></li>
-<li><strong>售后群 QQ</strong>：<code>1094654215</code></li>
-<li><strong>计费方式</strong>：目前为按量计费</li>
-<li><strong>适合场景</strong>：GPT 5.5、Codex 接入、希望有 QQ 售后群反馈渠道的用户</li>
+<li><strong>官方一群</strong>：<code>1094654215</code>（可能已满）</li>
+<li><strong>官方二群</strong>：<code>1054170488</code></li>
+<li><strong>计费方式</strong>：按量计费</li>
+<li><strong>适合场景</strong>：GPT 5.5、Codex 接入、需要 QQ 群反馈渠道的用户</li>
 </ul>
 <p>这个站的站主，之前是我在闲鱼购买 ChatGPT Team 车位的商家。2026 年 4 月前，我主要通过闲鱼上的低价 Team 方案使用 ChatGPT。后来 Team 账号出现大规模封禁后，站主没有直接消失，而是继续通过更换 Team 方案、搭建中转站等方式处理售后。</p>
-<p>现在 YyBbCode 在做推广。使用我的邀请链接注册，可以获得 <code>0.5 元</code>额度；如果后续充值，我会获得 <code>5%</code>分成。这个利益关系需要直接写出来，因为它会影响读者对推荐性质的判断。</p>
-<p>我对这个站的主观判断是：相对可靠，但仍需小额测试。它的优点是来源不是完全陌生、售后群比较活跃、遇到问题有反馈入口。它的风险也很清楚：仍然依赖站主持续运营，可能受到上游账号、支付、风控、模型供应和运营成本影响。</p>
-<p>YyBbCode 的费率可以这样理解：<strong>充值 <code>1 元人民币</code>，账户余额增加 <code>1$</code>；模型 token 费用按官方美元定价计算，但实际扣除余额时会乘以平台费率。</strong>例如在 <code>0.1x</code>费率下，理论上 <code>0.5 元</code>注册额度大约相当于官方 <code>5 美元</code>额度；如果费率变成 <code>0.15x</code>，同样余额能覆盖的官方标价 token 成本就会下降。</p>
-<p>费率不是固定不变的。今年五一期间，因为官方封号比较严重，YyBbCode 曾经把费率从 <code>0.1x</code>调到 <code>0.15x</code>；到 5 月 5 日又降回 <code>0.1x</code>。所以看中转站价格时，不能只看“充值多少”，还要看当时的倍率、模型定价和实际扣费明细。</p>
-<p>充值方式也会影响实际成本。我自己充值时，站内充值有 <code>5%</code>手续费；如果白天在 QQ 群里找群主或管理员充值，可以免手续费。这个规则以后可能会变，充值的时候可以留意一下。</p>
+<p>这个经历不能证明它长期可靠，但至少说明它不是完全陌生来源。实际使用时，仍然应该按中转站的标准方式处理：小额充值、观察扣费、保留替代方案。</p>
+<p>YyBbCode 的费率可以这样理解：<strong>充值 <code>1 元人民币</code>，账户余额增加 <code>1$</code>；模型 token 费用按官方美元定价计算，但实际扣除余额时会乘以平台费率。</strong>例如 <code>0.1x</code> 费率下，站内 <code>1$</code>余额理论上可以覆盖官方标价 <code>10$</code> 的 token 消耗；如果费率变成 <code>0.15x</code>，同样余额能覆盖的官方标价 token 成本就会下降。</p>
+<p>中转站费率可能调整。原因通常不是单纯“涨价”，而是站主上游成本变化，比如号池稳定性、封号情况、模型供应成本、并发压力等变化。使用前应该看当前倍率和扣费规则。</p>
+<p>充值方式也会影响实际成本。我自己充值时，站内充值有 <code>5%</code>手续费；如果白天在 QQ 群里找群主或管理员充值，可以免手续费。这个规则以后可能会变，充值前最好先在群里确认。</p>
 <h3 id="AICode007"><a href="#AICode007" class="headerlink" title="AICode007"></a>AICode007</h3><ul>
 <li><strong>网站地址</strong>：<a target="_blank" rel="noopener" href="https://aicode007.com/dashboard">https://aicode007.com/dashboard</a></li>
 <li><strong>站主背景</strong>：B 站 up 主 <code>labuladong</code></li>
@@ -2712,30 +2686,59 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li><strong>计费方式</strong>：按量计费</li>
 <li><strong>适合场景</strong>：GPT &#x2F; Claude 编程场景，尤其是想测试 Claude 模型的用户</li>
 </ul>
-<p>这个站的站主是 labuladong。这个站给人的信任感主要来自站主身份：labuladong 长期实名做内容，有公开视频形象，也有高 star 的 GitHub 项目。相比完全匿名的中转站，这种可追溯的个人声誉更容易建立初步信任。</p>
-<p>我的实际使用体验是：此前使用 GPT 5.4 时费用水平尚可，某天高密度开发总 Tokens 约 <code>28.1M</code>，花费 <code>12.61 元</code>；使用 Claude 模型时余额消耗更快，另一次总 Tokens 约 <code>20.1M</code>，花费 <code>24.25 元</code>。整体使用比较流畅。现在 GPT 5.5 已经发布，如果站点已经同步到最新模型，我会优先关注 GPT 5.5 的实际效果和成本表现。</p>
-<p>后续如果有新的中转站推荐，可以按这几个维度继续补充：网站地址、联系方式、站主或运营背景、计费方式、实际体验、适合场景、主要风险。</p>
-<h2 id="评测和配置工具"><a href="#评测和配置工具" class="headerlink" title="评测和配置工具"></a>评测和配置工具</h2><p>选择中转站时，可以参考第三方评测站点：<a target="_blank" rel="noopener" href="https://www.helpaio.com/transit">Help AIO 的 AI 中转站评测</a>。这个页面会整理 Claude、Gemini、Codex 等中转站的排名、模型比价和可用性监测，对横向比较有帮助。不过榜单只能作为参考，不能替代自己的小额实测。中转站状态变化很快，价格、可用率、风控和售后体验都可能随时间变化。</p>
-<p>如果同时使用多个中转站和多个命令行工具，可以考虑用 <a target="_blank" rel="noopener" href="https://github.com/farion1231/cc-switch">CC Switch</a> 管理 API Provider。它可以帮助切换 Codex、Claude Code、Gemini CLI 等工具的接口配置，减少反复手动改 API 地址和 Key 的麻烦。它适合多 provider 用户，但它只是配置管理工具，不能判断某个中转站是否可靠，也不能保证站点实际调用的模型和宣传一致。</p>
-<h2 id="低价账号和代充为什么不适合长期依赖"><a href="#低价账号和代充为什么不适合长期依赖" class="headerlink" title="低价账号和代充为什么不适合长期依赖"></a>低价账号和代充为什么不适合长期依赖</h2><p>2026 年 2、3 月左右，闲鱼上曾经有大量低价 ChatGPT Team 车位，价格低到 10 元甚至 5、6 元一个月。它的基本方式是商家把用户拉进一个 Team 工作区，体验接近 Plus 或 Team，但用户不拥有工作区，工作区失效后聊天记录也可能消失。</p>
-<p>这类低价车位的核心逻辑，大概率是利用官方 Team &#x2F; Business 新用户优惠、首月试用或低价促销，批量注册新账号、创建新工作区、拉用户进入，等优惠结束或账号被风控后再换一批账号继续循环。到了 2026 年 4 月，OpenAI 官方封禁了一批这类账号，闲鱼商家也基本开不出稳定 Team 账号了。</p>
-<p>Plus 代充也是类似逻辑。近期有文章讨论过 GPT Plus 代充漏洞，例如：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/2028213501936550500">20元开通 GPT Plus 代充漏洞技术解构：iOS 收据校验缺陷与灰产套利链路全拆解</a>。普通用户不需要了解操作细节，只需要理解：这类代充通常利用支付系统、App Store 内购、收据校验、退款链路或订阅状态同步之间的漏洞和时间差。一旦平台修复，权益可能被撤销，账号可能被风控，代充商家也可能无法售后。</p>
-<p>我之前实际用过一个 ChatGPT 代充站：<a target="_blank" rel="noopener" href="https://getgpt.pro/">ChatGPT Plus 充值服务 | GPT Pro 官方充值 | GPT5 代充 | Codex 充值</a>。如果想尽量走官方路径，可以考虑找国外同学或朋友用当地信用卡代付，或者研究 iOS App Store &#x2F; Apple 礼品卡订阅路线。但这些方法也有门槛：账号地区、Apple ID 地区、礼品卡地区、付款方式和订阅恢复都可能影响可用性。</p>
-<p>我的阶段性判断是：官方路径更干净，但对大陆用户不总是方便；中转站更方便，但必须接受第三方风险；异常低价账号和代充更像临时方案，不适合作为长期工作流的底座。</p>
-<h2 id="我的使用建议"><a href="#我的使用建议" class="headerlink" title="我的使用建议"></a>我的使用建议</h2><p>如果只是普通问答、总结和轻度写作，不一定需要最贵模型，可以优先用免费额度、国产模型或便宜模型。真正需要 GPT &#x2F; Claude 的场景，通常是复杂写作、英文任务、长上下文理解、编程和 agent 工具调用。</p>
-<p>如果要使用中转站，我会建议：</p>
+<p>这个站的信任感主要来自站主身份：labuladong 长期实名做内容，有公开视频形象，也有高 star 的 GitHub 项目。相比完全匿名的中转站，这种可追溯的个人声誉更容易建立初步信任。</p>
+<p>此前使用 GPT 5.4 时，费用水平尚可：某天高密度开发总 Tokens 约 <code>28.1M</code>，花费 <code>12.61 元</code>。使用 Claude 模型时余额消耗更快，另一次总 Tokens 约 <code>20.1M</code>，花费 <code>24.25 元</code>。现在 GPT 5.5 已经发布，如果站点同步到最新模型，可以重点观察 GPT 5.5 的实际效果和成本表现。</p>
+<h3 id="Help-AIO"><a href="#Help-AIO" class="headerlink" title="Help AIO"></a>Help AIO</h3><p>选择中转站时，可以参考第三方评测站点：<a target="_blank" rel="noopener" href="https://www.helpaio.com/transit">Help AIO 的 AI 中转站评测</a>。</p>
+<p>这个页面会整理 Claude、Gemini、Codex 等中转站的排名、模型比价和可用性监测，对横向比较有帮助。不过榜单只能作为参考，不能替代自己的小额实测。中转站状态变化很快，价格、可用率、风控和售后体验都可能随时间变化。</p>
+<h2 id="第二步：用-CC-Switch-管理-provider"><a href="#第二步：用-CC-Switch-管理-provider" class="headerlink" title="第二步：用 CC Switch 管理 provider"></a>第二步：用 CC Switch 管理 provider</h2><p>接入中转站之后，第一个会遇到的问题往往不是模型能力，而是配置管理。</p>
+<p>不同中转站会提供不同的 API 地址、Key、模型名和兼容方式。如果同时使用 Codex、Claude Code、Gemini CLI 等工具，手动改配置很容易乱。<code>CC Switch</code> 的价值就在这里：它可以集中管理多个 API Provider，并在不同工具之间切换。</p>
+<p>它适合这些场景：</p>
 <ul>
-<li><strong>先小额测试</strong>：第一次只充 10 元左右，确认速度、扣费、模型质量和售后反馈。</li>
-<li><strong>看清费率</strong>：有些站点会把官方美元定价折算成站内余额，再乘以 <code>0.1x</code>、<code>0.15x</code> 这类倍率扣费。倍率会变化，充值前要看当前规则。</li>
-<li><strong>看充值方式</strong>：站内自动充值可能有手续费；如果站点有活跃社群，可以问清楚是否支持人工充值、是否免手续费。</li>
-<li><strong>敏感内容脱敏</strong>：不要把账号密码、API Key、身份证件、私人聊天记录、未公开商业资料、公司代码等内容直接发给中转站。</li>
-<li><strong>高强度使用后看账单</strong>：Codex、Claude Code、Cline 这类工具很容易消耗大量 Token。</li>
-<li><strong>警惕异常低价</strong>：价格明显低到不合理时，要默认它可能存在号池反代、超卖、数据利用或模型偷换风险。</li>
+<li>同时使用多个中转站</li>
+<li>在 Codex、Claude Code、Gemini CLI 等工具之间切换</li>
+<li>需要测试不同 provider 的速度和稳定性</li>
+<li>不希望反复手动修改 API 地址和 Key</li>
 </ul>
-<p>如果只用一句话概括：中转站解决的是“把模型接进工具”的问题，ChatGPT 网页端 Deep Research 解决的是“系统调研”的问题，Codex 解决的是“进入项目现场”的问题。把这些入口分清楚，vibe coding 才不会变成一团糊。</p>
+<p>CC Switch 解决的是 provider 配置管理问题。它不能判断某个中转站是否可靠，也不能保证站点实际调用的模型和宣传一致。</p>
+<h2 id="第三步：接入不同工具"><a href="#第三步：接入不同工具" class="headerlink" title="第三步：接入不同工具"></a>第三步：接入不同工具</h2><p>中转站 API 可以接到不同工具里，不同工具适合不同场景。</p>
+<p><strong>Cherry Studio</strong> 更像聊天客户端。它适合普通对话、多模型切换、长文本整理和日常问答。对不写代码的人来说，这类客户端通常比 Codex 更容易上手。</p>
+<p><strong>Codex App</strong> 更适合进入项目现场。它可以围绕本地项目读文件、改文件、跑命令、验证结果。最近的 <code>Chats</code> 管理方式让它也更适合做通用对话，但它的核心价值仍然在于 coding agent 工作流。</p>
+<p><strong>Codex CLI</strong> 更适合终端用户。它接近 <code>build</code>、<code>test</code>、<code>git</code>、脚本和本地文件系统，适合把 AI 放进真实工程流程里。</p>
+<p><strong>VS Code 里的 Codex 插件</strong> 更适合在 IDE 内处理局部代码修改。它贴近编辑器，适合看 diff、改文件、围绕当前项目迭代。</p>
+<p><strong>网页端 ChatGPT</strong> 仍然有不可替代的场景。尤其是 Deep Research，更适合做系统调研、资料综合和技术方案比较。如果要从零开始一个新项目，先用 Deep Research 调研类似项目，再用 Codex 进入实现阶段，往往更稳。</p>
+<p>一个简单的区分是：ChatGPT 网页端适合研究，Cherry Studio 适合对话，Codex 适合进入项目，中转站 API 负责把模型接进这些工具。</p>
+<h2 id="第四步：处理-Codex-App-的实际问题"><a href="#第四步：处理-Codex-App-的实际问题" class="headerlink" title="第四步：处理 Codex App 的实际问题"></a>第四步：处理 Codex App 的实际问题</h2><p>通过中转站 API 使用 Codex App 后，会出现一些和官方网页端不同的问题。下面三个工具都和这些问题有关。</p>
+<h3 id="codex-provider-sync：修复-provider-切换后的历史会话"><a href="#codex-provider-sync：修复-provider-切换后的历史会话" class="headerlink" title="codex-provider-sync：修复 provider 切换后的历史会话"></a>codex-provider-sync：修复 provider 切换后的历史会话</h3><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/Dailin521/codex-provider-sync">https://github.com/Dailin521/codex-provider-sync</a></p>
+<p>对应讨论：<a target="_blank" rel="noopener" href="https://linux.do/t/topic/2072220">Codex 历史会话同步 - LINUX DO</a></p>
+<p>问题背景是：不同 API provider 之间，Codex 的历史会话可能不会自动继承。切换 provider 后，旧会话不是一定丢了，而是可能因为 rollout 文件、SQLite 状态和 provider metadata 不一致，导致在新 provider 下看不到。</p>
+<p><code>codex-provider-sync</code> 的定位比较窄：同步 Codex session provider metadata，让历史会话重新可见。它不改会话内容，也不负责登录认证。</p>
+<p>这个工具适合只想解决“切换 API 后历史记录不见了”的用户。它的优点是目标明确；风险是它会写本地 Codex 状态，使用前应该备份。</p>
+<h3 id="cc-sessions：更完整的会话管理"><a href="#cc-sessions：更完整的会话管理" class="headerlink" title="cc-sessions：更完整的会话管理"></a>cc-sessions：更完整的会话管理</h3><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/ccpopy/cc-sessions">https://github.com/ccpopy/cc-sessions</a></p>
+<p>对应讨论：<a target="_blank" rel="noopener" href="https://linux.do/t/topic/2009998">codex claude 会话管理 - LINUX DO</a></p>
+<p><code>cc-sessions</code> 的范围更大。它提供 Codex 不同 provider 的会话修复，也支持 Claude 会话管理、会话备份、会话分支、统计等功能，并且强调一切都在本地运行。</p>
+<p>如果只是偶尔切一次 provider，<code>codex-provider-sync</code> 可能已经够用。如果已经积累了很多 Codex &#x2F; Claude 会话，需要搜索、备份、导出、修复、统计，<code>cc-sessions</code> 更像一个完整会话管理器。</p>
+<p>它适合重度用户。功能越多，写入本地状态的操作也越多，使用前同样应该备份。</p>
+<h3 id="Codex-：增强-Codex-App"><a href="#Codex-：增强-Codex-App" class="headerlink" title="Codex++：增强 Codex App"></a>Codex++：增强 Codex App</h3><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/BigPizzaV3/CodexPlusPlus">https://github.com/BigPizzaV3/CodexPlusPlus</a></p>
+<p>对应讨论：<a target="_blank" rel="noopener" href="https://linux.do/t/topic/2127211">Codex++ - LINUX DO</a></p>
+<p><code>Codex++</code> 解决的是另一类问题：Codex App 在 API 使用场景下，一些入口和能力可能不可用，比如插件入口消失或无法正常使用。这个项目尝试通过外部增强方式，让 Codex App 更好用，包括会话删除、导出、移动、API 使用插件、Fast、会话同步、UI 上下文调整等。</p>
+<p>它的能力最强，但也最需要谨慎。因为它不是简单读写某个会话文件，而是对 Codex App 做增强。Codex App 更新后，它可能需要适配；使用它也意味着要信任本地增强工具对应用行为的修改。</p>
+<p>更适合愿意折腾 Codex App 的用户。只想稳定使用中转站对话的人，不一定需要它。</p>
+<h2 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h2><p>如果只是聊天和多模型切换，可以从“中转站 + Cherry Studio”开始。</p>
+<p>如果目标是尝试 vibe coding，可以从“中转站 + CC Switch + Codex App”开始。这个组合能先解决 provider 管理和 Codex 接入问题。</p>
+<p>如果经常切换 provider，并且发现历史会话不可见，可以研究 <code>codex-provider-sync</code>。</p>
+<p>如果会话数量很多，需要备份、导出、统计和修复，可以研究 <code>cc-sessions</code>。</p>
+<p>如果想增强 Codex App，尤其是 API 模式下插件入口不可见、会话删除&#x2F;导出&#x2F;移动等问题，可以再研究 <code>Codex++</code>。</p>
+<p>无论使用哪种方案，都建议遵循几个基本原则：</p>
+<ul>
+<li><strong>先小额测试</strong>：确认速度、扣费、模型质量和售后反馈。</li>
+<li><strong>看清费率</strong>：确认当前倍率、模型定价和实际扣费方式。</li>
+<li><strong>看充值方式</strong>：站内自动充值可能有手续费，社群人工充值规则需要提前确认。</li>
+<li><strong>敏感内容脱敏</strong>：不要把账号密码、API Key、身份证件、私人聊天记录、未公开商业资料、公司代码等直接发给中转站。</li>
+<li><strong>本地状态先备份</strong>：会话同步、修复、增强类工具都会接触 Codex 本地状态，操作前应该备份。</li>
+</ul>
+<p>如果只用一句话概括：中转站解决的是“把模型接进工具”的问题，CC Switch 解决的是“provider 管理”的问题，Codex 相关增强工具解决的是“接入之后的本地使用问题”。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li>YyBbCode：<a target="_blank" rel="noopener" href="https://yybb.codes/dashboard">https://yybb.codes/dashboard</a></li>
-<li>YyBbCode 邀请链接：<a target="_blank" rel="noopener" href="https://yybb.codes/register?aff=725e6503">https://yybb.codes/register?aff=725e6503</a></li>
 <li>AICode007：<a target="_blank" rel="noopener" href="https://aicode007.com/dashboard">https://aicode007.com/dashboard</a></li>
 <li>labuladong B 站主页：<a target="_blank" rel="noopener" href="https://space.bilibili.com/14089380?spm_id_from=333.337.0.0">https://space.bilibili.com/14089380?spm_id_from&#x3D;333.337.0.0</a></li>
 <li>labuladong GitHub 项目：<a target="_blank" rel="noopener" href="https://github.com/labuladong/fucking-algorithm/">https://github.com/labuladong/fucking-algorithm/</a></li>
@@ -2755,6 +2758,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <li>Cherry Studio：<a target="_blank" rel="noopener" href="https://cherry-ai.com/">https://cherry-ai.com/</a></li>
 <li>CC Switch GitHub 项目：<a target="_blank" rel="noopener" href="https://github.com/farion1231/cc-switch">https://github.com/farion1231/cc-switch</a></li>
 <li>Help AIO AI 中转站评测：<a target="_blank" rel="noopener" href="https://www.helpaio.com/transit">https://www.helpaio.com/transit</a></li>
+<li>codex-provider-sync：<a target="_blank" rel="noopener" href="https://github.com/Dailin521/codex-provider-sync">https://github.com/Dailin521/codex-provider-sync</a></li>
+<li>Codex 历史会话同步讨论：<a target="_blank" rel="noopener" href="https://linux.do/t/topic/2072220">https://linux.do/t/topic/2072220</a></li>
+<li>cc-sessions：<a target="_blank" rel="noopener" href="https://github.com/ccpopy/cc-sessions">https://github.com/ccpopy/cc-sessions</a></li>
+<li>codex &#x2F; claude 会话管理讨论：<a target="_blank" rel="noopener" href="https://linux.do/t/topic/2009998">https://linux.do/t/topic/2009998</a></li>
+<li>Codex++：<a target="_blank" rel="noopener" href="https://github.com/BigPizzaV3/CodexPlusPlus">https://github.com/BigPizzaV3/CodexPlusPlus</a></li>
+<li>Codex++ 讨论：<a target="_blank" rel="noopener" href="https://linux.do/t/topic/2127211">https://linux.do/t/topic/2127211</a></li>
 </ul>
 
   </div>
@@ -2780,10 +2789,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-05-06T22:16:56+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-05-29T16:31:14+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2026年5月6日</p>
+    <p>更新于：2026年5月29日</p>
   </a>
 </div>
 
@@ -2982,7 +2991,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E6%94%BE%E6%A0%B8%E5%BF%83%E8%B5%84%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">先放核心资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vibe-coding-%E4%B8%8D%E6%98%AF%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%85%A5%E5%8F%A3"><span class="toc-number">2.</span> <span class="toc-text">vibe coding 不是只有一个入口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BD%91%E9%A1%B5%E7%AB%AF-ChatGPT%EF%BC%9A%E9%80%82%E5%90%88%E5%AF%B9%E8%AF%9D%E5%92%8C%E7%A0%94%E7%A9%B6"><span class="toc-number">2.1.</span> <span class="toc-text">1. 网页端 ChatGPT：适合对话和研究</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-VS-Code-%E9%87%8C%E7%9A%84-Codex-%E6%8F%92%E4%BB%B6%EF%BC%9A%E9%80%82%E5%90%88%E5%9C%A8-IDE-%E9%87%8C%E6%94%B9%E4%BB%A3%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">2. VS Code 里的 Codex 插件：适合在 IDE 里改代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Codex-CLI%EF%BC%9A%E9%80%82%E5%90%88%E7%BB%88%E7%AB%AF%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">2.3.</span> <span class="toc-text">3. Codex CLI：适合终端和自动化工作流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Codex-desktop-app%EF%BC%9A%E8%B6%8A%E6%9D%A5%E8%B6%8A%E5%83%8F%E4%B8%80%E4%B8%AA%E7%BB%9F%E4%B8%80%E5%85%A5%E5%8F%A3"><span class="toc-number">2.4.</span> <span class="toc-text">4. Codex desktop app：越来越像一个统一入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Cherry-Studio%EF%BC%9A%E9%80%82%E5%90%88%E6%99%AE%E9%80%9A%E5%AF%B9%E8%AF%9D%E5%92%8C%E5%A4%9A%E6%A8%A1%E5%9E%8B%E5%88%87%E6%8D%A2"><span class="toc-number">2.5.</span> <span class="toc-text">5. Cherry Studio：适合普通对话和多模型切换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E8%BD%AC%E7%AB%99%E8%A7%A3%E5%86%B3%E7%9A%84%E6%98%AF%E2%80%9C%E6%8E%A5%E5%85%A5%E2%80%9D%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">中转站解决的是“接入”问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E8%BD%AC%E7%AB%99%E5%A4%A7%E8%87%B4%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84"><span class="toc-number">4.</span> <span class="toc-text">中转站大致是怎么工作的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9B%AE%E5%89%8D%E6%95%B4%E7%90%86%E7%9A%84%E4%B8%AD%E8%BD%AC%E7%AB%99"><span class="toc-number">5.</span> <span class="toc-text">我目前整理的中转站</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#YyBbCode"><span class="toc-number">5.1.</span> <span class="toc-text">YyBbCode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AICode007"><span class="toc-number">5.2.</span> <span class="toc-text">AICode007</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E6%B5%8B%E5%92%8C%E9%85%8D%E7%BD%AE%E5%B7%A5%E5%85%B7"><span class="toc-number">6.</span> <span class="toc-text">评测和配置工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E4%BB%B7%E8%B4%A6%E5%8F%B7%E5%92%8C%E4%BB%A3%E5%85%85%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E9%80%82%E5%90%88%E9%95%BF%E6%9C%9F%E4%BE%9D%E8%B5%96"><span class="toc-number">7.</span> <span class="toc-text">低价账号和代充为什么不适合长期依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="toc-number">8.</span> <span class="toc-text">我的使用建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">9.</span> <span class="toc-text">参考资料</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E8%B5%84%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">核心资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E8%BD%AC%E7%AB%99-API-%E5%92%8C-vibe-coding-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">2.</span> <span class="toc-text">中转站 API 和 vibe coding 的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%B8%AD%E8%BD%AC%E7%AB%99"><span class="toc-number">3.</span> <span class="toc-text">第一步：选择中转站</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#YyBbCode"><span class="toc-number">3.1.</span> <span class="toc-text">YyBbCode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AICode007"><span class="toc-number">3.2.</span> <span class="toc-text">AICode007</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Help-AIO"><span class="toc-number">3.3.</span> <span class="toc-text">Help AIO</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E7%94%A8-CC-Switch-%E7%AE%A1%E7%90%86-provider"><span class="toc-number">4.</span> <span class="toc-text">第二步：用 CC Switch 管理 provider</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%8E%A5%E5%85%A5%E4%B8%8D%E5%90%8C%E5%B7%A5%E5%85%B7"><span class="toc-number">5.</span> <span class="toc-text">第三步：接入不同工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%A4%84%E7%90%86-Codex-App-%E7%9A%84%E5%AE%9E%E9%99%85%E9%97%AE%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">第四步：处理 Codex App 的实际问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#codex-provider-sync%EF%BC%9A%E4%BF%AE%E5%A4%8D-provider-%E5%88%87%E6%8D%A2%E5%90%8E%E7%9A%84%E5%8E%86%E5%8F%B2%E4%BC%9A%E8%AF%9D"><span class="toc-number">6.1.</span> <span class="toc-text">codex-provider-sync：修复 provider 切换后的历史会话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cc-sessions%EF%BC%9A%E6%9B%B4%E5%AE%8C%E6%95%B4%E7%9A%84%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="toc-number">6.2.</span> <span class="toc-text">cc-sessions：更完整的会话管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Codex-%EF%BC%9A%E5%A2%9E%E5%BC%BA-Codex-App"><span class="toc-number">6.3.</span> <span class="toc-text">Codex++：增强 Codex App</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="toc-number">7.</span> <span class="toc-text">使用建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li></ol>
     </div>
   </section>
 
@@ -3840,7 +3849,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/052.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/020.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/002.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/026.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/042.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/050.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/051.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/009.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/054.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/016.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/017.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/025.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/019.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/001.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/057.jpg","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/021.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/013.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/008.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/010.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/056.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/046.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/012.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/038.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/037.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/014.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/034.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/007.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/031.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/048.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/011.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/045.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/030.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/041.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/024.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/047.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/015.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/043.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/029.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/049.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/055.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/028.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/006.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/040.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/036.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/004.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/022.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/005.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/044.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/032.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/039.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/003.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/053.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/023.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/027.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/018.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/035.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/033.webp"];
+  let imgs = ["https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/052.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/056.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/036.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/003.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/001.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/004.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/002.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/029.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/046.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/023.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/022.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/032.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/040.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/049.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/014.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/008.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/026.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/025.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/044.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/016.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/024.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/007.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/030.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/031.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/042.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/009.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/037.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/020.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/053.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/028.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/018.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/045.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/043.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/057.jpg","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/010.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/011.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/006.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/034.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/038.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/054.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/012.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/017.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/050.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/039.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/055.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/041.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/021.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/051.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/019.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/013.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/047.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/035.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/048.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/027.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/015.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/005.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/033.webp"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4067,7 +4076,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's Cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/Tools/","name":"Tools"}},{"@type":"ListItem","position":3,"item":{"@id":"https://henryk39b5.github.io/2026/04/22/Tools/AI/AI 中转站使用笔记/","name":"AI 中转站使用笔记"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":""},"publisher":{"@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"AI 中转站使用笔记","description":"","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryk39b5.github.io/2026/04/22/Tools/AI/AI%20%E4%B8%AD%E8%BD%AC%E7%AB%99%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's Cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://henryk39b5.github.io/2026/04/22/Tools/AI/AI%20%E4%B8%AD%E8%BD%AC%E7%AB%99%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/","wordCount":0,"datePublished":"2026-04-22T07:50:54.000Z","dateModified":"2026-05-06T14:16:56.023Z","articleSection":"Tools","keywords":"Codex,AI 工具,OpenAI,Claude,API,中转站,vibe coding","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's Cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/Tools/","name":"Tools"}},{"@type":"ListItem","position":3,"item":{"@id":"https://henryk39b5.github.io/2026/04/22/Tools/AI/AI 中转站使用笔记/","name":"AI 中转站使用笔记"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":""},"publisher":{"@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"AI 中转站使用笔记","description":"","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryk39b5.github.io/2026/04/22/Tools/AI/AI%20%E4%B8%AD%E8%BD%AC%E7%AB%99%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's Cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://henryk39b5.github.io/2026/04/22/Tools/AI/AI%20%E4%B8%AD%E8%BD%AC%E7%AB%99%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/","wordCount":0,"datePublished":"2026-04-22T07:50:54.000Z","dateModified":"2026-05-29T08:31:14.950Z","articleSection":"Tools","keywords":"Codex,AI 工具,OpenAI,Claude,API,中转站,vibe coding","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
