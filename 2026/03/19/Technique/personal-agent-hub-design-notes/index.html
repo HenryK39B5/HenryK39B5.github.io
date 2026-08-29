@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.8.0">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://henryk39b5.github.io/tags/编程/"/>
+  
+  <link rel="canonical" href="https://henryk39b5.github.io/2026/03/19/technique/personal-agent-hub-design-notes/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -42,18 +42,24 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>标签：编程 - Henry's Cabin</title>
-  <meta name="keywords" content="null">
+  <title>如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记 - Henry's Cabin</title>
+  <meta name="keywords" content="AI 助手,Personal Agent Hub,Harness Engineering,Skills,null">
   <meta desc name="description" content="Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。 - Henry - Henry's Cabin">
   
-<meta property="og:type" content="website">
-<meta property="og:title" content="Henry&#39;s Cabin">
-<meta property="og:url" content="https://henryk39b5.github.io/tags/%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记">
+<meta property="og:url" content="https://henryk39b5.github.io/2026/03/19/Technique/personal-agent-hub-design-notes/index.html">
 <meta property="og:site_name" content="Henry&#39;s Cabin">
-<meta property="og:description" content="Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。">
+<meta property="og:description" content="第一次让 Agent 处理一项任务，效果差一点并不奇怪。你需要告诉它背景，带它找到文件，解释自己的偏好，再纠正几个判断。麻烦出在第二次：同类工作再次出现，这套磨合也跟着回来了。 我经常让 Agent 参与博客写作、简历修改、笔记整理和任务规划。这些工作各有自己的工具、目录和规矩。博客文章要符合 Hexo 的结构，简历不能补写不存在的经历，笔记有明确的归档位置，任务写进 TickTick 之前需要确">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2026-03-19T07:15:02.000Z">
+<meta property="article:modified_time" content="2026-08-29T14:37:32.916Z">
 <meta property="article:author" content="Henry">
+<meta property="article:tag" content="AI 助手">
+<meta property="article:tag" content="Personal Agent Hub">
+<meta property="article:tag" content="Harness Engineering">
+<meta property="article:tag" content="Skills">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2485,7 +2491,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="half" class='cover-wrapper  search' style="display: ;">
+      <div id="half" class='cover-wrapper post search' style="display: ;">
         
   <div id="parallax-window"></div>
 
@@ -2555,25 +2561,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://henryk39b5.github.io/2026/07/06/Technique/vibe-coding-notes/">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="https://henryk39b5.github.io/2026/03/19/Technique/personal-agent-hub-design-notes/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Henry's Cabin">
   </span>
@@ -2582,120 +2572,257 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/2026/07/06/Technique/vibe-coding-notes/"  itemprop="url">
-        vibe coding 笔记：资料、方法和一些实践感受
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      
-        这篇文章是一份笔记。
-我想整理一下这段时间接触 vibe coding 时看过的资料，以及在实际用 AI 做项目时形成的一些感受。这里面有些资料我看过大部分，有些只是读过一部分，还有一些更像以后可以回头查的入口。
-“vibe coding” 这个词，可以追溯到 Andrej Karpathy 在 2025 年 2 月的一条 X 帖子。它最初带有一点玩笑和夸张的意味：开发者主要用自然语言和 A...
-      
+    
+      <h1 class="title" itemprop="name headline">
+        如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png" class="lazyload" data-srcset="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">Henry</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/Technique/">Technique</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/Technique/" itemprop="url"><span itemprop="name">Technique</span></a>
+      </span>
     
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' href='/'><img src='https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png">
-            <meta itemprop="name" content="Henry">
-            <meta itemprop="url" content="/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2026-07-06T16:58:56+08:00">2026-07-06</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Technique/">Technique</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/categories/Technique/" itemprop="url"><span itemprop="name">Technique</span></a>
-            </span>
+
+
           
         
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2026-03-19T15:15:02+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2026年3月19日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>字数：2.8k 字</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>时长：9 分钟</p>
+    </a>
+  </div>
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
       </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <p>第一次让 Agent 处理一项任务，效果差一点并不奇怪。你需要告诉它背景，带它找到文件，解释自己的偏好，再纠正几个判断。麻烦出在第二次：同类工作再次出现，这套磨合也跟着回来了。</p>
+<p>我经常让 Agent 参与博客写作、简历修改、笔记整理和任务规划。这些工作各有自己的工具、目录和规矩。博客文章要符合 Hexo 的结构，简历不能补写不存在的经历，笔记有明确的归档位置，任务写进 TickTick 之前需要确认。模型通常有能力完成其中的大部分操作，却不知道我过去是怎样做的，也不知道上一次踩过的坑是否值得沿用。</p>
+<p>于是我开始维护一个 Personal Agent Hub。最初只是想减少重复说明，做着做着才发现，我处理的其实是一个更普遍的问题：</p>
+<blockquote>
+<p>Agent 做过一次工作之后，哪些经验值得留下，下一次又该怎样把它们取回来？</p>
+</blockquote>
+<h2 id="聊天记录留不下工作方法"><a href="#聊天记录留不下工作方法" class="headerlink" title="聊天记录留不下工作方法"></a>聊天记录留不下工作方法</h2><p>最直接的办法是继续使用旧会话。它确实保留了上下文，也保留了大量已经失去价值的过程：临时判断、失败尝试、与当前任务无关的细节，以及只在当时成立的信息。</p>
+<p>会话越来越长之后，查找成本会上升，旧信息也可能干扰新任务。换一个 Agent Runtime，历史记录通常还带不走。即便完整搬过去，模型也要重新从一大段对话中判断哪些内容仍然有效。</p>
+<p>真正值得复用的，往往只有很小一部分：某类任务应该去哪个工作区，开始前要读什么，哪些事实不能编造，什么操作需要确认，完成后如何检查。这些内容已经从一次对话中抽离出来，成了一套工作方法。</p>
+<p>Personal Agent Hub 保存的正是这部分。</p>
+<h2 id="一个-Hub-能替读者省下什么"><a href="#一个-Hub-能替读者省下什么" class="headerlink" title="一个 Hub 能替读者省下什么"></a>一个 Hub 能替读者省下什么</h2><p>如果你偶尔才让 AI 回答一个问题，可能用不上这样的东西。它更适合已经把 Agent 带进日常工作的人。你有几个长期维护的项目，也有反复出现的任务；你开始厌倦同样的背景说明，同时担心 Agent 自作主张地“记住”错误信息。</p>
+<p>这种情况下，Hub 可以减少几类摩擦。</p>
+<p>一项博客任务出现时，Agent 能找到博客仓库及其写作规则；处理简历时，它知道真实材料放在哪里，也知道不能把简历正文复制进个人记忆；普通代码任务则直接服从当前仓库，不必额外读取我的教育背景和写作偏好。</p>
+<p>这里有一条很实用的分界：正式内容留在拥有它的 Workspace，Hub 维护进入这些 Workspace 时需要的规则。我的博客仍然属于 Blogverse，简历属于 Resume Workspace，笔记属于 SiYuan，任务属于 TickTick。Hub 没有接管这些系统，也没有给它们再造一份副本。</p>
+<p>这让不同 Agent 可以共享同一套工作方法。Codex CLI、Pi 或其他支持读取 Markdown 与 Skills 的 Runtime，都可以按自己的方式发现它们。更换 Runtime 时，不必重新发明个人工作流。</p>
+<h2 id="Skill-保存的是程序性经验"><a href="#Skill-保存的是程序性经验" class="headerlink" title="Skill 保存的是程序性经验"></a>Skill 保存的是程序性经验</h2><p>Hub 目前主要由两类内容组成。<code>personal-context</code> 保存少量稳定事实、偏好和已经确认的长期决定；领域 Skills 记录博客、简历、笔记和任务管理等工作的操作方法。</p>
+<p>我会把一个反复出现、边界相对稳定的任务领域写成 Skill。它通常回答这些问题：</p>
+<ul>
+<li>什么情况下需要它；</li>
+<li>正式内容放在哪里；</li>
+<li>开始工作前应读取哪些材料；</li>
+<li>哪些动作可以直接完成，哪些需要确认；</li>
+<li>怎样判断任务真的完成了。</li>
+</ul>
+<p>以博客写作为例。<code>blogverse</code> Skill 既记录文章目录、frontmatter 和构建命令，也记录我在写作中反复强调的要求：别虚构一手经历，缺少材料时留出标记，开头尽快进入问题，技术内容交代适用范围，发布前执行构建检查。</p>
+<p>这些要求散落在历次对话里时，只能服务当时那篇文章。整理成 Skill 后，它们会在下一次写作时重新出现。文章的具体内容仍由这次任务决定，已经验证过的工作方法不用从头磨合。</p>
+<p>Skill 因此很像 Agent 的程序性记忆。它记住的是“这类事情怎样做”，与“用户偏好简洁表达”或“某个项目使用什么技术栈”这类事实记忆有所不同。</p>
+<h2 id="原来这也算-Harness-Engineering"><a href="#原来这也算-Harness-Engineering" class="headerlink" title="原来这也算 Harness Engineering"></a>原来这也算 Harness Engineering</h2><p>后来接触到 Harness Engineering 这个说法，我才找到了一个更准确的视角来理解这项工作。</p>
+<p>模型只提供推理能力。真正把模型变成可用 Agent 的，是外面那套运行环境：系统提示词、上下文、工具、权限、会话、记忆、任务循环和验证机制。它们共同构成 Agent Harness。Harness Engineering 关心的，就是怎样组织这些部分，让模型在具体环境里稳定工作。</p>
+<p>Personal Agent Hub 处在其中偏文档、偏声明式的一层。它不改 Agent Loop，也不实现新的工具调用协议。它通过 Markdown 告诉 Runtime：这里有哪些能力，何时加载，数据归谁所有，写入要经过什么边界，做完以后怎样检查。</p>
+<p>“个性化 AI”经常被理解成语气、人设和长期记忆。Harness 的视角把范围打开了。一个 Agent 是否懂我的工作方式，还取决于它会不会找到正确的文件、是否遵守修改边界、能否复用过去形成的流程，以及犯错后有没有机会修正那套流程。</p>
+<p>这么看，维护 Personal Agent Hub 确实是一种个性化 Harness Engineering。它使用的材料很朴素：目录和 Markdown。</p>
+<h2 id="Hermes：让-Agent-参与沉淀经验"><a href="#Hermes：让-Agent-参与沉淀经验" class="headerlink" title="Hermes：让 Agent 参与沉淀经验"></a>Hermes：让 Agent 参与沉淀经验</h2><p>我没有实际使用过 Hermes Agent，但它的设计给了我一个很有意思的参照。</p>
+<p>Nous Research 将 Hermes 描述为一个能够持续学习的 Agent。它把 Skills 视为 procedural memory，并允许 Agent 通过 <code>skill_manage</code> 创建或更新自己的 Skills。完成复杂任务、走过弯路找到可行方案、被用户纠正做法，这些经历都有机会沉淀成下次可用的流程。后台 review 还可以提出或暂存 Skill 修改。</p>
+<p>Hermes 也提供 <code>/learn</code>：你可以交给它一份文档、一个代码目录，或者刚刚完成的工作流程，让它整理成 Skill。再次提供同一主题的新材料时，它会尝试更新已有 Skill。Skills 平时只显示名称和描述，任务需要时才加载正文与 References，这与 Personal Agent Hub 采用的 progressive disclosure 很接近。</p>
+<p>两者最有意思的差别在维护者。我的 Hub 由人主导，Agent 协助整理，每一次长期记忆写入都需要明确确认。Hermes 把 Agent 放进了经验沉淀的循环，自动化程度更高，也提供 Skill 写入审批开关供用户把关。</p>
+<p>这条路线很诱人。第一次完成任务时形成经验，第二次直接调用，后续使用中继续修正，Agent 的工作方式会逐渐贴近用户。风险也在同一个循环里：一次错误归纳可能被长期保存，偶然偏好可能被当作稳定规则，多个自动修改叠加后，人未必还知道 Agent 为什么这样做。</p>
+<p>所以“会自己学习”只是起点。更难的问题是：什么经验有资格留下，谁来审核，旧规则如何被纠正，修改过程能不能追溯。</p>
+<h2 id="Pi：把改造推进到代码层"><a href="#Pi：把改造推进到代码层" class="headerlink" title="Pi：把改造推进到代码层"></a>Pi：把改造推进到代码层</h2><p>Pi Agent 展示了另一种 Harness Engineering。它本身是一款极简、可扩展的终端编码 Agent，同时把大量组装能力开放给用户。</p>
+<p>你可以在 Pi 里加载 Markdown Skills 和上下文文件，也可以用 TypeScript 扩展注册工具、监听生命周期事件、拦截工具调用、改变输入和上下文、加入权限确认，甚至自行实现计划模式或子 Agent。继续往下，还可以通过 SDK 选择模型 Provider、管理会话、替换默认工具，组装自己的 Agent。</p>
+<p>如果把这几种实践放在一起，大致能看到三个层级：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Personal Agent Hub</span><br><span class="line">    用 Markdown 维护个人上下文、工作方法与数据边界</span><br><span class="line"></span><br><span class="line">Hermes Agent</span><br><span class="line">    把 Skill 与记忆纳入 Agent 的学习和自我改进循环</span><br><span class="line"></span><br><span class="line">Pi Agent</span><br><span class="line">    从工具、事件、会话到 Agent Loop 进行代码级改造</span><br></pre></td></tr></table></figure>
+
+<p>这张图不代表能力排名。三者处理的层面不同，也可以组合使用。Personal Agent Hub 保持 Runtime agnostic，Pi 可以成为读取它的 Runtime；类似的 Skills 也能被其他兼容环境发现。Hermes 的价值则在于，它把经验沉淀本身做成了产品能力。</p>
+<p>对大多数刚开始定制 Agent 的人来说，Markdown 层已经能解决不少问题。只有当需求涉及新的工具、执行时机、权限机制或交互方式，代码层的 Harness 改造才显出必要性。</p>
+<h2 id="从一次重复解释开始"><a href="#从一次重复解释开始" class="headerlink" title="从一次重复解释开始"></a>从一次重复解释开始</h2><p>搭建个人 Agent 系统时，很容易先画一棵庞大的目录树，再给记忆、路由、工具和角色各安排一个位置。实际使用往往不会按照这张蓝图生长。</p>
+<p>更自然的起点，是留意自己又解释了一遍什么。</p>
+<p>也许你第三次提醒 Agent，项目发布前必须跑某项检查；也许它再次把正式文档写进了临时目录；也许你每次修改简历都要强调不能虚构经历。这些重复出现的纠正，正是 Skill 的候选材料。</p>
+<p>先挑一个高频任务，把已经验证过的步骤、边界和检查方法写下来。下一次使用时观察它是否真的减少了沟通，哪里太死，哪里仍然含糊。等到多个 Skill 开始共享同一类个人信息，再建立一份受控的个人上下文。自动学习可以晚一点加入，审批、版本记录和 source of truth 最好先想清楚。</p>
+<p>Personal Agent Hub 给我的最大收获，是把“让 AI 更懂我”变成了一组可以检查的问题：它需要知道什么，什么时候读取，经验如何留下，正式数据放在哪里，修改规则由谁决定。</p>
+<p>模型能力还会继续变化，今天常用的 Runtime 也可能被新的产品替代。写清楚的工作方法更容易留下来。它们可以被人阅读，可以进入版本控制，也可以被下一个 Agent 接着使用。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a></li>
+<li><a target="_blank" rel="noopener" href="https://hermes-agent.nousresearch.com/docs/user-guide/features/skills">Hermes Skills System</a></li>
+<li><a target="_blank" rel="noopener" href="https://hermes-agent.nousresearch.com/docs/user-guide/features/memory">Hermes Persistent Memory</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent">Pi Coding Agent</a></li>
+</ul>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
       
-        <div>
-          <a class='readmore' href='/2026/07/06/Technique/vibe-coding-notes/' itemprop="url">
-            阅读全文
-          </a>
-        </div>
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-08-29T22:37:32+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2026年8月29日</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-    
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/AI-%E5%8A%A9%E6%89%8B/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>AI 助手</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Personal-Agent-Hub/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Personal Agent Hub</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Harness-Engineering/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Harness Engineering</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Skills/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Skills</p></a></div>
+  <span hidden itemprop="keywords">AI 助手 Personal Agent Hub Harness Engineering Skills</span>
 
 
-    
-  
-</div>
-<aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
-  
-
-  
-    
-    
+        
       
-<section class="widget blogger desktop mobile pjax">
-  <div class='content'>
+    </div>
+    <!-- Custom Files bottomMeta begin -->
     
+  <div class="new-meta-box blogverse-share-meta">
+    <div class="new-meta-item blogverse-copy-share">
+      <button
+        type="button"
+        class="notlink blogverse-share-copy-button"
+        data-blogverse-share-copy
+        data-title="如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记"
+        data-site="Henry&#39;s Cabin"
+        data-url="https://henryk39b5.github.io/2026/03/19/Technique/personal-agent-hub-design-notes/"
+        aria-label="复制文章标题和链接"
+      >
+        <i class="fa-solid fa-share-nodes fa-fw" aria-hidden="true"></i>
+        <p>复制分享</p>
+      </button>
+    </div>
+  </div>
+
+
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
       
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png'/>
+        <a class='prev' href='/2026/04/22/Tools/AI/ai-relay-notes/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>AI 中转站使用笔记</p>
+          <p class='content'>在中国大陆使用 ChatGPT、Claude、Codex 这类海外模型，困难往往不只来自模型本身。支付渠道、账号验证、地区风控、订阅额度、网络连接和客户端配置，都可能卡住实际使用。
+中转站把其中...</p>
         </a>
       
-    
-    
-      <div class='text'>
-        
-          <h2>Henry</h2>
-        
-        
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="https://github.com/HenryK39B5/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
+      
+        <a class='next' href='/2024/06/30/Writing/%E6%96%87%E6%A1%A3%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/'>
+          <p class='title'>文案排版规范指北<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>文案排版规范指北指北GitHub - sparanoid&#x2F;chinese-copywriting-guidelinesGitHub - sparanoid&#x2F;chinese-c...</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
 
+
+  
+
+
+  <article class="post white-box shadow floatable blur" id="comments">
+    <span hidden>
+      <meta itemprop="discussionUrl" content="/2026/03/19/Technique/personal-agent-hub-design-notes/index.html#comments">
+    </span>
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
+
+    <div id="layoutHelper-comments"></div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
 
   
@@ -2780,85 +2907,48 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
-<section class="widget desktop mobile pjax">
-  
-  <header>
-    
-      <i class="fa-solid fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="webinfo">
-      
-        <div class="webinfo-item">
-          <div>文章数目：</div>
-          <div>11 篇</div>
-        </div>
-      
-
-      
-        <div class="webinfo-item">
-          <div>已运行时间：</div>
-          <div id="webinfo-runtime-count"></div>
-        </div>
-      
-
-
-      
-        <div class="webinfo-item">
-          <div>本站总字数：</div>
-          <div>36.4k 字</div>
-        </div>
-      
-
-      
-
-      
-
-      
-        <div class="webinfo-item">
-          <div>最后活动时间：</div>
-          <div id="last-update-show">2026-08-29 日</div>
-        </div>
-      
-    </div>
-  </div>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-
-<section class="widget desktop mobile pjax">
-  
-  <header>
-    
-      <i class="fa-solid fa-clock WISTERIA fa-fw" aria-hidden="true"></i><span class='name'>最近更新</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <ul class="list entry navigation"><li><a class="widget-last" href="/2026/03/19/Technique/personal-agent-hub-design-notes/"><div class="item"><time>2026-08-29</time><span>Technique</span></div><span>如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记</span></a></li><li><a class="widget-last" href="/2026/05/14/Tools/Markdown/typora-markdown-reading-ai-tool-customization/"><div class="item"><time>2026-08-23</time><span>Tools</span></div><span>颜值也是生产力：Typora、Markdown 阅读与 AI 时代的工具改造</span></a></li><li><a class="widget-last" href="/2026/07/16/Tools/my-software-flea-market/"><div class="item"><time>2026-08-23</time><span>Tools</span></div><span>来逛逛我的软件杂货铺：这些年我用过的工具</span></a></li><li><a class="widget-last" href="/2024/06/30/Writing/%E6%96%87%E6%A1%A3%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/"><div class="item"><time>2026-08-22</time><span>Writing</span></div><span>文案排版规范指北</span></a></li><li><a class="widget-last" href="/2026/04/22/Tools/AI/ai-relay-notes/"><div class="item"><time>2026-08-22</time><span>Tools</span></div><span>AI 中转站使用笔记</span></a></li></ul>
-  </div>
-</section>
-
     
   
 
 
 <div class="widget-sticky pjax">
 
+  
+  
+
+
+  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
+    
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%E7%95%99%E4%B8%8D%E4%B8%8B%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">聊天记录留不下工作方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA-Hub-%E8%83%BD%E6%9B%BF%E8%AF%BB%E8%80%85%E7%9C%81%E4%B8%8B%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">一个 Hub 能替读者省下什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Skill-%E4%BF%9D%E5%AD%98%E7%9A%84%E6%98%AF%E7%A8%8B%E5%BA%8F%E6%80%A7%E7%BB%8F%E9%AA%8C"><span class="toc-number">3.</span> <span class="toc-text">Skill 保存的是程序性经验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E6%9D%A5%E8%BF%99%E4%B9%9F%E7%AE%97-Harness-Engineering"><span class="toc-number">4.</span> <span class="toc-text">原来这也算 Harness Engineering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hermes%EF%BC%9A%E8%AE%A9-Agent-%E5%8F%82%E4%B8%8E%E6%B2%89%E6%B7%80%E7%BB%8F%E9%AA%8C"><span class="toc-number">5.</span> <span class="toc-text">Hermes：让 Agent 参与沉淀经验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pi%EF%BC%9A%E6%8A%8A%E6%94%B9%E9%80%A0%E6%8E%A8%E8%BF%9B%E5%88%B0%E4%BB%A3%E7%A0%81%E5%B1%82"><span class="toc-number">6.</span> <span class="toc-text">Pi：把改造推进到代码层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E4%B8%80%E6%AC%A1%E9%87%8D%E5%A4%8D%E8%A7%A3%E9%87%8A%E5%BC%80%E5%A7%8B"><span class="toc-number">7.</span> <span class="toc-text">从一次重复解释开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+  </section>
+
+  
+
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -2878,13 +2968,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3916,7 +4007,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's Cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/tags/编程/","name":"编程"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},"publisher":{"@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's Cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's Cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/Technique/","name":"Technique"}},{"@type":"ListItem","position":3,"item":{"@id":"https://henryk39b5.github.io//2026/03/19/Technique/personal-agent-hub-design-notes/","name":"如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},"publisher":{"@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryk39b5.github.io/2026/03/19/Technique/personal-agent-hub-design-notes/"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's Cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://henryk39b5.github.io/2026/03/19/Technique/personal-agent-hub-design-notes/","wordCount":0,"datePublished":"2026-03-19T07:15:02.000Z","dateModified":"2026-08-29T14:37:32.916Z","articleSection":"Technique","keywords":"AI 助手,Personal Agent Hub,Harness Engineering,Skills","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

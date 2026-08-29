@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.8.0">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  
-  <link rel="canonical" href="https://henryk39b5.github.io/2026/03/19/technique/my-codex-os：一个给 codex 使用的个人系统/"/>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://henryk39b5.github.io/tags/harness-engineering/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -42,25 +42,18 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>如何让 AI 更懂你的工作方式：我的 my-codex-os 设计笔记 - Henry's Cabin</title>
-  <meta name="keywords" content="工作流,Codex,AI 助手,个人系统,Skills,null">
+  <title>标签：Harness Engineering - Henry's Cabin</title>
+  <meta name="keywords" content="null">
   <meta desc name="description" content="Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。 - Henry - Henry's Cabin">
   
-<meta property="og:type" content="article">
-<meta property="og:title" content="如何让 AI 更懂你的工作方式：我的 my-codex-os 设计笔记">
-<meta property="og:url" content="https://henryk39b5.github.io/2026/03/19/Technique/my-codex-os%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%BB%99%20Codex%20%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Henry&#39;s Cabin">
+<meta property="og:url" content="https://henryk39b5.github.io/tags/Harness-Engineering/index.html">
 <meta property="og:site_name" content="Henry&#39;s Cabin">
-<meta property="og:description" content="我越来越频繁地在本地工作区里使用 Codex。 它不只是帮我回答问题，也会进入具体项目现场：读文件、改文章、整理简历、检查目录、跑构建、处理不同工具之间的衔接。用得多了以后，一个问题就变得很明显：如果每次新开一个线程，都要重新解释“我是谁”“这个任务属于哪里”“哪些文件不能乱动”“我希望文章写成什么风格”，那 AI 再聪明，也会浪费很多上下文和注意力。 所以我给自己搭了一个很轻量的个人系统，叫 m">
+<meta property="og:description" content="Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2026-03-19T07:15:02.000Z">
-<meta property="article:modified_time" content="2026-05-19T07:00:38.705Z">
 <meta property="article:author" content="Henry">
-<meta property="article:tag" content="工作流">
-<meta property="article:tag" content="Codex">
-<meta property="article:tag" content="AI 助手">
-<meta property="article:tag" content="个人系统">
-<meta property="article:tag" content="Skills">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -1773,7 +1766,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.7a2c825e.js","parallax":"/js/plugins/parallax.8bf0ab10.js","rightMenu":"/js/plugins/rightMenu.d9437285.js","rightMenus":"/js/plugins/rightMenus.80d861b1.js","sites":"/js/plugins/tags/sites.76bf19b8.js","friends":"/js/plugins/tags/friends.f372da57.js","contributors":"/js/plugins/tags/contributors.aec80453.js","search":"/js/search/hexo.85946653.js"},"css":{"style":"/css/style.3b1ca89f.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1787451701800),
+    lastupdate: new Date(1788014925427),
     sidebar: {
       for_page: ["blogger","category","tagcloud","webinfo","lastupdate"],
       for_post: ["category","tagcloud","toc"],
@@ -2492,7 +2485,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="half" class='cover-wrapper post search' style="display: ;">
+      <div id="half" class='cover-wrapper  search' style="display: ;">
         
   <div id="parallax-window"></div>
 
@@ -2562,9 +2555,25 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
+
 <div id="l_main" class=''>
-  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
-  <link itemprop="mainEntityOfPage" href="https://henryk39b5.github.io/2026/03/19/Technique/my-codex-os：一个给 Codex 使用的个人系统/">
+  
+    
+      
+  <section class="post-list">
+    
+      
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://henryk39b5.github.io/2026/03/19/Technique/personal-agent-hub-design-notes/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Henry's Cabin">
   </span>
@@ -2573,427 +2582,119 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。">
   </span>
   
-
-
+  
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  <div class="article-meta" id="top">
+  
     
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/2026/03/19/Technique/personal-agent-hub-design-notes/"  itemprop="url">
+        如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
     
+      
+        第一次让 Agent 处理一项任务，效果差一点并不奇怪。你需要告诉它背景，带它找到文件，解释自己的偏好，再纠正几个判断。麻烦出在第二次：同类工作再次出现，这套磨合也跟着回来了。
+我经常让 Agent 参与博客写作、简历修改、笔记整理和任务规划。这些工作各有自己的工具、目录和规矩。博客文章要符合 Hexo 的结构，简历不能补写不存在的经历，笔记有明确的归档位置，任务写进 TickTick 之前...
+      
     
-      <h1 class="title" itemprop="name headline">
-        如何让 AI 更懂你的工作方式：我的 my-codex-os 设计笔记
-      </h1>
-      <div class='new-meta-box'>
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
         
           
-            
-<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <a itemprop="url" class='author' href="/" rel="nofollow">
-    <img itemprop="image" src="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png" class="lazyload" data-srcset="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-    <p itemprop="name">Henry</p>
-  </a>
+          <a class='avatar' href='/'><img src='https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png">
+            <meta itemprop="name" content="Henry">
+            <meta itemprop="url" content="/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2026-03-19T15:15:02+08:00">2026-03-19</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Technique/">Technique</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/categories/Technique/" itemprop="url"><span itemprop="name">Technique</span></a>
+            </span>
+          
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2026/03/19/Technique/personal-agent-hub-design-notes/' itemprop="url">
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
 </div>
 
-          
+          </div>
         
-          
-            
-  <div class='new-meta-item category'>
-    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
-    <a class="category-link" href="/categories/Technique/">Technique</a>
+      
     
-      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/categories/Technique/" itemprop="url"><span itemprop="name">Technique</span></a>
-      </span>
+  </section>
+  
     
-  </div>
+  
 
 
-          
-        
-          
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2026-03-19T15:15:02+08:00">
-  <a class='notlink'>
-    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2026年3月19日</p>
-  </a>
+    
+  
 </div>
+<aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
+  
 
-          
+  
+    
+    
+      
+<section class="widget blogger desktop mobile pjax">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/about/'>
+          <img no-lazy src='https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/boy.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>Henry</h2>
+        
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
         
           
-            
-  <div class="new-meta-item wordcount">
-    <a class='notlink'>
-      <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：6k 字</p>
-    </a>
-  </div>
-  <div class="new-meta-item readtime">
-    <a class='notlink'>
-      <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：20 分钟</p>
-    </a>
-  </div>
-
-
+            <a href="https://github.com/HenryK39B5/"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
           
         
-        <!-- Custom Files topMeta begin-->
-        
-        <!-- Custom Files topMeta end-->
       </div>
     
   </div>
+</section>
 
-
-  <div id="layoutHelper-page-plugins"></div>
-  <div id="post-body" itemprop="articleBody">
-    <p>我越来越频繁地在本地工作区里使用 Codex。</p>
-<p>它不只是帮我回答问题，也会进入具体项目现场：读文件、改文章、整理简历、检查目录、跑构建、处理不同工具之间的衔接。用得多了以后，一个问题就变得很明显：如果每次新开一个线程，都要重新解释“我是谁”“这个任务属于哪里”“哪些文件不能乱动”“我希望文章写成什么风格”，那 AI 再聪明，也会浪费很多上下文和注意力。</p>
-<p>所以我给自己搭了一个很轻量的个人系统，叫 <code>my-codex-os</code>。</p>
-<p>这个名字听起来有点大，但它实际做的事情很克制。它不是一个真正的操作系统，也不是完整的 agent memory middleware，更不是要把我所有生活细节都塞给 AI 的第二大脑。</p>
-<p>我现在更愿意把它理解成一个协作入口：让 Codex 在每次开始工作时，先读到少量必要信息，知道任务应该去哪里，并按我沉淀下来的工作方式协作。</p>
-<p>如果只用一句话概括：</p>
-<blockquote>
-<p><code>my-codex-os</code> 不是为了让 AI 记住我的一切，而是为了让 AI 更快进入我的个人工作现场。</p>
-</blockquote>
-<p>这篇文章想记录的不是一个通用产品方案，而是我作为使用者和设计者的一些阶段性思考：哪些任务真的需要个人 AI 系统，怎样围绕自己的工具生态设计协作入口，为什么我越来越重视 skills，以及普通读者可以怎样从自己的高频任务里沉淀出一套适合自己的工作方式。</p>
-<h2 id="我真正想解决的问题"><a href="#我真正想解决的问题" class="headerlink" title="我真正想解决的问题"></a>我真正想解决的问题</h2><p><code>my-codex-os</code> 的目标不是处理所有 AI 任务。</p>
-<p>这一点我觉得很重要。因为如果把它理解成“所有事情都要先经过的入口”，它很快就会变重，也会让读者误解它的价值。</p>
-<p>有些任务其实不太需要个人系统。</p>
-<p>比如普通论文摘要，核心上下文通常在论文文本本身；普通编程开发，核心上下文在目标代码仓库、README、测试和项目规则；一次性资料整理，核心上下文也往往在那批资料里。对于这些任务，AI 真正需要读的是目标材料，而不是我的个人画像。</p>
-<p>当然，这些任务仍然可以由 Codex 完成。但它们不一定需要 <code>my-codex-os</code>。</p>
-<p>我搭这个系统，主要是为了两类任务。</p>
-<p>第一类，是需要个人信息的任务。</p>
-<p>比如简历定制、求职材料、个人介绍、职业相关判断、个人背景相关的文章表达。这类任务如果不知道我的教育背景、技能基础、真实经历和偏好，就很难做得稳。尤其是简历，AI 不仅要会写，还要知道哪些内容是真实材料，哪些不能虚构，最终文件应该回到哪里。</p>
-<p>第二类，是跟个人工作方式高度相关的任务。</p>
-<p>比如博客文章撰写、任务规划、笔记整理、资料同步、跨工作区路由。这些任务不只是“处理一段文本”或“跑一个命令”，而是需要理解我的工具链、习惯、质量标准和边界。</p>
-<p>所以我真正想解决的是三个问题：</p>
-<ul>
-<li>减少个人相关任务里的重复解释；</li>
-<li>让任务进入正确的工具或工作区；</li>
-<li>把反复发生的个人工作方式沉淀下来。</li>
-</ul>
-<p>这也是 <code>my-codex-os</code> 和普通项目 <code>AGENTS.md</code> 的区别。普通项目规则主要服务那个项目本身，而 <code>my-codex-os</code> 服务的是我这个人和我的个人工作流。</p>
-<p>它不是所有 AI 工作的入口，而是个人相关任务的协作入口。</p>
-<h2 id="我的工具生态"><a href="#我的工具生态" class="headerlink" title="我的工具生态"></a>我的工具生态</h2><p>理解 <code>my-codex-os</code>，需要先理解我的工具生态。</p>
-<p>它不是悬空设计出来的一套目录，而是从我真实使用的工具和工作区里长出来的。</p>
-<p>我平时主要用微信读书阅读。阅读过程中产生的材料、资料整理和结构化笔记，最终会进入 SiYuan。SiYuan 对我来说更像知识库，而不是临时草稿箱。</p>
-<p>任务和日程管理，我使用 TickTick。这里面放计划、提醒、优先级和执行跟踪。所以 <code>my-codex-os</code> 不把本地 Markdown 当作日程系统，也不把长期记忆当成待办清单。</p>
-<p>博客文章放在 Blogverse 工作区。这个博客基于 Hexo 框架、Volantis 主题和 GitHub Pages 搭建。真正的文章源文件、主题配置、构建和发布流程，都属于 Blogverse，而不是 <code>my-codex-os</code>。</p>
-<p>简历和求职材料则放在专门的 Resume 工作区。简历 Markdown、导出的 <code>docx</code>、<code>pdf</code>、模板和照片，都以那个工作区为 source of truth。</p>
-<p>Codex 在这里扮演的角色，是进入这些工作区、读取规则、调用工具、执行修改和运行验证的协作者。</p>
-<p>所以 <code>my-codex-os</code> 并不试图替代这些工具。</p>
-<p>它不会替代微信读书，不会替代 SiYuan，不会替代 TickTick，不会替代 Blogverse，也不会替代 Resume 工作区。它只负责让 Codex 在这些工具之间工作时，知道：</p>
-<ul>
-<li>当前任务属于哪里；</li>
-<li>该读取哪个 skill；</li>
-<li>哪些文件是 source of truth；</li>
-<li>哪些写入必须先确认；</li>
-<li>什么信息应该记住，什么信息不应该记住。</li>
-</ul>
-<p>从这个角度看，skills 也不是为了“显得系统很完整”才存在的。</p>
-<p>它们通常是围绕真实工具、真实工作区或真实流程长出来的。</p>
-<p>比如 <code>siyuan-ops</code> 约束如何通过 SiYuan MCP 检索、整理和写入笔记；<code>ticktick-ops</code> 约束如何读取、规划和写入 TickTick，尤其强调写入前确认；<code>blogverse-ops</code> 约束博客写作、Hexo &#x2F; Volantis 目录、frontmatter、构建和发布；<code>resume-ops</code> 约束简历定制，不虚构经历，源文件留在 Resume 工作区。</p>
-<p>还有一些 skill 更偏系统层：<code>assistant-presence</code> 约束 Codex 和我交互时的气质，让 Auren 稳定地像一个沉稳、直接、站在我这边的助手，而不是每次都换一种客服腔；<code>workspace-router</code> 负责判断任务该进入哪个工作区；<code>memory-ops</code> 负责少量长期记忆的读取和确认写入。</p>
-<p>这些 skill 的存在，反过来也说明了 <code>my-codex-os</code> 的定位：它不是一个孤立的知识库，而是一个连接个人工具生态的轻量协调层。</p>
-<h2 id="my-codex-os-的核心设计"><a href="#my-codex-os-的核心设计" class="headerlink" title="my-codex-os 的核心设计"></a>my-codex-os 的核心设计</h2><p>在这个工具生态下面，<code>my-codex-os</code> 的设计原则很简单：</p>
-<ul>
-<li>入口强：新线程先读少量高信号文件；</li>
-<li>路由准：任务先进入正确的 workspace、skill 或工具流程；</li>
-<li>记忆少：长期记忆只保存会反复影响协作质量的稳定事实、偏好和决策；</li>
-<li>写入慢：任何长期记忆、任务工具或外部知识库写入前都需要确认；</li>
-<li>不臃肿：不保存原始会话，不维护常驻 workbench，不引入数据库、embedding 或后台自动反思。</li>
-</ul>
-<p>这些原则背后有一个朴素判断：个人 AI 系统不应该成为新的维护负担。</p>
-<p>如果一个系统本身需要大量整理、归档、迁移、封账、维护，那它很快就会从“帮助我工作”变成“我还要照顾它”。尤其是现在模型能力已经很强，很多临时推理和短期上下文不一定需要被保存成复杂结构。真正值得留下的，反而是那些少量、稳定、反复影响协作质量的信息。</p>
-<p>现在这个系统大概由几类文件组成：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">my-codex-os/</span><br><span class="line">├─ AGENTS.md</span><br><span class="line">├─ README.md</span><br><span class="line">├─ SYSTEM/</span><br><span class="line">│  ├─ PROFILE.md</span><br><span class="line">│  ├─ PROTOCOL.md</span><br><span class="line">│  ├─ ROUTER.md</span><br><span class="line">│  ├─ MEMORY.md</span><br><span class="line">│  └─ WORKSPACES.md</span><br><span class="line">└─ SKILLS/</span><br><span class="line">   ├─ assistant-presence/</span><br><span class="line">   ├─ memory-ops/</span><br><span class="line">   ├─ workspace-router/</span><br><span class="line">   ├─ resume-ops/</span><br><span class="line">   ├─ blogverse-ops/</span><br><span class="line">   ├─ ticktick-ops/</span><br><span class="line">   └─ siyuan-ops/</span><br></pre></td></tr></table></figure>
-
-<p>这套结构的重点不是“目录看起来完整”，而是每个文件回答一个清楚的问题。</p>
-<h3 id="入口：新线程先读什么"><a href="#入口：新线程先读什么" class="headerlink" title="入口：新线程先读什么"></a>入口：新线程先读什么</h3><p><code>AGENTS.md</code> 是 Codex App 新线程的强入口。</p>
-<p>它告诉 Codex：在回答实质问题前，先读 <code>README.md</code>、<code>SYSTEM/PROFILE.md</code>、<code>SYSTEM/PROTOCOL.md</code> 和 <code>SYSTEM/ROUTER.md</code>。只在任务需要时，再读取长期记忆、外部工作区注册表、相关 skill 或外部工作区自己的规则。</p>
-<p>这个入口很重要。因为 AI 协作的一个现实问题是：每个新线程都像一次失忆后的重新见面。如果没有启动契约，它只能靠用户在对话里重新补背景。</p>
-<p>我不希望每次都重新解释一遍“我是谁、这个系统怎么分工、什么不能乱写”。这些东西应该在入口里解决。</p>
-<h3 id="画像：必要的“我是谁”"><a href="#画像：必要的“我是谁”" class="headerlink" title="画像：必要的“我是谁”"></a>画像：必要的“我是谁”</h3><p><code>SYSTEM/PROFILE.md</code> 记录稳定协作画像。</p>
-<p>这里不会写很长的个人传记，只记录会长期影响协作方式的信息。例如我的教育背景、核心领域、技术基础、AI 工具基础、默认输出偏好和协作边界。</p>
-<p>这类信息的价值不在于“让 AI 更了解我的人生”，而在于减少无意义的解释成本。</p>
-<p>比如我经常处理金融、数据分析、计量研究和 AI 工具协作相关任务，那么 Codex 不需要每次都从零解释这些基础概念。再比如我偏好“简洁、直接、先结论后细节”，复杂选择时希望给 2-3 个选项并明确推荐一个，这也可以成为稳定默认值。</p>
-<p>画像要有边界。它应该只保存对协作有用的信息，不应该变成隐私堆料场。</p>
-<h3 id="协议：什么能做，什么必须确认"><a href="#协议：什么能做，什么必须确认" class="headerlink" title="协议：什么能做，什么必须确认"></a>协议：什么能做，什么必须确认</h3><p><code>SYSTEM/PROTOCOL.md</code> 记录协作原则。</p>
-<p>它更像一份安全边界说明：先理解任务类型，再按路由判断是否需要 skill、外部 workspace 或工具；用最小必要上下文完成任务；只有在确实会长期影响未来协作时，才考虑写入长期记忆。</p>
-<p>这里面有一条我很看重的规则：关键写入前先确认。</p>
-<p>包括长期记忆、TickTick 任务、SiYuan 笔记、简历源文件、博客文章、配置和发布相关文件，都不能随便写。AI 可以很能干，但能干不等于应该越权。</p>
-<p>对个人系统来说，可信度比自动化程度更重要。</p>
-<h3 id="路由：任务应该发生在哪里"><a href="#路由：任务应该发生在哪里" class="headerlink" title="路由：任务应该发生在哪里"></a>路由：任务应该发生在哪里</h3><p><code>SYSTEM/ROUTER.md</code> 是任务路由表。</p>
-<p>它回答的问题是：这类任务该怎么走？</p>
-<p>比如：</p>
-<ul>
-<li>简历、JD、投递、求职材料：进入 <code>resume-workspace</code>，读取 <code>resume-ops</code>；</li>
-<li>博客、文章、Hexo、Volantis、发布、预览：进入 <code>blogverse-workspace</code>，读取 <code>blogverse-ops</code>；</li>
-<li>规划、任务、提醒、复盘：进入 <code>ticktick-ops</code>；</li>
-<li>思源、笔记、知识库、同步、归档：进入 <code>siyuan-ops</code>；</li>
-<li>系统规则、skill、记忆系统、路由设计：留在 <code>my-codex-os</code>。</li>
-</ul>
-<p>这件事看起来像工程细节，但我觉得它非常关键。</p>
-<p>因为 AI 最容易犯的错误之一，就是把“当前对话所在目录”和“任务真正应该发生的地方”混为一谈。简历源文件不应该被复制进 <code>my-codex-os</code>，博客正文也不应该被长期记忆吞掉。每个项目都有自己的 source of truth。</p>
-<p><code>SYSTEM/WORKSPACES.md</code> 则负责记录外部工作区地址簿。它只存路径、用途、source of truth 和注意事项，不承载项目正文。</p>
-<p>换句话说，<code>my-codex-os</code> 不接管所有项目，它只负责把 Codex 送到正确的位置。</p>
-<h3 id="记忆：少记、慢写、只记稳定事实"><a href="#记忆：少记、慢写、只记稳定事实" class="headerlink" title="记忆：少记、慢写、只记稳定事实"></a>记忆：少记、慢写、只记稳定事实</h3><p><code>SYSTEM/MEMORY.md</code> 是单文件长期记忆。</p>
-<p>我现在对长期记忆的态度很保守：宁缺毋滥。</p>
-<p>它只记录少量会反复影响协作质量的稳定事实、偏好和决策。比如我的稳定背景、输出偏好、重要系统设计决策。它不记录原始会话，不记录临时任务状态，不记录简历正文，不记录博客正文，也不记录可从外部工作区读取的 source of truth。</p>
-<p>这背后有一个很现实的判断：记忆不是越多越好。</p>
-<p>长期记忆一旦太多，就会带来三个问题。</p>
-<p>第一，检索成本上升。AI 读到太多材料，反而容易抓不住重点。</p>
-<p>第二，过期风险上升。人的状态、项目、偏好都会变，旧信息如果没有清理机制，很容易误导未来协作。</p>
-<p>第三，隐私风险上升。越多个人信息被沉淀，暴露面就越大。</p>
-<p>所以我现在更倾向于把长期记忆当成“少量稳定默认值”，而不是“个人全部历史”。</p>
-<h2 id="Skills：把工具使用方式和个人工作方式沉淀下来"><a href="#Skills：把工具使用方式和个人工作方式沉淀下来" class="headerlink" title="Skills：把工具使用方式和个人工作方式沉淀下来"></a>Skills：把工具使用方式和个人工作方式沉淀下来</h2><p>如果说 <code>PROFILE</code>、<code>PROTOCOL</code>、<code>ROUTER</code> 解决的是“AI 应该从哪里开始”，那么 <code>SKILLS</code> 解决的是“某类任务应该怎么做”。</p>
-<p>我现在越来越重视 skills，因为它们能把工具使用方式和个人工作方式沉淀成可执行流程。</p>
-<p>Prompt 适合临时沟通。比如“帮我润色这段话”“根据这个 JD 看看简历怎么改”。但如果一类任务会反复发生，而且每次都有相似的工具、流程、边界和质量标准，那么单靠 prompt 就很浪费。</p>
-<p>这时候 skill 的价值就出现了。</p>
-<p>对我来说，skill 不是一个更长的 prompt 模板，而是一份专项操作手册。它可以写清楚：</p>
-<ul>
-<li>什么时候触发；</li>
-<li>进入哪个工作区；</li>
-<li>先读哪些文件；</li>
-<li>哪些内容是 source of truth；</li>
-<li>哪些内容不能虚构；</li>
-<li>调用哪个 MCP 或本地命令；</li>
-<li>输出应该放在哪里；</li>
-<li>完成前要做什么检查；</li>
-<li>什么情况下必须先问我。</li>
-</ul>
-<p>这类规则不一定适合公开照抄。因为每个人的工作区结构、工具链、写作偏好、隐私边界都不同。一个对我很好用的 skill，直接复制给别人，可能没有多少价值。</p>
-<p>但“把工作方式沉淀成 skill”这个方法本身很有价值。</p>
-<p>我也建议读者多参考别人写得好的 skill。不是为了复制，而是为了学习它如何把隐性的判断拆成可执行规则。</p>
-<p>我的博客写作 skill 就受到过一个 AI 自媒体博主开源写作 skill 的启发。它让我意识到，所谓写作风格不只是“语气活泼一点”或“少一点 AI 味”，而是可以被拆成一组更具体的判断：文章怎样开头，怎样避免空话，怎样保留不确定性，怎样处理经验和观点，怎样让读者真正带走一些东西。</p>
-<p>这个启发比那份 skill 本身更重要。</p>
-<p>真正值得借鉴的不是别人的成品，而是别人如何把自己的工作经验结构化。</p>
-<h2 id="一个具体例子：博客写作-Skill"><a href="#一个具体例子：博客写作-Skill" class="headerlink" title="一个具体例子：博客写作 Skill"></a>一个具体例子：博客写作 Skill</h2><p>我利用 <code>my-codex-os</code> 做得比较多的事情，除了简历修改，就是博客文章撰写。</p>
-<p>最开始让 AI 写博客时，问题并不是“写不出来”。现在的模型很容易写出一篇结构完整、语句流畅、看起来挺像文章的文本。</p>
-<p>问题是，它经常不够像我。</p>
-<p>更准确地说，它可能缺少几个东西：</p>
-<ul>
-<li>缺少真实问题意识；</li>
-<li>缺少我自己的判断和不确定性；</li>
-<li>缺少具体经验和使用场景；</li>
-<li>容易把文章写成漂亮但空泛的说明文；</li>
-<li>遇到缺材料的地方，可能会顺手补一个看似合理但并不真实的细节。</li>
-</ul>
-<p>所以我后来把博客写作相关规则沉淀进 <code>blogverse-ops</code>，尤其是写作风格 references。</p>
-<p>这个 skill 不只是告诉 Codex 博客目录在哪里，也不只是告诉它 <code>npm run build</code> 怎么跑。它还会约束写作本身：</p>
-<ul>
-<li>文章最好从具体触发、问题或实验开始；</li>
-<li>不要用“在当今时代”这类空泛开头；</li>
-<li>技术文章要讲清楚边界、成本和失败模式；</li>
-<li>观点要允许不确定性，不要装作无所不知；</li>
-<li>AI 不能虚构我的一手经历；</li>
-<li>如果缺少真实材料，要明确标记让我补充；</li>
-<li>文章应该有实用价值，也要有一点更深的思考；</li>
-<li>Markdown 要符合 Hexo &#x2F; Volantis 的渲染规则，不要重复正文 H1，也不要手动编号标题。</li>
-</ul>
-<p>这样一来，Codex 就不只是“帮我写一篇博客”。</p>
-<p>它更像是在我的写作观里协作：先理解我要表达什么，再根据博客工作区规则处理文件，根据写作风格规则组织文章，根据发布流程做构建验证。</p>
-<p>这件事让我对 skill 有了一个更清楚的理解：</p>
-<blockquote>
-<p>Skill 的价值，不是替代人的判断，而是把人反复使用的判断标准提前写下来。</p>
-</blockquote>
-<p>这对写作尤其重要。因为写作不是单纯生成文字，而是持续做选择：哪些材料值得写，什么地方需要展开，哪些句子太空，哪些判断太满，哪里应该留下真实的不确定性。</p>
-<p>如果这些标准完全留在我的脑子里，每次都要重新告诉 AI。写进 skill 后，它们就变成了协作的一部分。</p>
-<h2 id="如果你也想搭一个"><a href="#如果你也想搭一个" class="headerlink" title="如果你也想搭一个"></a>如果你也想搭一个</h2><p>如果你也想给自己搭一个类似的个人 AI 协作入口，我不建议一开始就做复杂系统。</p>
-<p>可以按这个顺序来。</p>
-<p>第一步，先判断目标场景。</p>
-<p>不要问“我要不要做一个 AI 第二大脑”，而是问：</p>
-<ul>
-<li>哪些任务需要 AI 知道我的个人信息？</li>
-<li>哪些任务高度依赖我的个人工作方式？</li>
-<li>哪些任务其实只需要读取目标项目或目标材料，不需要个人系统？</li>
-</ul>
-<p>这个区分很重要。个人 AI 系统不应该吞掉所有任务。</p>
-<p>第二步，列出自己的工具生态。</p>
-<p>你用什么阅读？用什么记笔记？用什么管理任务？博客、简历、代码项目、数据分析文件分别放在哪里？哪些工具有 MCP，哪些只是本地文件夹，哪些内容绝对不能复制到别处？</p>
-<p>这些问题比目录命名更重要。</p>
-<p>第三步，再写几个核心文件。</p>
-<p>一个最小版本可以是：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">my-ai-os/</span><br><span class="line">├─ PROFILE.md</span><br><span class="line">├─ PROTOCOL.md</span><br><span class="line">├─ ROUTER.md</span><br><span class="line">└─ SKILLS/</span><br><span class="line">   └─ your-first-skill/</span><br><span class="line">      └─ SKILL.md</span><br></pre></td></tr></table></figure>
-
-<p><code>PROFILE.md</code> 写必要的“我是谁”。不要写自传，只写对协作有用的内容：你的背景、常用工具、基础能力、输出偏好、禁忌和边界。</p>
-<p><code>PROTOCOL.md</code> 写协作规则。比如：什么可以直接做，什么必须先确认；哪些工具是计划中枢，哪些地方是知识库；哪些信息不能长期保存；哪些文件不能乱改。</p>
-<p><code>ROUTER.md</code> 写任务路由。比如：简历任务去哪个目录，博客任务去哪个目录，读书笔记去哪里，任务规划用什么工具，哪些事情留在当前系统。</p>
-<p>第四步，选一个高频任务，沉淀第一个 skill。</p>
-<p>不要一开始就写“人生管理 skill”。选一个很具体、反复发生、流程相对稳定的任务。比如：</p>
-<ul>
-<li>简历定制；</li>
-<li>博客写作；</li>
-<li>读书笔记整理；</li>
-<li>每周复盘；</li>
-<li>数据分析报告；</li>
-<li>论文阅读；</li>
-<li>项目发布检查。</li>
-</ul>
-<p>一个好的起点是回答这几个问题：</p>
-<ul>
-<li>什么时候应该触发这个 skill？</li>
-<li>这个任务的 source of truth 在哪里？</li>
-<li>开始前需要读哪些文件？</li>
-<li>过程中哪些事情不能做？</li>
-<li>什么地方必须先问我？</li>
-<li>最终输出应该长什么样？</li>
-<li>完成前要检查什么？</li>
-</ul>
-<p>你不需要一次写得很完美。skill 更像一个会随着使用不断打磨的操作手册。每次发现 AI 又犯了同类错误，或者你又重复解释了一遍同类要求，就可以考虑把它补进去。</p>
-<p>这是一种很实用的自我蒸馏：把你对某类工作的经验，压缩成 AI 下次能读懂的规则。</p>
-<h2 id="必须承认的代价"><a href="#必须承认的代价" class="headerlink" title="必须承认的代价"></a>必须承认的代价</h2><p>一个 AI 越懂你的工作方式，就越需要接触你的上下文。</p>
-<p>这会带来效率，也会带来风险。</p>
-<p>如果你使用 OpenAI、Anthropic、Google 等大模型厂商的官方服务，你提供的上下文至少会进入对应厂商的服务系统。即使厂商有隐私政策和数据保护机制，这仍然是一种外部暴露。</p>
-<p>如果你使用中转站，风险还会多一层。你的请求除了经过模型服务，还会经过中转服务。它是否记录日志、如何处理数据、是否真实调用它声称的模型，普通用户很难完全验证。</p>
-<p>如果你使用本地模型，隐私会更可控，但也会付出能力、部署、速度和工具生态上的成本。</p>
-<p>所以我不太赞成一句话式地说“把所有东西都喂给 AI”。这听起来很强，但也很粗糙。</p>
-<p>更合理的做法是分层。</p>
-<p>有些信息可以写进长期画像，比如公开背景、常用工具、输出偏好；有些信息可以留在本地工作区，任务需要时再让 AI 读取；有些信息只适合在当前会话临时使用；还有些信息最好不要进入 AI 协作流程。</p>
-<p>个人 AI 系统的关键，不只是让 AI 知道什么，也包括让 AI 不知道什么。</p>
-<p>这也是我为什么强调“写入慢”。真正可信的系统，应该给用户保留确认权。</p>
-<h2 id="个人-AI-系统是一种协作入口"><a href="#个人-AI-系统是一种协作入口" class="headerlink" title="个人 AI 系统是一种协作入口"></a>个人 AI 系统是一种协作入口</h2><p>写到这里，我现在对 <code>my-codex-os</code> 的理解已经比较清楚了。</p>
-<p>它不替代我的知识库，不替代任务系统，不替代博客仓库，也不替代简历工作区。</p>
-<p>微信读书仍然是阅读入口，SiYuan 仍然是笔记与知识库，TickTick 仍然是计划中枢，Blogverse 仍然是博客 source of truth，Resume 工作区仍然保存简历源文件和导出产物。</p>
-<p><code>my-codex-os</code> 做的事情更小：</p>
-<ul>
-<li>帮 Codex 恢复必要的协作上下文；</li>
-<li>告诉 Codex 哪类任务应该去哪里；</li>
-<li>记录少量稳定记忆；</li>
-<li>用 skills 保存可复用的工作方式；</li>
-<li>在关键写入前提醒确认边界。</li>
-</ul>
-<p>它不是第二大脑，而是协作入口。</p>
-<p>我觉得这个定位反而更适合普通人。因为大多数人并不需要一套复杂的 agent memory middleware，也不需要把所有人生材料都整理成数据库。很多时候，我们需要的只是一个可靠的小入口：让 AI 知道必要的我是谁，知道任务该往哪里走，知道哪些事情应该按我的方式做。</p>
-<p>这件事的意义也不只在于 AI。</p>
-<p>当你尝试让 AI 更懂你的工作方式时，你会被迫把很多原本隐性的东西说清楚：你的偏好、边界、流程、判断标准、质量要求、隐私底线。</p>
-<p>这些内容写出来以后，AI 当然能用，但你自己也会更理解自己是怎么工作的。</p>
-<p>所以我现在更愿意把 <code>my-codex-os</code> 看成一个持续迭代的设计笔记。它记录的不是一个完美系统，而是一个问题：</p>
-<blockquote>
-<p>在 AI 可以进入真实工作现场之后，我应该怎样把自己的工作方式表达成一个轻量、可信、可复用的协作入口？</p>
-</blockquote>
-<p>这就是我目前的答案。</p>
-
-  </div>
-  
-  
     
-    <div class='footer'>
-       <!-- 参考资料、相关资料等 -->
-      
-       <!-- 相关文章 -->
-      
-      <!-- 版权声明组件 -->
-      
-      <!-- 打赏组件 -->
-      
-    </div>
-  
-  
-    
-
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-05-19T15:00:38+08:00">
-  <a class='notlink'>
-    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2026年5月19日</p>
-  </a>
-</div>
-
-        
-      
-        
-          
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>工作流</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Codex/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Codex</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/AI-%E5%8A%A9%E6%89%8B/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>AI 助手</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E4%B8%AA%E4%BA%BA%E7%B3%BB%E7%BB%9F/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>个人系统</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Skills/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>Skills</p></a></div>
-  <span hidden itemprop="keywords">工作流 Codex AI 助手 个人系统 Skills</span>
-
-
-        
-      
-    </div>
-    <!-- Custom Files bottomMeta begin -->
-    
-  <div class="new-meta-box blogverse-share-meta">
-    <div class="new-meta-item blogverse-copy-share">
-      <button
-        type="button"
-        class="notlink blogverse-share-copy-button"
-        data-blogverse-share-copy
-        data-title="如何让 AI 更懂你的工作方式：我的 my-codex-os 设计笔记"
-        data-site="Henry&#39;s Cabin"
-        data-url="https://henryk39b5.github.io/2026/03/19/Technique/my-codex-os%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%BB%99%20Codex%20%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%B3%BB%E7%BB%9F/"
-        aria-label="复制文章标题和链接"
-      >
-        <i class="fa-solid fa-share-nodes fa-fw" aria-hidden="true"></i>
-        <p>复制分享</p>
-      </button>
-    </div>
-  </div>
-
-
-    <!-- Custom Files bottomMeta end -->
-  </div>
-
-
-  
-  
-
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2026/04/22/Tools/AI/ai-relay-notes/'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>AI 中转站使用笔记</p>
-          <p class='content'>在中国大陆使用 ChatGPT、Claude、Codex 这类海外模型，困难往往不只来自模型本身。支付渠道、账号验证、地区风控、订阅额度、网络连接和客户端配置，都可能卡住实际使用。
-中转站把其中...</p>
-        </a>
-      
-      
-        <a class='next' href='/2024/06/30/Writing/%E6%96%87%E6%A1%A3%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/'>
-          <p class='title'>文案排版规范指北<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>文案排版规范指北指北GitHub - sparanoid&#x2F;chinese-copywriting-guidelinesGitHub - sparanoid&#x2F;chinese-c...</p>
-        </a>
-      
-    </div>
-  
-  <!-- Custom Files postEnd begin-->
-  
-  <!-- Custom Files postEnd end-->
-</article>
-
-
-  
-
-
-  <article class="post white-box shadow floatable blur" id="comments">
-    <span hidden>
-      <meta itemprop="discussionUrl" content="/2026/03/19/Technique/my-codex-os%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%BB%99%20Codex%20%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%B3%BB%E7%BB%9F/index.html#comments">
-    </span>
-    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
-    
-
-    <div id="layoutHelper-comments"></div>
-
-  </article>
-
-
-
-
-
-
-</div>
-<aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
 
   
@@ -3066,7 +2767,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-      <a href="/tags/AI-%E5%8A%A9%E6%89%8B/" style="font-size: 14px; color: #999">AI 助手</a> <a href="/tags/AI-%E5%B7%A5%E5%85%B7/" style="font-size: 20.67px; color: #6c6c6c">AI 工具</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/Claude/" style="font-size: 14px; color: #999">Claude</a> <a href="/tags/Codex/" style="font-size: 17.33px; color: #828282">Codex</a> <a href="/tags/Hexo/" style="font-size: 17.33px; color: #828282">Hexo</a> <a href="/tags/Markdown/" style="font-size: 24px; color: #555">Markdown</a> <a href="/tags/OpenAI/" style="font-size: 14px; color: #999">OpenAI</a> <a href="/tags/Skills/" style="font-size: 14px; color: #999">Skills</a> <a href="/tags/Typora/" style="font-size: 14px; color: #999">Typora</a> <a href="/tags/Volantis/" style="font-size: 14px; color: #999">Volantis</a> <a href="/tags/Windows/" style="font-size: 14px; color: #999">Windows</a> <a href="/tags/vibe-coding/" style="font-size: 20.67px; color: #6c6c6c">vibe-coding</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 17.33px; color: #828282">个人博客搭建</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">个人系统</a> <a href="/tags/%E4%B8%AD%E8%BD%AC%E7%AB%99/" style="font-size: 14px; color: #999">中转站</a> <a href="/tags/%E5%86%99%E4%BD%9C/" style="font-size: 17.33px; color: #828282">写作</a> <a href="/tags/%E5%86%99%E4%BD%9C%E5%B7%A5%E5%85%B7/" style="font-size: 14px; color: #999">写作工具</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" style="font-size: 17.33px; color: #828282">工作流</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 14px; color: #999">影视</a> <a href="/tags/%E6%8E%92%E7%89%88/" style="font-size: 14px; color: #999">排版</a> <a href="/tags/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/" style="font-size: 14px; color: #999">效率工具</a> <a href="/tags/%E6%B5%81%E5%AA%92%E4%BD%93/" style="font-size: 14px; color: #999">流媒体</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/" style="font-size: 14px; color: #999">知识管理</a> <a href="/tags/%E7%BA%AA%E5%BD%95%E7%89%87/" style="font-size: 14px; color: #999">纪录片</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 14px; color: #999">编程</a> <a href="/tags/%E8%84%B1%E5%8F%A3%E7%A7%80/" style="font-size: 14px; color: #999">脱口秀</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 14px; color: #999">软件推荐</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 14px; color: #999">音乐</a> <a href="/tags/%E9%9F%B3%E4%B9%90%E8%B5%84%E6%BA%90/" style="font-size: 14px; color: #999">音乐资源</a> <a href="/tags/%E9%9F%B3%E8%B4%A8/" style="font-size: 14px; color: #999">音质</a>
+      <a href="/tags/AI-%E5%8A%A9%E6%89%8B/" style="font-size: 14px; color: #999">AI 助手</a> <a href="/tags/AI-%E5%B7%A5%E5%85%B7/" style="font-size: 20.67px; color: #6c6c6c">AI 工具</a> <a href="/tags/API/" style="font-size: 14px; color: #999">API</a> <a href="/tags/Claude/" style="font-size: 14px; color: #999">Claude</a> <a href="/tags/Codex/" style="font-size: 14px; color: #999">Codex</a> <a href="/tags/Harness-Engineering/" style="font-size: 14px; color: #999">Harness Engineering</a> <a href="/tags/Hexo/" style="font-size: 17.33px; color: #828282">Hexo</a> <a href="/tags/Markdown/" style="font-size: 24px; color: #555">Markdown</a> <a href="/tags/OpenAI/" style="font-size: 14px; color: #999">OpenAI</a> <a href="/tags/Personal-Agent-Hub/" style="font-size: 14px; color: #999">Personal Agent Hub</a> <a href="/tags/Skills/" style="font-size: 14px; color: #999">Skills</a> <a href="/tags/Typora/" style="font-size: 14px; color: #999">Typora</a> <a href="/tags/Volantis/" style="font-size: 14px; color: #999">Volantis</a> <a href="/tags/Windows/" style="font-size: 14px; color: #999">Windows</a> <a href="/tags/vibe-coding/" style="font-size: 20.67px; color: #6c6c6c">vibe-coding</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 17.33px; color: #828282">个人博客搭建</a> <a href="/tags/%E4%B8%AD%E8%BD%AC%E7%AB%99/" style="font-size: 14px; color: #999">中转站</a> <a href="/tags/%E5%86%99%E4%BD%9C/" style="font-size: 17.33px; color: #828282">写作</a> <a href="/tags/%E5%86%99%E4%BD%9C%E5%B7%A5%E5%85%B7/" style="font-size: 14px; color: #999">写作工具</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" style="font-size: 14px; color: #999">工作流</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 14px; color: #999">影视</a> <a href="/tags/%E6%8E%92%E7%89%88/" style="font-size: 14px; color: #999">排版</a> <a href="/tags/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/" style="font-size: 14px; color: #999">效率工具</a> <a href="/tags/%E6%B5%81%E5%AA%92%E4%BD%93/" style="font-size: 14px; color: #999">流媒体</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/" style="font-size: 14px; color: #999">知识管理</a> <a href="/tags/%E7%BA%AA%E5%BD%95%E7%89%87/" style="font-size: 14px; color: #999">纪录片</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 14px; color: #999">编程</a> <a href="/tags/%E8%84%B1%E5%8F%A3%E7%A7%80/" style="font-size: 14px; color: #999">脱口秀</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 14px; color: #999">软件推荐</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 14px; color: #999">音乐</a> <a href="/tags/%E9%9F%B3%E4%B9%90%E8%B5%84%E6%BA%90/" style="font-size: 14px; color: #999">音乐资源</a> <a href="/tags/%E9%9F%B3%E8%B4%A8/" style="font-size: 14px; color: #999">音质</a>
     </div>
   </section>
 
@@ -3078,48 +2779,85 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
+<section class="widget desktop mobile pjax">
+  
+  <header>
+    
+      <i class="fa-solid fa-award fa-fw" aria-hidden="true"></i><span class='name'>站点信息</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="webinfo">
+      
+        <div class="webinfo-item">
+          <div>文章数目：</div>
+          <div>11 篇</div>
+        </div>
+      
+
+      
+        <div class="webinfo-item">
+          <div>已运行时间：</div>
+          <div id="webinfo-runtime-count"></div>
+        </div>
+      
+
+
+      
+        <div class="webinfo-item">
+          <div>本站总字数：</div>
+          <div>36.4k 字</div>
+        </div>
+      
+
+      
+
+      
+
+      
+        <div class="webinfo-item">
+          <div>最后活动时间：</div>
+          <div id="last-update-show">2026-08-29 日</div>
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+    
+  
+
+  
+    
+    
+      
+
+<section class="widget desktop mobile pjax">
+  
+  <header>
+    
+      <i class="fa-solid fa-clock WISTERIA fa-fw" aria-hidden="true"></i><span class='name'>最近更新</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <ul class="list entry navigation"><li><a class="widget-last" href="/2026/03/19/Technique/personal-agent-hub-design-notes/"><div class="item"><time>2026-08-29</time><span>Technique</span></div><span>如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记</span></a></li><li><a class="widget-last" href="/2026/05/14/Tools/Markdown/typora-markdown-reading-ai-tool-customization/"><div class="item"><time>2026-08-23</time><span>Tools</span></div><span>颜值也是生产力：Typora、Markdown 阅读与 AI 时代的工具改造</span></a></li><li><a class="widget-last" href="/2026/07/16/Tools/my-software-flea-market/"><div class="item"><time>2026-08-23</time><span>Tools</span></div><span>来逛逛我的软件杂货铺：这些年我用过的工具</span></a></li><li><a class="widget-last" href="/2024/06/30/Writing/%E6%96%87%E6%A1%A3%E5%86%99%E4%BD%9C%E6%8C%87%E5%8D%97/"><div class="item"><time>2026-08-22</time><span>Writing</span></div><span>文案排版规范指北</span></a></li><li><a class="widget-last" href="/2026/04/22/Tools/AI/ai-relay-notes/"><div class="item"><time>2026-08-22</time><span>Tools</span></div><span>AI 中转站使用笔记</span></a></li></ul>
+  </div>
+</section>
+
     
   
 
 
 <div class="widget-sticky pjax">
 
-  
-  
-
-
-  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
-    
-  <header>
-    
-      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9C%9F%E6%AD%A3%E6%83%B3%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">我真正想解决的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E5%B7%A5%E5%85%B7%E7%94%9F%E6%80%81"><span class="toc-number">2.</span> <span class="toc-text">我的工具生态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#my-codex-os-%E7%9A%84%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">my-codex-os 的核心设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E5%8F%A3%EF%BC%9A%E6%96%B0%E7%BA%BF%E7%A8%8B%E5%85%88%E8%AF%BB%E4%BB%80%E4%B9%88"><span class="toc-number">3.1.</span> <span class="toc-text">入口：新线程先读什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%BB%E5%83%8F%EF%BC%9A%E5%BF%85%E8%A6%81%E7%9A%84%E2%80%9C%E6%88%91%E6%98%AF%E8%B0%81%E2%80%9D"><span class="toc-number">3.2.</span> <span class="toc-text">画像：必要的“我是谁”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%EF%BC%9A%E4%BB%80%E4%B9%88%E8%83%BD%E5%81%9A%EF%BC%8C%E4%BB%80%E4%B9%88%E5%BF%85%E9%A1%BB%E7%A1%AE%E8%AE%A4"><span class="toc-number">3.3.</span> <span class="toc-text">协议：什么能做，什么必须确认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%EF%BC%9A%E4%BB%BB%E5%8A%A1%E5%BA%94%E8%AF%A5%E5%8F%91%E7%94%9F%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-number">3.4.</span> <span class="toc-text">路由：任务应该发生在哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BF%86%EF%BC%9A%E5%B0%91%E8%AE%B0%E3%80%81%E6%85%A2%E5%86%99%E3%80%81%E5%8F%AA%E8%AE%B0%E7%A8%B3%E5%AE%9A%E4%BA%8B%E5%AE%9E"><span class="toc-number">3.5.</span> <span class="toc-text">记忆：少记、慢写、只记稳定事实</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Skills%EF%BC%9A%E6%8A%8A%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E5%92%8C%E4%B8%AA%E4%BA%BA%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F%E6%B2%89%E6%B7%80%E4%B8%8B%E6%9D%A5"><span class="toc-number">4.</span> <span class="toc-text">Skills：把工具使用方式和个人工作方式沉淀下来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%85%B7%E4%BD%93%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C-Skill"><span class="toc-number">5.</span> <span class="toc-text">一个具体例子：博客写作 Skill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E4%B9%9F%E6%83%B3%E6%90%AD%E4%B8%80%E4%B8%AA"><span class="toc-number">6.</span> <span class="toc-text">如果你也想搭一个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%85%E9%A1%BB%E6%89%BF%E8%AE%A4%E7%9A%84%E4%BB%A3%E4%BB%B7"><span class="toc-number">7.</span> <span class="toc-text">必须承认的代价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA-AI-%E7%B3%BB%E7%BB%9F%E6%98%AF%E4%B8%80%E7%A7%8D%E5%8D%8F%E4%BD%9C%E5%85%A5%E5%8F%A3"><span class="toc-number">8.</span> <span class="toc-text">个人 AI 系统是一种协作入口</span></a></li></ol>
-    </div>
-  </section>
-
-  
-
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -3139,14 +2877,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
-
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=true;
+  pdata.ispage=false;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -3951,7 +3688,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/040.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/056.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/012.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/030.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/015.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/021.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/033.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/037.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/019.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/055.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/022.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/051.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/016.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/002.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/017.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/009.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/029.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/052.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/024.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/003.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/035.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/027.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/050.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/053.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/036.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/013.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/042.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/008.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/011.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/044.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/047.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/041.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/034.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/023.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/018.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/048.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/001.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/004.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/025.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/007.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/020.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/057.jpg","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/005.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/014.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/006.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/026.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/028.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/031.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/043.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/032.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/054.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/039.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/010.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/046.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/049.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/045.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/038.webp"];
+  let imgs = ["https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/052.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/039.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/051.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/035.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/037.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/030.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/025.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/011.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/028.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/044.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/038.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/013.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/045.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/054.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/023.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/019.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/055.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/002.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/006.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/017.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/004.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/053.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/049.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/027.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/033.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/007.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/043.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/015.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/018.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/005.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/003.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/048.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/057.jpg","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/041.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/001.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/009.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/024.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/042.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/050.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/012.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/036.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/021.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/008.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/040.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/020.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/022.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/056.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/014.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/031.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/034.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/047.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/029.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/010.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/016.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/026.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/046.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/032.webp"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4178,7 +3915,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's Cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/Technique/","name":"Technique"}},{"@type":"ListItem","position":3,"item":{"@id":"https://henryk39b5.github.io/2026/03/19/Technique/my-codex-os：一个给 Codex 使用的个人系统/","name":"如何让 AI 更懂你的工作方式：我的 my-codex-os 设计笔记"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},"publisher":{"@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"如何让 AI 更懂你的工作方式：我的 my-codex-os 设计笔记","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryk39b5.github.io/2026/03/19/Technique/my-codex-os%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%BB%99%20Codex%20%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%B3%BB%E7%BB%9F/"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's Cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://henryk39b5.github.io/2026/03/19/Technique/my-codex-os%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%BB%99%20Codex%20%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%B3%BB%E7%BB%9F/","wordCount":0,"datePublished":"2026-03-19T07:15:02.000Z","dateModified":"2026-05-19T07:00:38.705Z","articleSection":"Technique","keywords":"工作流,Codex,AI 助手,个人系统,Skills","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's Cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/tags/Harness Engineering/","name":"Harness Engineering"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},"publisher":{"@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's Cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
