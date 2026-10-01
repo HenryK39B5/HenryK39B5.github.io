@@ -50,11 +50,11 @@
 <meta property="og:title" content="打造更顺手的 Pi Agent：我的 DIY 设计与实现">
 <meta property="og:url" content="https://henryk39b5.github.io/2026/09/10/Tools/AI/pi-agent-diy-design-and-implementation/index.html">
 <meta property="og:site_name" content="Henry&#39;s Cabin">
-<meta property="og:description" content="上一篇文章《Pi Agent：除了 Agent Loop，其余都交给你》介绍了 Pi 的设计和自定义能力。这一篇把视角放回我的日常使用：为了让它看起来更舒服、状态更清楚、完成任务后记得提醒我，我陆续做了一些 DIY。 这些改动分布在不同方面，彼此没有先后关系。有些只是让界面更好看，有些则涉及 Agent 应该怎样暴露状态、怎样在不打扰用户的前提下请求注意力，以及 Harness 如何接通模型和外部">
+<meta property="og:description" content="长时间使用 Agent，很多不顺手都发生在“能不能完成任务”之外。 我会让 Pi 输出较长的分析和 Markdown 文档，也会同时开着多个 Agent 终端。这时，文字是否适合阅读、哪个会话还在运行、离开电脑后能不能收到提醒，就不再是无关紧要的小细节。 上一篇《Pi Agent：除了 Agent Loop，其余都交给你》介绍了 Pi 的产品设计。这一篇展示我为日常使用做的选择：阅读界面、状态与计">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2026-09-10T08:45:00.000Z">
-<meta property="article:modified_time" content="2026-09-24T15:11:33.488Z">
+<meta property="article:modified_time" content="2026-10-01T12:43:26.296Z">
 <meta property="article:author" content="Henry">
 <meta property="article:tag" content="AI 工具">
 <meta property="article:tag" content="Pi Agent">
@@ -1773,7 +1773,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.7a2c825e.js","parallax":"/js/plugins/parallax.8bf0ab10.js","rightMenu":"/js/plugins/rightMenu.d9437285.js","rightMenus":"/js/plugins/rightMenus.80d861b1.js","sites":"/js/plugins/tags/sites.76bf19b8.js","friends":"/js/plugins/tags/friends.f372da57.js","contributors":"/js/plugins/tags/contributors.aec80453.js","search":"/js/search/hexo.85946653.js"},"css":{"style":"/css/style.3b1ca89f.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1790263074936),
+    lastupdate: new Date(1790859746404),
     sidebar: {
       for_page: ["blogger","category","tagcloud","webinfo","lastupdate"],
       for_post: ["category","tagcloud","toc"],
@@ -2634,13 +2634,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fa-solid fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：8k 字</p>
+      <p>字数：5.8k 字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fa-solid fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：28 分钟</p>
+      <p>时长：20 分钟</p>
     </a>
   </div>
 
@@ -2657,153 +2657,183 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p>上一篇文章<a href="/2026/09/09/Tools/AI/pi-agent-beyond-the-loop/">《Pi Agent：除了 Agent Loop，其余都交给你》</a>介绍了 Pi 的设计和自定义能力。这一篇把视角放回我的日常使用：为了让它看起来更舒服、状态更清楚、完成任务后记得提醒我，我陆续做了一些 DIY。</p>
-<p>这些改动分布在不同方面，彼此没有先后关系。有些只是让界面更好看，有些则涉及 Agent 应该怎样暴露状态、怎样在不打扰用户的前提下请求注意力，以及 Harness 如何接通模型和外部服务。你可以直接跳到自己感兴趣的部分，看看我遇到了什么问题，又是怎样设计和实现的。</p>
-<p>以下内容基于 Pi Agent 0.85.1、Windows 11、Windows Terminal 和 PowerShell。</p>
-<h2 id="配套参考仓库：让-Agent-协助移植"><a href="#配套参考仓库：让-Agent-协助移植" class="headerlink" title="配套参考仓库：让 Agent 协助移植"></a>配套参考仓库：让 Agent 协助移植</h2><p>为了让这些设计不只停留在文章里，我把其中适合公开的核心实现整理成了 <a target="_blank" rel="noopener" href="https://github.com/HenryK39B5/pi-agent-runtime-kit">Pi Agent Runtime Kit</a>。它是一套 Agent-assisted Pi Runtime 参考实现，包含四套 Auren Themes、Auren UI、Footer Status Protocol、Runtime Preferences、BEL 与可选 ntfy、Relay Search、受约束的 MCP 模板、Safety Prompt、Windows 工具链示例，以及相应的采用指南和测试。</p>
-<p>这个仓库不是我的私人 Runtime 配置镜像。公开前已经移除私人路径、凭据、个人 Provider 与 Model 配置，以及个人服务 Registry；可选联网能力默认关闭，MCP 也只保留需要由使用者自行配置的模板。它不是 Pi 官方项目、npm&#x2F;Pi Package 或一键安装器，也不承诺持续适配未来 Pi 版本。</p>
-<p>当前验证基线与本文一致：Pi 0.85.1、Node.js 22&#x2F;24、Windows 11、Windows Terminal 和 PowerShell。公开版目前提供 68 项自动测试、严格 TypeScript 检查、四套 Theme 校验和公开树敏感信息审计。这些检查能够约束当前仓库中的实现质量，但不能证明它已经适配所有操作系统、终端或未来 Pi 版本。</p>
-<p>更合适的使用方式是把仓库 Clone 到本地，让 Agent 先阅读其中的 <code>AGENTS.md</code> 和 <code>docs/ADOPTION_GUIDE.md</code>，检查本机安装的 Pi 版本与本地文档，再根据实际系统选择最小模块。先临时试运行、展示全局修改 Diff 和回滚方案，最后再由用户决定是否部署。</p>
-<h2 id="视觉与阅读体验"><a href="#视觉与阅读体验" class="headerlink" title="视觉与阅读体验"></a>视觉与阅读体验</h2><p>我平时会让 Agent 输出较长的分析、方案和 Markdown 文档。终端不仅是输入命令的地方，也逐渐成了一个需要长时间阅读的界面。</p>
-<p>Pi 的 Theme 可以控制正文、Markdown、代码、Diff、Thinking 和 Tool 状态等颜色，但不能改变字体、字号和界面布局。我因此把这部分拆成了三个彼此独立的选择：</p>
+    <p>长时间使用 Agent，很多不顺手都发生在“能不能完成任务”之外。</p>
+<p>我会让 Pi 输出较长的分析和 Markdown 文档，也会同时开着多个 Agent 终端。这时，文字是否适合阅读、哪个会话还在运行、离开电脑后能不能收到提醒，就不再是无关紧要的小细节。</p>
+<p>上一篇<a href="/2026/09/09/Tools/AI/pi-agent-beyond-the-loop/">《Pi Agent：除了 Agent Loop，其余都交给你》</a>介绍了 Pi 的产品设计。这一篇展示我为日常使用做的选择：阅读界面、状态与计时、完成提醒、两条搜索路线，以及外部服务和工作规则。重点是这些设计提供什么体验、为什么这样取舍，关键实现只在帮助理解时展开。</p>
+<p>以下以 Pi 0.99.2、Windows 11、Windows Terminal 和 PowerShell 为环境背景。配套参考仓库与采用方法放在文章后半部分，可以根据自己的需求选择，不必复制整套配置。</p>
+<h2 id="阅读界面：主题、字体与-Fullscreen-各司其职"><a href="#阅读界面：主题、字体与-Fullscreen-各司其职" class="headerlink" title="阅读界面：主题、字体与 Fullscreen 各司其职"></a>阅读界面：主题、字体与 Fullscreen 各司其职</h2><p>终端也是阅读界面。我希望最终回答清楚，代码与 Diff 容易辨认，同时不让 Thinking 和工具过程把视觉注意力全部占走。</p>
+<p>这部分使用三个独立的选择：</p>
 <ul>
-<li>使用 Pi Theme JSON 定义 Auren Themes，只处理颜色和视觉语义；</li>
-<li>使用 Pi 原生 Fullscreen，让 Transcript 独立滚动，Editor 和 Footer 固定在底部；</li>
-<li>将 Windows Terminal 字体设置为 JetBrains Mono Medium，字体仍由终端负责。</li>
+<li><strong>Auren Themes</strong> 负责颜色和视觉语义；</li>
+<li><strong>Pi 原生 Fullscreen</strong> 负责会话区域滚动，以及固定的输入区与 Footer；</li>
+<li><strong>Windows Terminal</strong> 负责字体，我使用 JetBrains Mono Medium。</li>
 </ul>
-<p>Auren 最初只有冷静蓝灰与 Azure 强调的 Dark，后来又加入了 Forest、Ember 和 Violet：Forest 使用森林灰与 Sage&#x2F;Jade，Ember 使用深炭棕与 Copper&#x2F;Amber，Violet 则使用暮色灰与 Lavender&#x2F;Periwinkle。我目前把 Forest 设为默认，其他三套仍然可以随时切换。</p>
-<p>四套主题共享同一套完整的语义结构，只替换 Palette，不改变 Auren UI 的布局、状态和运行逻辑。它们的共同方向也不是让终端变得更炫，而是降低长时间阅读时的视觉噪音。Assistant 的最终回答保持最高可读性，Thinking 和 Tool 过程降低一级；成功 Tool 使用接近中性的背景，链接、警告、错误和 Diff 则保留明确区分。这样更换主题更像是在选择阅读气质，而不是切换四套行为不同的界面。</p>
-<p>Markdown 配色也做得比较克制。标题负责建立层级，行内代码与正文保持差异，列表符号和引用边界不抢占注意力。最初我还考虑过自定义 Markdown Renderer，后来实际使用 Pi 原生 Renderer 后，发现小幅调整 Theme 已经能够解决大部分问题，没有必要为了更精致的排版承担额外的兼容成本。</p>
-<p>Fullscreen 也采用相同思路。Pi 已经提供了可滚动 Transcript 和固定输入区域，我只需要启用并验证它，而不是重新实现一套 TUI。DIY 不一定意味着所有东西都要自己写；已经合适的原生能力，直接使用通常更稳定。</p>
-<p>日常回看会话时，我会保留 Thinking 展示，只把工具输出用 <code>Ctrl+O</code> 保持折叠。在 Windows Terminal 的 Pi Fullscreen 模式下，<code>Ctrl+↑ / Ctrl+↓</code> 可以在标记的消息之间跳转，快速跨过冗长的工具过程；想找具体内容则用 <code>Ctrl+F</code> 搜索当前显示的会话记录，搜索中按 <code>Enter / Shift+Enter</code> 切换匹配，按 <code>Esc</code> 退出。需要快速翻过长段内容时，按住 <code>Alt</code> 滚动鼠标滚轮也能加快滚动。</p>
-<h2 id="运行状态与时间信息"><a href="#运行状态与时间信息" class="headerlink" title="运行状态与时间信息"></a>运行状态与时间信息</h2><p>同时开着多个 Agent 终端时，我最想知道的是：哪一个还在工作，当前运行了多久，刚才那一轮又是什么时候完成的？</p>
-<p>我为 Auren UI 设计了四个基础状态：</p>
+<p>分开处理，可以避免为了换一种阅读风格，同时改动布局和运行行为。Theme 不承担字体设置，字体也不需要进入 Pi Extension。</p>
+<h3 id="四套主题，共用一套阅读层级"><a href="#四套主题，共用一套阅读层级" class="headerlink" title="四套主题，共用一套阅读层级"></a>四套主题，共用一套阅读层级</h3><p>Auren 提供四套深色主题：</p>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>主要色调</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dark</td>
+<td>冷静蓝灰与 Azure</td>
+</tr>
+<tr>
+<td>Forest</td>
+<td>森林灰与 Sage&#x2F;Jade</td>
+</tr>
+<tr>
+<td>Ember</td>
+<td>深炭棕与 Copper&#x2F;Amber</td>
+</tr>
+<tr>
+<td>Violet</td>
+<td>暮色灰与 Lavender&#x2F;Periwinkle</td>
+</tr>
+</tbody></table>
+<p>它们共享同一套语义结构，只替换 Palette。正文保持清楚，Thinking 和工具过程降低视觉权重；成功工具使用接近中性的背景，链接、警告、错误和 Diff 则保持明确区分。更换主题是在选择阅读气质，不是在切换四套行为不同的 Runtime。</p>
+<p>Markdown 仍由 Pi 原生 Renderer 呈现。标题建立层级，行内代码与正文拉开差异，列表与引用不抢占注意力。我的目标是更好看、更适合长时间阅读，不需要为此另外维护一套排版引擎。</p>
+<h3 id="回看会话，直接使用原生能力"><a href="#回看会话，直接使用原生能力" class="headerlink" title="回看会话，直接使用原生能力"></a>回看会话，直接使用原生能力</h3><p>Fullscreen 让会话记录独立滚动，回看上文时，输入区域仍然留在底部。我保留 Thinking 展示，用 <code>Ctrl+O</code> 折叠冗长的工具输出。</p>
+<p>在 Windows Terminal 的 Pi Fullscreen 下，几个快捷键已经能满足日常回看：</p>
+<ul>
+<li><code>Ctrl+↑ / Ctrl+↓</code>：在标记消息之间跳转，跨过较长的工具过程。</li>
+<li><code>Ctrl+F</code>：搜索当前渲染的会话记录。</li>
+<li>搜索中使用 <code>Enter / Shift+Enter</code> 切换匹配，<code>Esc</code> 退出。</li>
+<li>按住 <code>Alt</code> 滚动鼠标滚轮，可以加快滚动。</li>
+</ul>
+<p>这部分没有必要再做一套会话视图。原生能力已经合适时，启用它、把周围的阅读体验整理好，就是足够实用的定制。</p>
+<h2 id="状态与计时：知道它在做什么，也知道信息属于哪一次工作"><a href="#状态与计时：知道它在做什么，也知道信息属于哪一次工作" class="headerlink" title="状态与计时：知道它在做什么，也知道信息属于哪一次工作"></a>状态与计时：知道它在做什么，也知道信息属于哪一次工作</h2><p>同时运行多个会话时，我需要很快辨认哪个还在工作，哪个已经结束，哪个发生了错误。</p>
+<p>Auren UI 用四个状态表达：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">○ idle</span><br><span class="line">◐ working</span><br><span class="line">✓ done</span><br><span class="line">! error</span><br></pre></td></tr></table></figure>
 
-<p>状态会同时出现在 Footer 和 Terminal Title 中。Pi 开始工作后，Windows Terminal 的任务栏进度也会进入运行状态；任务结束后清除，发生错误时则显示错误状态。即使切到其他窗口，也能从页签或任务栏判断 Pi 是否仍在工作。</p>
-<p>这里真正需要判断的不是符号该画成什么样，而是<strong>什么时刻才算完成</strong>。如果状态更新得太早，用户看到 done 后切回终端，却发现 Pi 正在自动重试或压缩上下文，这个状态就失去了可信度。</p>
-<p>因此，我使用 <code>agent_settled</code> 而不是更早的 <code>agent_end</code> 判断完成。一次模型响应结束后，Pi 仍可能自动压缩上下文、重试或处理队列中的后续消息。只有整个运行真正 settled，界面才会显示 done，通知也才会触发。</p>
-<p>状态只有在能够支持下一步判断时才有价值。working 告诉我暂时不必介入，done 告诉我可以回来检查结果，error 则意味着这次运行值得立即查看。它们不是为了让终端显得更忙，而是减少我主动切回窗口确认的次数。</p>
-<p>时间信息则分成三个尺度。</p>
-<p>当前 Run elapsed 记录从 <code>agent_start</code> 到 <code>agent_settled</code> 的墙上时间，并在 Footer 中持续显示。它能帮助我判断 Agent 的运行是否正常：一个通常几十秒完成的任务如果已经运行了几分钟，可能只是任务更复杂，也可能是命令卡住、网络请求迟迟没有返回，或者 Agent 进入了低效的尝试循环。这时运行时长就不只是统计信息，而是一个是否需要介入的信号。</p>
-<p>Session estimated active time 用来观察整个会话中 Agent 累计工作了多久。它不计入用户阅读和输入的等待，也不冒充精确工时；它提供的是一个大致尺度，让我知道一个看似简短的会话背后，Agent 实际进行了多少工作。</p>
-<p>每轮最终回答之后，我还会追加一行显示用 Metadata：</p>
+<p>状态显示在 Footer 和 Terminal Title 中。Windows Terminal 的任务栏进度也会在工作时进入运行状态，结束后清除，错误时显示异常状态。这样不必逐个切进终端读正文，也能先判断哪里需要注意。</p>
+<h3 id="完成状态必须可信"><a href="#完成状态必须可信" class="headerlink" title="完成状态必须可信"></a>完成状态必须可信</h3><p>完成判断会影响后面的计时和通知。如果模型刚输出完就显示 done，但 Agent 随后还要自动重试、压缩上下文或处理队列，用户看到的状态就不准确。</p>
+<p>因此，Auren 以 <code>agent_settled</code> 而不是更早的 <code>agent_end</code> 作为结算边界。当前 Run 从 <code>agent_start</code> 开始，到整个运行 settled 才结束；内部的自动重试和队列续接不会把计时反复重置。</p>
+<p>用户在一次运行结束后手动说“请继续”，则开始新的 Run。它可能仍然属于同一个业务任务，但不应把中间等待用户的时间算成 Agent 工作。</p>
+<h3 id="时间信息分成三个尺度"><a href="#时间信息分成三个尺度" class="headerlink" title="时间信息分成三个尺度"></a>时间信息分成三个尺度</h3><p><strong>当前运行时长</strong>告诉我这一轮已经持续多久。一个通常几十秒的任务运行了几分钟，可能只是工作更多，也可能需要检查命令或网络是否卡住。时长提供一个介入判断的信号，不只是统计数字。</p>
+<p><strong>Session 累计活跃时间</strong>提供整个会话分支的工作尺度。它保留此前成功或失败的 Run，不计入用户阅读和输入的等待，恢复 Session 后仍能回看。缺少完整记录的历史只能估算，所以显示保留 <code>~</code>，不把它当作计费、CPU 时间或人的工时。</p>
+<p><strong>回答生成时间</strong>则帮助长会话保持时间线。最终回答旁边会显示类似这样的记录：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2026-09-10 20:30 · run 1m 24s</span><br></pre></td></tr></table></figure>
 
-<p>日期和时间回答的是另一个问题：<strong>这条信息是什么时候由 AI 生成的？</strong> 长会话可能跨越几天甚至更久，模型给出的结论、软件版本和任务背景都可能随时间变化。把生成时间留在回答旁边，之后回看时更容易判断它属于哪一次工作，也更容易与文件修改、提交记录或现实事件对应。</p>
-<p>这条 Metadata 与最终 Assistant 回答绑定，可以随 Session 保存和恢复，但不会进入模型上下文。它服务的是人的阅读和判断，不需要成为模型下一轮推理的一部分。</p>
-<h2 id="任务完成提醒"><a href="#任务完成提醒" class="headerlink" title="任务完成提醒"></a>任务完成提醒</h2><p>Agent 有时会连续工作较长时间。这个过程中，用户通常会切去处理其他事情：如果完全不再关注，可能很久以后才想起这个任务，而 Agent 早已完成；如果一直担心它是否已经结束，又会时不时切回终端查看，很难安心做另一件事。</p>
-<p>完成提醒要解决的正是这种注意力悬置。它不是为了报告 Agent 的每一步，而是给用户一个承诺：你可以先离开，真正需要回来时，我会发出信号。</p>
-<h3 id="电脑端提醒"><a href="#电脑端提醒" class="headerlink" title="电脑端提醒"></a>电脑端提醒</h3><p>最轻量的方案是终端 BEL。它不需要安装通知服务，也不需要联网，只要 Agent 完成时输出一个控制字符，就可以由 Windows Terminal 和系统播放提示音。</p>
-<p>电脑端还有 Windows Toast、播放 WAV 等方案，它们能够提供更丰富的内容和声音控制，但也意味着额外的系统调用、文件或平台适配。我的需求只是“做完后响一下”，BEL 已经够用。它的限制也很明确：音量和具体声音由终端与系统控制，Extension 本身无法精细调整。</p>
-<p>但提醒并不是越及时越好。如果几秒钟的小任务也响，提示音很快会变成干扰。最终规则是：正常任务运行超过 15 秒才提醒一次，错误不受时间限制，同一轮无论经历多少内部事件都只提醒一次。</p>
-<p>电脑端提醒与前面的运行状态互相补充。Footer、页签标题和任务栏进度适合用户主动看一眼时确认状态；声音则适合用户注意力已经离开终端时，把“任务已结束”主动送出来。一个负责随时可见，一个负责必要时打断。</p>
-<h3 id="推送到手机：ntfy"><a href="#推送到手机：ntfy" class="headerlink" title="推送到手机：ntfy"></a>推送到手机：ntfy</h3><p>终端声音只能覆盖人在电脑附近、系统没有静音的场景。为了在离开电脑后仍能收到结果，我又接入了 <a target="_blank" rel="noopener" href="https://ntfy.sh/">ntfy</a>：Agent 完成后向一个 Topic 发送 HTTP 请求，手机订阅同一 Topic，就能收到推送。</p>
-<p>这类方案并不只有 ntfy。也可以使用 Bark、Pushover、Telegram Bot、企业微信机器人或自建通知服务。选择时真正需要比较的是：手机平台、后台送达能力、是否依赖第三方服务器、认证方式、隐私边界，以及自己愿意承担多少维护成本。</p>
-<p>ntfy 同时提供 Android 和 iOS 客户端，但两端的后台机制并不完全相同。Android 的 Google Play 版本可以借助 Firebase 保持推送，F-Droid 版本则通过前台服务维持直接连接；iOS 受系统后台限制，自建 ntfy Server 如果希望及时通知，需要按官方方式通过 ntfy.sh 转发 Poll Request。对我来说，直接使用 ntfy.sh 加 Android 客户端已经足够简单，也能把通知继续送到手环。</p>
-<p>在 Android 上，安装应用和订阅 Topic 还不一定意味着消息能够稳定、及时到达。首先要允许 ntfy 发送通知；如果启用了 Instant delivery，还需要允许它在后台维持前台服务。部分手机厂商会额外限制后台活动，因此遇到延迟或只有打开应用后才收到消息时，还要检查电池优化、后台运行和自启动权限。不同品牌的设置入口差异很大，最可靠的办法是先发送测试消息，再让手机静置一段时间，确认锁屏和省电状态下仍能及时送达。</p>
-<p>我给 ntfy 设计了三种显式模式：</p>
-<ul>
-<li><code>off</code>：关闭手机通知；</li>
-<li><code>on</code>：满足条件后发送一次；</li>
-<li><code>strong</code>：用于不想错过的任务，最多发送六次，每次间隔 5 秒。</li>
-</ul>
-<p>手机通知比电脑声音更容易造成打扰，因此正常任务的门槛提高到 60 秒，错误仍然可以立即发送。消息只包含 Session 名和耗时，不发送回答正文、工作目录、Tool 输出或错误详情。通知穿过第三方服务时，少发送什么和多发送什么同样重要。</p>
-<p><code>strong</code> 模式来自一个很实际的问题：一条普通通知可能在手机静音、手环聚合或用户忙碌时被忽略。但“更强”不能等于无限重试，所以它采用固定的六个发送时点和明确上限；如果前一个请求仍未结束，后一个时点直接跳过，不积累发送队列。开始新任务、切换模式或退出 Pi 时，未完成的提醒会被取消。</p>
-<p>这套设计把通知视为 Agent 的外围信号，而不是主流程的一部分。HTTP 失败、超时或手机没有实际送达，都不会改变 Agent 已经完成这件事，也不会阻塞当前会话。</p>
-<h2 id="模型联网能力"><a href="#模型联网能力" class="headerlink" title="模型联网能力"></a>模型联网能力</h2><p>联网是 Agent 最常见的扩展能力之一。Pi 默认没有内置 Web Search，但官网 Package Catalog 中已经有成熟选择，例如 <a target="_blank" rel="noopener" href="https://pi.dev/packages/pi-web-access"><code>pi-web-access</code></a>。安装后，它会向 Pi 注册 <code>web_search</code>、<code>fetch_content</code> 等工具，再根据配置调用 Exa、OpenAI、Brave、Tavily、SearXNG 等搜索或内容提取服务。对大多数只想让 Pi 能够搜索网页的用户来说，直接使用这类 Package 更完整，也更省事。</p>
-<p>我的需求有些不同。我使用的中转站提供了一些走 OpenAI Responses 协议的模型，例如 <code>gpt-5.6-sol</code>。使用官方账号运行 Codex App 或 Codex CLI 时，Codex 可以调用 OpenAI 托管的联网能力；我也发现，通过中转站运行同类模型时，Codex CLI 仍然能够完成联网搜索。</p>
-<p>最初我据此推测，联网能力可能完全来自模型，而不是 Codex CLI。继续检查 Codex 和 Pi 的请求方式后，我发现更准确的理解是：<strong>Provider 负责实际执行搜索，Agent Harness 负责告诉 Provider 这一次请求允许使用什么工具。</strong></p>
-<p>Codex 会在 Responses 请求中加入 <code>web_search</code> Tool 声明；Pi 0.85.1 默认只会把自己的普通函数工具转换进请求，并不会因为模型名称看起来像 GPT，就自动加入托管搜索。模型具备能力，但 Harness 没有声明，它仍然无法在这一轮使用。</p>
-<p>这也是我实现 Relay Search 的切入点。它不再注册一个由本地代码执行的 <code>web_search</code> 函数，而是在 <code>before_provider_request</code> 阶段检查请求，为确认支持的 OpenAI Responses 模型追加：</p>
+<p>这条信息回答的是：结论是什么时候生成的，当时那次运行用了多久。软件版本、资料和任务背景会变化，几天后再看同一段回答，时间戳能帮助把它与现实中的文件修改或提交记录对应起来。</p>
+<p>这些 Metadata 与回答绑定，随 Session 保存和恢复，但不进入模型上下文。它们主要服务于人的回看。</p>
+<h2 id="完成提醒：让人可以安心离开终端"><a href="#完成提醒：让人可以安心离开终端" class="headerlink" title="完成提醒：让人可以安心离开终端"></a>完成提醒：让人可以安心离开终端</h2><p>状态适合主动看一眼，提醒则在用户已经切去做其他事情时发挥作用。</p>
+<p>Agent 连续工作时，最消耗注意力的未必是等待本身，而是不知道还需不需要继续等。频繁切回窗口检查会打断另一件工作，完全不再关注又可能错过完成时刻。</p>
+<p>我给提醒定了一个很简单的目标：长任务结束时把用户叫回来，短任务尽量安静。</p>
+<h3 id="在电脑附近，用-BEL-就够了"><a href="#在电脑附近，用-BEL-就够了" class="headerlink" title="在电脑附近，用 BEL 就够了"></a>在电脑附近，用 BEL 就够了</h3><p>电脑端使用终端 BEL，不安装通知服务，也不需要联网。Extension 输出控制字符，声音由 Windows Terminal 和系统负责。</p>
+<p>规则是正常运行超过 15 秒才提醒，错误不受时长限制；同一次 Run 只提醒一次。几秒钟的小任务不响，内部事件也不会反复响。</p>
+<p>BEL 无法精细控制音量和音色，但我的需求只是“做完以后响一下”。Windows Toast 或独立播放声音能做更多事情，也会带来额外的系统适配；这里选择简单。</p>
+<h3 id="离开电脑后，用-ntfy-推送"><a href="#离开电脑后，用-ntfy-推送" class="headerlink" title="离开电脑后，用 ntfy 推送"></a>离开电脑后，用 ntfy 推送</h3><p>手机提醒使用 <a target="_blank" rel="noopener" href="https://ntfy.sh/">ntfy</a>：任务结束后向 Topic 发出请求，手机订阅同一 Topic。我使用 Android 客户端，也可以把通知继续送到手环。</p>
+<p>提醒有三个明确模式：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>off</code></td>
+<td>关闭手机通知</td>
+</tr>
+<tr>
+<td><code>on</code></td>
+<td>达到条件后发送一次</td>
+</tr>
+<tr>
+<td><code>strong</code></td>
+<td>最多六个发送时点，间隔 5 秒</td>
+</tr>
+</tbody></table>
+<p>手机更容易打扰用户，因此正常任务的门槛提高到 60 秒，错误仍可以立即提醒。消息只包含简短 Session 名与耗时，不发送回答正文、工作目录、工具输出或错误详情。</p>
+<p><code>strong</code> 用于不想错过的任务，但它不保证送达，也不无限重试。前一个请求未结束时，后一个发送时点跳过，不积累队列；请求失败或超时则停止。开始新任务、切换模式或退出 Pi 时，未完成的提醒会取消。</p>
+<p>手机端仍需要实际送达检查。Android 的通知权限、电池优化与后台限制，可能影响及时性；iOS 与自建服务器也有不同的后台推送机制，应按<a target="_blank" rel="noopener" href="https://docs.ntfy.sh/config/#ios-instant-notifications">ntfy 官方说明</a>配置。先发送测试消息，再确认锁屏和静置状态下的表现，比看到 HTTP 成功就认为手机一定收到更可靠。</p>
+<p>通知是外围信号。发送失败不改变任务已经结束这件事，也不阻塞主会话。</p>
+<h2 id="模型联网：两条路线，解决不同的接入问题"><a href="#模型联网：两条路线，解决不同的接入问题" class="headerlink" title="模型联网：两条路线，解决不同的接入问题"></a>模型联网：两条路线，解决不同的接入问题</h2><p>写代码需要查新文档，整理资料需要核对来源。通用搜索可以选择 <a target="_blank" rel="noopener" href="https://pi.dev/packages/pi-web-access"><code>pi-web-access</code></a> 这样的 Package；我的设计则利用已有模型入口，分别处理两种搜索接法。</p>
+<p>它们不是同一个开关背后的替代实现，而是独立路线。</p>
+<h3 id="OpenAI-路线：在主请求中声明托管搜索"><a href="#OpenAI-路线：在主请求中声明托管搜索" class="headerlink" title="OpenAI 路线：在主请求中声明托管搜索"></a>OpenAI 路线：在主请求中声明托管搜索</h3><p><code>openai-web-search</code> 通过请求钩子，为匹配的 <code>openai-responses</code> 请求追加托管工具声明：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;web_search&quot;</span> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>这样，搜索仍由中转站背后的 OpenAI 兼容服务执行，Pi 只负责把能力声明送进请求。它不需要额外的搜索 API Key，不启动浏览器，也不为了搜索再调用第二个模型。</p>
-<p>这两条路线的区别很重要：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pi-web-access</span><br><span class="line">Pi 注册普通 Tool → Extension 调用搜索服务 → 结果作为 Tool Result 返回</span><br><span class="line"></span><br><span class="line">Relay Search</span><br><span class="line">Pi 修改模型请求 → Provider 执行托管搜索 → 搜索结果进入模型响应</span><br></pre></td></tr></table></figure>
+<p><strong>Provider 负责执行搜索，Harness 负责告诉它本次请求允许使用这项能力。</strong></p>
+<p>扩展开启且目标匹配时，会追加声明和相应的模型指导，保留 Pi 已有的普通函数工具。它不在本地执行搜索，不启动浏览器，也不额外调用第二个模型；托管搜索本身仍可能计费。</p>
+<p>开关使用 <code>/openai-web on|off</code>，<code>status</code> 与 <code>models</code> 用于查看状态和目标。目标按精确的 Provider、Model 与 API 登记，不能只凭模型名称判断联网能力。关闭只停止后续注入，不会撤回已经发出的主请求。</p>
+<h3 id="Kiro-路线：用独立-helper-返回结果"><a href="#Kiro-路线：用独立-helper-返回结果" class="headerlink" title="Kiro 路线：用独立 helper 返回结果"></a>Kiro 路线：用独立 helper 返回结果</h3><p>Kiro 接法通过一个普通工具发起独立的搜索辅助请求。公开参考实现的工具名是 <code>kiro_web_search</code>：它接收搜索问题，返回有限摘要、实际来源和可用 usage，主模型再根据 Tool Result 组织回答。</p>
+<p>它与 OpenAI 路线的差异很直接：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">OpenAI</span><br><span class="line">主请求携带 hosted 声明 → Provider 搜索 → 主模型响应</span><br><span class="line"></span><br><span class="line">Kiro</span><br><span class="line">主模型调用普通 Tool → 独立 helper 搜索 → Tool Result 返回主模型</span><br></pre></td></tr></table></figure>
 
-<p>前一种路线功能完整、Provider 选择丰富，还能独立抓取网页；后一种路线很薄，但依赖当前模型、API 协议和中转站是否真正支持托管搜索。</p>
-<p>因此，Relay Search 只适配 OpenAI Responses 路线，并维护一份经过验证的 Provider 与模型清单，不根据模型名字自动猜测。开启功能后，Footer 显示 <code>web</code>；切换到不匹配的模型时，请求保持原样。注入时还要保留 Pi 已有的 <code>read</code>、<code>bash</code>、<code>edit</code> 和 <code>write</code> 等函数工具，不能为了加入 <code>web_search</code> 覆盖整个 <code>tools</code> 数组。</p>
-<p>目前这套适配仍有一个明显缺口：Pi 可以保留模型最终输出的文字和 Markdown 链接，但可能丢弃托管搜索过程中的原始事件与结构化引用。这意味着它已经能够完成实用的联网回答，却还不能像完整搜索工具那样呈现和验证所有来源信息。Provider 侧搜索的费用也未必出现在 Pi 的 Token 成本估算中。</p>
-<p>所以 Relay Search 不是为了替代 <code>pi-web-access</code>，而是一次更有针对性的实验：当模型端已经拥有某项能力时，Agent Harness 能否只补上缺少的协议声明，让它在另一种 Runtime 中继续发挥作用？</p>
-<h2 id="功能状态与运行时偏好"><a href="#功能状态与运行时偏好" class="headerlink" title="功能状态与运行时偏好"></a>功能状态与运行时偏好</h2><p>加入 ntfy 和模型联网开关以后，我希望当前启用的能力能够直接显示出来。它是一种运行信号：看到 <code>web</code>，我知道这一轮允许声明模型托管搜索；看到 <code>ntfy strong</code>，我知道任务结束后手机可能连续提醒。</p>
-<p>最直接的办法是让每个 Extension 在 Footer 中显示自己的状态。但 Pi 的 Footer 是一个共享界面，如果多个 Extension 分别接管，最终效果会依赖加载顺序，彼此也可能覆盖。</p>
-<p>我的处理方式是让 Auren 继续成为 Footer 的唯一所有者，其他 Extension 只通过 Pi 的 Event Bus 提交简短的数据：状态 ID、显示文字、颜色语义和优先级。Auren 负责校验、排序、控制宽度和最终渲染。</p>
-<p>当前启用的能力会显示成类似下面的状态：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">web</span><br><span class="line">ntfy</span><br><span class="line">ntfy strong</span><br></pre></td></tr></table></figure>
+<p>Helper 只接收搜索 query，不带主会话历史、系统提示词、文件或 MCP 内容；查询应仅包含公开信息。主模型的 Thinking Level 不变，helper 使用适配协议要求的 adaptive&#x2F;low，并产生额外请求与可能的费用。</p>
+<p>这条路线用 <code>/kiro-web on|off</code> 独立控制。请求有超时、大小和来源数量上限，不重试、不跟随重定向；关闭、切换模型或退出会取消未完成请求。执行时再次检查开关和目标，不能通过 codemode 绕过。</p>
+<p>Kiro helper 只适配经审查的具体协议，不是所有 Claude&#x2F;Kiro 网关的通用联网方案。两条路线都需要按目标检查真实行为，声明存在或 HTTP 200 不能证明搜索发生。</p>
+<h3 id="来源要能回看，也要能核对"><a href="#来源要能回看，也要能核对" class="headerlink" title="来源要能回看，也要能核对"></a>来源要能回看，也要能核对</h3><p>对用户来说，联网回答的价值不只在于它提到了新信息，还在于能找到依据。</p>
+<p>OpenAI 路线收集 Provider 实际返回的 URL 注解，绑定到相应回答与会话分支，保存成显示用来源记录。恢复 Session 或查看 Tree 时，由原生 Markdown Renderer 重绘，不修改回答正文或签名，也不把这份显示记录送回模型上下文。</p>
+<p>Kiro 工具则在摘要后附实际来源的 Markdown 列表，并指导主模型在最终回答中使用这些 URL 引用。</p>
+<p>两条路线都不根据内部 cite 标识猜网址。收到哪些实际链接，才能呈现哪些链接；没有可用 URL，就明确说明未提供来源。来源列表有数量上限，展示时不会额外读取网页。</p>
+<p>摘要与来源文本仍需审慎对待。它们不是完整网页，也不是已核实的事实。已知敏感 URL 与控制字符过滤只是一层护栏，不能代替公开查询约束；重要结论仍应回到来源确认。</p>
+<h2 id="Footer-与偏好：展示策略，不冒充执行结果"><a href="#Footer-与偏好：展示策略，不冒充执行结果" class="headerlink" title="Footer 与偏好：展示策略，不冒充执行结果"></a>Footer 与偏好：展示策略，不冒充执行结果</h2><p>我希望一眼知道当前模型走哪条搜索路线、手机提醒是否开启，而不必先输入命令查状态。</p>
+<p>Footer 会出现这样的标记：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">web:openai</span><br><span class="line">web:kiro</span><br><span class="line">web:off</span><br><span class="line">ntfy</span><br><span class="line">ntfy strong</span><br></pre></td></tr></table></figure>
 
-<p>这些状态还需要保持语义诚实。<code>web</code> 表示当前允许为匹配模型声明托管搜索，不表示这一轮一定发生了搜索；<code>ntfy strong</code> 表示提醒模式已经开启，也不表示手机已经收到消息。Footer 展示的是 Runtime 当前采用的策略，而不是它无法验证的外部结果。</p>
-<p>关闭的功能不占用 Footer 空间。窗口变窄时，状态、当前 Run 和 Context 等高优先级信息会优先保留，模型、Thinking Level、Session active time 和完整工作目录再按照空间逐步隐藏。</p>
-<p>这些功能的模式会保存在各自独立的、很小的 JSON 文件中，只在用户显式切换时写入。状态文件不包含 Topic、凭据、请求历史或 Tool 输出；文件缺失、版本不支持或内容损坏时，功能会回到 off。保存失败不会撤销当前 Session 中已经完成的切换，但会明确提示重启后可能无法保留。</p>
-<p>我不希望为了几个布尔开关引入数据库、Watcher 或迁移框架。运行时偏好需要跨重启保留，但它仍然应该是一项足够简单、随时可以删除和重建的配置。</p>
-<h2 id="外部服务接入"><a href="#外部服务接入" class="headerlink" title="外部服务接入"></a>外部服务接入</h2><p>让 Agent 接入外部工具，是扩展能力边界的重要方式。模型负责理解目标和决定何时行动，MCP Server 则把笔记库、任务系统、数据库或其他业务服务变成它可以调用的工具。Agent 因此不再只操作当前目录中的文件，也能参与更完整的个人工作流。</p>
-<p>不过，每接入一个外部服务，也是在扩大 Agent 的数据访问范围和行动权限。MCP 设计不能只看“又多了多少工具”，还要看这些工具何时进入上下文、由谁提供、认证信息放在哪里，以及哪些写入行为需要额外约束。</p>
-<p>我的具体需求是让 Pi 在需要时访问思源笔记和滴答清单。它们分别保存笔记和任务数据，也都有明确的数据归属与写入边界。</p>
-<p>这里我没有为每个服务单独编写一组 Pi Tools，而是使用 <code>pi-mcp-adapter</code>，再在外面增加一层很薄的 Henry MCP Wrapper。</p>
-<p>这个 Wrapper 只注册经过确认的思源与滴答服务，并将它们收在一个懒加载的 <code>mcp</code> 代理工具后面。Agent 先根据任务搜索远程能力，再读取具体参数并调用；默认上下文中不展开所有远程 Tool Schema。</p>
-<p>这里采用的是一种 Progressive Disclosure：平时只告诉模型“有一个 MCP 入口”，真正需要操作笔记或任务时，再加载对应工具的描述。这样既减少默认上下文中的工具噪音，也降低模型在无关任务中误选外部工具的可能性。</p>
-<p>同时，我关闭了当前不需要的 Direct Tools、<code>mcpScript</code>、Sampling、Resources、自动认证、调试输出和独立 Footer。这样既减少默认工具面，也避免另一个 Extension 与 Auren 争夺界面。</p>
-<p>认证仍然交给各自合适的机制处理：思源 Header 从环境变量读取，滴答 OAuth 由 Adapter 的系统凭据存储负责。Wrapper 不打印 Token，也不把凭据写进仓库。</p>
-<p>服务器清单固定在代码中，不自动合并项目里的任意 MCP 配置。这意味着新增服务需要一次明确的注册和检查，而不是某个项目放入配置文件后就自动进入我的个人 Agent。对长期使用的个人 Runtime 来说，可预测的能力边界比随时发现更多服务器更重要。</p>
-<h2 id="Skills：复用已有的-Personal-Agent-Hub"><a href="#Skills：复用已有的-Personal-Agent-Hub" class="headerlink" title="Skills：复用已有的 Personal Agent Hub"></a>Skills：复用已有的 Personal Agent Hub</h2><p>Skills 也是这套 Pi 配置的一部分，但我没有在 Pi Lab 中重新维护一份专属 Skills。</p>
-<p>我的博客写作、简历维护、思源笔记和 TickTick 工作流已经放在独立的 Personal Agent Hub 中。Pi、Codex 或其他 Agent Runtime 都可以在需要时读取同一套 Markdown 规则，正式内容仍然留在各自拥有它的 Workspace。</p>
-<p>这样做可以避免工作方法与某个 Runtime 绑定，也避免多个目录中的 Skill 副本逐渐产生差异。Pi Lab 只记录怎样发现和使用这些 Skills，不接管它们的正文。</p>
-<p>关于 Personal Agent Hub、程序性记忆和 Skills 的组织方式，我已经在<a href="/2026/03/19/Technique/personal-agent-hub-design-notes/">《如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记》</a>中单独介绍，这里不再重复展开。</p>
-<h2 id="命令执行环境：保持工具链一致"><a href="#命令执行环境：保持工具链一致" class="headerlink" title="命令执行环境：保持工具链一致"></a>命令执行环境：保持工具链一致</h2><p>在整理和发布这组文章时，我还遇到了一个意料之外的问题：Pi 明明是从 Windows PowerShell 启动的，Agent 执行 Bash 命令时却进入了 WSL。</p>
-<p>原因出在 Windows 版 Pi 寻找 Bash 的顺序。它会先使用配置中的 <code>shellPath</code>，再查找标准安装位置下的 Git Bash，最后从 PATH 中寻找 <code>bash.exe</code>。我的 Git Bash 安装在 <code>D:\Git\bin\bash.exe</code>，不在默认探测的位置；当时又没有显式配置路径，于是 Pi 最终找到了 <code>C:\Windows\System32\bash.exe</code>——这个程序实际是 WSL 的入口。</p>
-<p>这样形成了一套看似都能工作、实际很容易互相绊倒的组合：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WSL Bash + Linux Git</span><br><span class="line">Windows Node/npm + Windows SSH</span><br><span class="line">Windows NTFS Workspace</span><br></pre></td></tr></table></figure>
+<p>搜索标记根据当前匹配模型显示。开启时是相应路线，关闭时是灰色 <code>web:off</code>；不匹配的路线不贡献状态。两条搜索开关彼此独立，换模型不会自动开启搜索，也不会重置另一路的保存选择。</p>
+<p>这些标记只说明当前策略。<code>web:openai</code> 不代表这一轮已经搜索，<code>ntfy strong</code> 也不代表手机已经收到消息。状态的含义越清楚，用户越不容易从一个徽标里读出它无法证明的结果。</p>
+<p>实现上，Auren 是 Footer 的唯一渲染者。其他 Extension 通过 Event Bus 提交简短状态数据，Auren 统一排序与控制宽度，避免多个扩展分别接管 Footer，效果依赖加载顺序。</p>
+<p>窄窗口优先保留运行状态与 Context，再尽量保留完整 <code>provider/model</code> 身份。尤其是同名模型可能来自不同 Provider，路由身份比可选能力标记或完整路径更值得占据空间；放不下时整项省略，不留下一个容易误认的残片。</p>
+<p>搜索与通知模式分别保存在小型 JSON 文件中，不包含 Topic、凭据或请求内容。缺失或损坏时回到 off，保存失败会提示。几个偏好开关不需要数据库、Watcher 或复杂的迁移框架。</p>
+<h2 id="外部服务与工作规则：MCP-接入，Skills-指导"><a href="#外部服务与工作规则：MCP-接入，Skills-指导" class="headerlink" title="外部服务与工作规则：MCP 接入，Skills 指导"></a>外部服务与工作规则：MCP 接入，Skills 指导</h2><p>我的笔记与任务分别保存在思源和滴答清单。让 Pi 参与这些工作，需要两种不同的能力：它能访问服务，也知道应该怎样操作。</p>
+<p>服务接入使用<a target="_blank" rel="noopener" href="https://github.com/earendil-works/pi/blob/v0.99.2/packages/coding-agent/docs/mcp.md">官方内置 MCP</a>。连接和认证交给原生机制，<code>/mcp</code> 用于管理状态与授权，不重新维护一套适配层。</p>
+<p>默认通过 codemode 按需发现工具：先用 <code>searchTools</code> 找能力，再用 <code>describeTool</code> 或 <code>describeNamespace</code> 检查名称、参数与说明，最后调用确切工具。这样不必在每次请求中展开全部远程 Schema，也不应该根据服务名猜调用方式。</p>
+<p>但能连接到服务，不等于可以随意处理里面的数据。笔记的归属、任务的读写范围、什么时候需要确认，都由工作规则约束；工具的只读提示也不能替代检查实际 action。</p>
+<p>这些规则放在已有的 Personal Agent Hub 中。博客写作、思源笔记、TickTick 等工作流共用同一套 Markdown Skills，Pi、Codex 或其他 Runtime 在需要时读取。正式内容仍留在各自 Workspace，不复制到 Pi Lab，也不为每个 Runtime 维护一份逐渐分叉的工作方法。</p>
+<p>这里的分工很清楚：MCP 提供可调用的业务工具，Skills 提供任务中的专业方法与边界。关于 Hub 的组织方式，可以继续看<a href="/2026/03/19/Technique/personal-agent-hub-design-notes/">《如何让 AI 更懂你的工作方式：Personal Agent Hub 设计笔记》</a>。</p>
+<h2 id="Windows-工具链：减少环境里不必要的歧义"><a href="#Windows-工具链：减少环境里不必要的歧义" class="headerlink" title="Windows 工具链：减少环境里不必要的歧义"></a>Windows 工具链：减少环境里不必要的歧义</h2><p>Shell 也属于 Agent 的工作环境。它决定从哪里寻找程序、怎样解释路径，以及使用哪套 Git、Node&#x2F;npm 与 SSH。</p>
+<p>我曾遇到 Pi 从 Windows PowerShell 启动，执行 Bash 却进入 WSL 的情况。Shell 与 Git 属于 Linux，其他工具和项目路径仍依赖 Windows；Agent 需要先处理路径、认证与程序调用的差异，才能继续原本的任务。</p>
+<p>因此，Windows 原生项目默认使用 PowerShell。确实需要 Bash 时，显式指定 Git Bash，避免进入另一套环境：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;defaultTools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;read&quot;</span><span class="punctuation">,</span> <span class="string">&quot;powershell&quot;</span><span class="punctuation">,</span> <span class="string">&quot;edit&quot;</span><span class="punctuation">,</span> <span class="string">&quot;write&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;shellPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/path/to/Git/bin/bash.exe&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>构建本身没有变复杂，但执行环境被分成了两半。路径需要在 <code>F:\Working\Blogverse</code> 与 <code>/mnt/f/Working/Blogverse</code> 之间转换；Linux Git 不会自然复用 Windows Git 的 SSH 配置；Windows npm 又需要从 WSL 调用 <code>node.exe</code>。任何一个跨环境环节出现问题，Agent 都要先排查工具链，而不是继续处理原来的任务。</p>
-<p>这次经历让我更明确地意识到，Shell 不是 Agent 外面一个无关紧要的命令窗口。它决定了可执行文件从哪里寻找、使用哪套 Git 和 SSH 配置、怎样解释路径，也决定了项目脚本实际运行在哪个操作系统语义中。<strong>Shell 的选择本身就是 Harness 设计的一部分。</strong></p>
-<p>最终我将 Windows 原生项目的默认工具改为 PowerShell，同时为确实需要 Bash 的场景固定 Git Bash 路径：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;defaultTools&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;read&quot;</span><span class="punctuation">,</span> <span class="string">&quot;powershell&quot;</span><span class="punctuation">,</span> <span class="string">&quot;edit&quot;</span><span class="punctuation">,</span> <span class="string">&quot;write&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;shellPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;D:/Git/bin/bash.exe&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>defaultTools</code> 决定模型日常看到和使用的命令工具，因而让 Git、Node&#x2F;npm、SSH 与工作区路径都留在 Windows 环境中。<code>shellPath</code> 则负责 Pi 的手动 <code>!</code> 命令，或者以后明确启用 Bash 时的回退路径，确保它进入 MINGW64 Git Bash，而不是 WSL。</p>
-<p>我没有同时把 Bash 和 PowerShell 都设为默认工具。它们的能力有大量重叠，但环境语义不同；同时暴露后，模型可能在同一项任务中来回选择，重新制造混合工具链。工具更多不一定意味着 Agent 更强，有时减少一个含义重叠的选择，反而会让行为更可预测。</p>
-<p>这并不是说 WSL 不适合开发。如果一项工作从 Shell、Git、Node&#x2F;npm、SSH 到项目路径都使用 Linux 环境，WSL 同样可以非常稳定。真正的问题是只进入了“半套 WSL”：Shell 和 Git 属于 Linux，其他部分却仍依赖 Windows。</p>
-<p>对 Windows 项目，我现在采用一个简单原则：</p>
+<p>这里的路径只是示意，需要替换成本机 Git Bash 的实际位置。<code>defaultTools</code> 决定模型日常看到的工具，<code>shellPath</code> 指定手动 <code>!</code> 命令或启用 Bash 时使用的 Shell。</p>
+<p>我没有同时把 Bash 与 PowerShell 都设为默认工具。它们的能力重叠，环境语义却不同，减少一个重叠选择可以让行为更可预测。</p>
+<p>这不意味着 WSL 不合适。完整使用 Linux Shell、Git、Node&#x2F;npm、SSH 与项目路径，也可以形成一致的工具链。我的原则是一次任务尽量使用一套完整环境，避免只进入“半套 WSL”。</p>
+<p>修改默认工具后，应完整退出并重启 Pi，检查新进程实际启用的工具，不用 <code>/reload</code> 代替这一步确认。</p>
+<h2 id="安全与资源：规则明确，外围能力保持轻量"><a href="#安全与资源：规则明确，外围能力保持轻量" class="headerlink" title="安全与资源：规则明确，外围能力保持轻量"></a>安全与资源：规则明确，外围能力保持轻量</h2><p>Pi Extension 与进程拥有相同的用户权限。增加能力时，也需要同时考虑数据访问、外部副作用与资源成本。</p>
+<p>基础协作规则写在简短的 <code>APPEND_SYSTEM.md</code> 中：保持任务范围，优先小范围与可逆操作，不主动读取无关私人数据，大规模覆盖、删除、危险 Git 操作和未经授权的外部动作先确认。</p>
+<p>这层 Prompt Policy 用来表达合作方式，不是强制权限系统。需要文件、进程或网络级隔离时，应使用对应的确定性防护，而不是不断加长提示词。</p>
+<p>资源方面，我要求自研界面尽量由事件驱动。Auren 按需缓存 Context 占用读数，工作时只有一个 1 Hz 计时刷新，空闲时不增加 Timer，不启动后台进程、Watcher 或本地 Server。</p>
+<p>搜索只在开关与目标条件通过时声明或调用。官方 MCP 则可能在启动时连接、重连或启动服务器进程，这部分成本需要单独接受与评估。“按需发现工具”并不等于“服务只有调用时才连接”。</p>
+<p>测试同样需要与日常配置分开。离线回归使用隔离的通知路由、偏好与 Agent 目录，以及模拟网络，避免因为本机保存了开启状态就把测试发到真实手机或服务。它是测试护栏，不是操作系统 Sandbox；实际 TUI、送达和线路行为仍需要单独检查。</p>
+<p>我不追求为了省掉每一份资源而增加复杂度。更重要的是，每个常驻模块都有明确用途，能关闭，行为也足够容易理解。</p>
+<h2 id="借助-Agent，把设计变成可采用的实现"><a href="#借助-Agent，把设计变成可采用的实现" class="headerlink" title="借助 Agent，把设计变成可采用的实现"></a>借助 Agent，把设计变成可采用的实现</h2><p>这些 DIY 基本都借助 AI 完成，但需求与判断仍然由人负责。</p>
+<p>我会先通过联网搜索了解已有方案，避免为一个已经有成熟接法的问题重新造轮子。例如，手机提醒可以比较 ntfy 与其他推送方式，搜索接入则先理解 Package 和 Provider 托管工具分别负责什么。</p>
+<p>然后，把自己的使用要求写具体。相比“做一个通知插件”，“短任务不提醒、错误立即提醒、正文不外发、强提醒有上限”更容易让 Agent 做出可以检验的实现。</p>
+<p>本地开发时，让 Pi 阅读实际安装版本的 Extension、TUI 和 SDK 文档、类型与示例，再给出方案。一个起始要求可以是：</p>
 <blockquote>
-<p>Windows 或 WSL 都可以，但一次任务尽量使用一套完整、一致的工具链。</p>
+<p>我希望 Pi 在一次运行真正结束后显示完成状态，正常运行超过 15 秒才提醒。请先阅读本地文档，确认生命周期边界，给出状态、资源清理和测试方案。在独立仓库中实现，不要修改全局配置。</p>
 </blockquote>
-<p>修改 <code>defaultTools</code> 后还需要完整退出并重启 Pi。<code>/reload</code> 可以重新加载许多资源，却可能保留当前会话已经激活的工具集合；只有新进程才能确认模型看到的默认工具确实已经改变。</p>
-<h2 id="安全与资源边界"><a href="#安全与资源边界" class="headerlink" title="安全与资源边界"></a>安全与资源边界</h2><p>Pi 的可定制能力很强，Extension 又与 Pi 进程拥有相同的用户权限。随着功能增加，我也需要决定哪些保护现在就值得加入，哪些复杂度可以继续等待。</p>
-<p>当前安全策略从一份简短的 <code>APPEND_SYSTEM.md</code> 开始。它要求 Agent 保持任务范围、优先使用小范围和可逆操作，不主动读取无关私人数据，也不在影响范围不清楚时直接执行大规模删除、覆盖或危险 Git 操作。</p>
-<p>这只是一层 Prompt Policy，不能强制阻止 Tool，也不能代替 Sandbox。我没有把它描述成完整的安全边界，也没有马上开发一个解析所有 Shell 命令的通用 Safety Gate。只有真实使用中出现误删、跨 Workspace 写入或外部副作用失控的迹象，才值得升级为更确定的拦截规则。</p>
-<p>资源方面则采用一个简单标准：全局 Extension 只保留所有项目都需要、已经验证并且容易关闭的能力。Auren 在空闲时没有 Timer，不启动后台进程、Watcher 或本地 Server，也不自动联网和触发额外模型调用。Relay Search 只在显式开启后修改符合条件的请求；MCP 也只在实际调用时连接外部服务。</p>
-<p>这不是为了追求理论上的最小资源占用，而是因为我的 Pi 会长期运行在日常工作环境中。一个小功能如果需要持续轮询、维护后台服务或引入大量依赖，它带来的收益就需要重新评估。</p>
-<h2 id="与-Pi-和其他-AI-协作完成-DIY"><a href="#与-Pi-和其他-AI-协作完成-DIY" class="headerlink" title="与 Pi 和其他 AI 协作完成 DIY"></a>与 Pi 和其他 AI 协作完成 DIY</h2><p>我的 Pi DIY 基本都从与 AI 协作开始，但不同形态的 AI 适合承担不同工作。</p>
-<p>网页端 ChatGPT 对我最大的价值是联网搜索。它适合查找 Pi 社区中已经存在的 Package、第三方项目、相关协议和不同实现方案，再把分散的信息整理成可以继续讨论的材料。比如决定怎样把通知推到手机之前，可以先比较 ntfy、Bark、Pushover 和即时通信 Bot；研究 Pi 联网时，也可以先找到 <code>pi-web-access</code>、Codex 的 Hosted Search 机制和 Pi 的相关 Extension API。</p>
-<p>搜索只是开始。接下来还要结合自己的使用场景，把“有什么方案”变成“我真正需要什么”。任务完成提醒最初只是“Pi 做完以后能不能叫我”，继续讨论后才逐渐明确：正常完成与错误需要不同阈值，短任务不提醒，手机通知不包含正文，强提醒必须有次数上限，退出时还要清理未完成请求。</p>
-<p>需求相对清楚后，我会让 Pi 在本地完成开发。Pi 可以直接读取当前安装版本附带的 Extension、TUI 和 SDK 文档，也可以查看自己的类型声明和官方示例。相比根据网上旧文章猜测 API，本地文档更容易与实际版本保持一致。</p>
-<p>一个典型的起始要求可能是：</p>
-<blockquote>
-<p>我希望 Pi 在整个 Agent 工作真正结束后显示完成状态，并且只有运行超过 15 秒时才提醒。请先阅读本地 Pi Extension 文档，确认应该监听哪些生命周期事件，给出状态模型、资源清理和测试方案。先在独立仓库中实现，不要修改全局 Pi 配置。</p>
-</blockquote>
-<p>如果使用配套参考仓库，可以直接把采用边界一起交给 Agent：</p>
+<p>流程并不复杂：明确需求，在独立环境里实现和离线检查，临时加载观察实际效果，再决定是否部署。联网测试、真实通知或 MCP 授权都应另行确认，不能混在普通代码验证中自动发生。</p>
+<h3 id="公开参考实现怎么使用"><a href="#公开参考实现怎么使用" class="headerlink" title="公开参考实现怎么使用"></a>公开参考实现怎么使用</h3><p>适合复用的核心代码整理在 <a target="_blank" rel="noopener" href="https://github.com/HenryK39B5/pi-agent-runtime-kit">Pi Agent Runtime Kit</a>。它包含四套 Auren Themes、Auren UI 与计时、通知、两条搜索路线、安全提示和 Windows 示例，也提供官方 MCP 接入指南。</p>
+<p>这是一套经过清洗与泛化的 Agent-assisted 参考实现，不是私人 Runtime 镜像、Pi 官方项目、npm&#x2F;Pi Package 或一键安装器。私人模型、端点、凭据与服务清单不在公开树中。</p>
+<p>可选联网默认关闭，两条搜索目标清单为空，MCP 示例也默认禁用。采用者需要审查自己的精确目标并配置，单纯打开开关不会获得一条可用的搜索线路。</p>
+<p>公开源码以 Pi 0.99.2 为基线，配有隔离离线测试、类型、Theme 与公开树检查。这些是实现层的证据，不包含公开版真实模型、搜索、通知或 MCP&#x2F;OAuth 验收，也不能把私人线路经验当成公共兼容承诺。采用前仍需按<a target="_blank" rel="noopener" href="https://github.com/HenryK39B5/pi-agent-runtime-kit/blob/153b49a/docs/ADOPTION_GUIDE.md">采用指南</a>和<a target="_blank" rel="noopener" href="https://github.com/HenryK39B5/pi-agent-runtime-kit/blob/153b49a/docs/COMPATIBILITY.md">兼容性说明</a>检查本机版本、TUI 和真实线路；未来版本不保证自动适配。</p>
+<p>可以把仓库 Clone 到本地，再把需求和采用边界一起交给 Agent：</p>
 <blockquote>
 <p>请先阅读这个仓库的 <code>AGENTS.md</code> 与 <code>docs/ADOPTION_GUIDE.md</code>，检查我本机安装的 Pi 版本和对应文档。根据我的系统选择最小模块，先给出临时试运行、全局修改 Diff 和回滚方案；未经我确认，不要修改全局配置、发送通知、连接 MCP 或执行发布操作。</p>
 </blockquote>
-<p>具体开发则放在独立的 Pi Lab 中，通过临时参数加载：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi --no-extensions -e ./extensions/auren-ui/index.ts</span><br></pre></td></tr></table></figure>
-
-<p>这样可以避免仓库版本与已经部署的全局版本同时运行。功能完成后，先执行模拟测试、类型检查和 Theme 校验，再在 Windows Terminal 中观察真实的 Footer、通知、窗口缩放和 Session 切换。只有确认行为符合预期，才更新全局副本，并保留明确的备份和回滚方式。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">发现使用中的摩擦</span><br><span class="line">  ↓</span><br><span class="line">与 AI 讨论需求和边界</span><br><span class="line">  ↓</span><br><span class="line">让 Pi 阅读本地文档并设计实现</span><br><span class="line">  ↓</span><br><span class="line">在独立仓库中开发和测试</span><br><span class="line">  ↓</span><br><span class="line">临时加载并实际使用</span><br><span class="line">  ↓</span><br><span class="line">确认后部署，继续观察</span><br></pre></td></tr></table></figure>
-
-<p>对我来说，最值得复用的不是某一份最终代码，而是这个协作顺序：先把真实摩擦描述清楚，再借助联网搜索了解已有方案，让 Pi 阅读本地版本的文档完成实现，最后回到真实环境验证。沿着这个过程，从一个 Theme 或一个小 Extension 开始，就已经可以完成许多实用的改造。</p>
-<h2 id="让-Pi-更贴近自己的工作方式"><a href="#让-Pi-更贴近自己的工作方式" class="headerlink" title="让 Pi 更贴近自己的工作方式"></a>让 Pi 更贴近自己的工作方式</h2><p>回头看这些 DIY，大多数功能都不复杂：多显示一个状态，记录一段时间，在任务结束后发出提醒，或者为已有能力补上一个明确的开关。</p>
-<p>它们也没有把 Pi 改造成另一种产品。Pi 原本的 Agent Loop、默认工具、Session 和终端交互仍然保留，我只是围绕自己的使用习惯补上了一些产品层细节。</p>
-<p>对我来说，折腾 Pi 最有意思的地方也正在这里：发现一个小小的不顺手，和 Agent 一起想办法，再把它改成自己喜欢的样子。其他人不一定需要相同的状态、阈值和外部服务，但可以从自己每天使用时遇到的那一点摩擦开始。</p>
+<p>不必从整套配置开始。只试一个主题，或者一个状态与提醒模块，确认确实改善自己的使用体验，再考虑下一项。临时试运行也需要独立配置，不能只隔离扩展加载，却继承日常环境中的通知与服务状态。</p>
+<h2 id="从每天遇到的小需求开始"><a href="#从每天遇到的小需求开始" class="headerlink" title="从每天遇到的小需求开始"></a>从每天遇到的小需求开始</h2><p>我没有为 Pi 重新设计 Agent Loop，也没有要求所有功能都由自己实现。阅读与回看借用原生能力，状态与通知补上个人需要的细节，专业方法则复用已有 Skills。</p>
+<p>这些选择让 Pi 更贴近我的工作方式，但不必成为别人的标准配置。读者可以借用某个设计，也可以只借用判断方法：先找到一个真实的不顺手，再决定它需要一个设置、一份规则，还是一段扩展代码。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://pi.dev/">Pi 官方网站与文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/earendil-works/pi">Pi GitHub 仓库</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/HenryK39B5/pi-agent-runtime-kit">Pi Agent Runtime Kit：配套参考实现</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/HenryK39B5/pi-agent-runtime-kit/blob/153b49a/docs/ADOPTION_GUIDE.md">Runtime Kit：采用指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/HenryK39B5/pi-agent-runtime-kit/blob/153b49a/docs/COMPATIBILITY.md">Runtime Kit：兼容性说明</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/earendil-works/pi/blob/v0.99.2/packages/coding-agent/docs/mcp.md">Pi 0.99.2：官方 MCP 文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://pi.dev/docs/windows">Pi：Windows Setup</a></li>
 <li><a target="_blank" rel="noopener" href="https://pi.dev/packages/pi-web-access">pi-web-access · Pi Packages</a></li>
-<li><a target="_blank" rel="noopener" href="https://developers.openai.com/codex/agent-loop">OpenAI Codex Agent Loop</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/guides/tools-web-search">OpenAI：Web search 与 URL citations</a></li>
 <li><a target="_blank" rel="noopener" href="https://ntfy.sh/">ntfy</a></li>
 <li><a target="_blank" rel="noopener" href="https://docs.ntfy.sh/config/#ios-instant-notifications">ntfy：Instant delivery</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/nicobailon/pi-mcp-adapter">pi-mcp-adapter</a></li>
 </ul>
 
   </div>
@@ -2829,10 +2859,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-09-24T23:11:33+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2026-10-01T20:43:26+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2026年9月24日</p>
+    <p>更新于：2026年10月1日</p>
   </a>
 </div>
 
@@ -2881,8 +2911,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <a class='next' href='/2026/09/09/Tools/AI/pi-agent-beyond-the-loop/'>
           <p class='title'>Pi Agent：除了 Agent Loop，其余都交给你<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>最近 Pi 的热度很高。我一直对 Agent 产品设计和 DIY 感兴趣，因此也开始研究和使用这个工具。
-打开 pi.dev，页面的表达非常极简、优雅。它没有用一长串功能清单证明产品有多强，而是...</p>
+          <p class='content'>Pi 最吸引我的地方，是它让使用者参与定义自己的 Agent 应该怎样工作。
+这件事听起来很像“可扩展”，但真正使用时，区别不只在于能不能安装插件。界面里显示什么，哪些工具需要常驻，工作规则怎样...</p>
         </a>
       
     </div>
@@ -3023,7 +3053,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E5%A5%97%E5%8F%82%E8%80%83%E4%BB%93%E5%BA%93%EF%BC%9A%E8%AE%A9-Agent-%E5%8D%8F%E5%8A%A9%E7%A7%BB%E6%A4%8D"><span class="toc-number">1.</span> <span class="toc-text">配套参考仓库：让 Agent 协助移植</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E8%A7%89%E4%B8%8E%E9%98%85%E8%AF%BB%E4%BD%93%E9%AA%8C"><span class="toc-number">2.</span> <span class="toc-text">视觉与阅读体验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E4%B8%8E%E6%97%B6%E9%97%B4%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">运行状态与时间信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%AE%8C%E6%88%90%E6%8F%90%E9%86%92"><span class="toc-number">4.</span> <span class="toc-text">任务完成提醒</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E8%84%91%E7%AB%AF%E6%8F%90%E9%86%92"><span class="toc-number">4.1.</span> <span class="toc-text">电脑端提醒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E5%88%B0%E6%89%8B%E6%9C%BA%EF%BC%9Antfy"><span class="toc-number">4.2.</span> <span class="toc-text">推送到手机：ntfy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%81%94%E7%BD%91%E8%83%BD%E5%8A%9B"><span class="toc-number">5.</span> <span class="toc-text">模型联网能力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%8A%B6%E6%80%81%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%97%B6%E5%81%8F%E5%A5%BD"><span class="toc-number">6.</span> <span class="toc-text">功能状态与运行时偏好</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%85%A5"><span class="toc-number">7.</span> <span class="toc-text">外部服务接入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Skills%EF%BC%9A%E5%A4%8D%E7%94%A8%E5%B7%B2%E6%9C%89%E7%9A%84-Personal-Agent-Hub"><span class="toc-number">8.</span> <span class="toc-text">Skills：复用已有的 Personal Agent Hub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%EF%BC%9A%E4%BF%9D%E6%8C%81%E5%B7%A5%E5%85%B7%E9%93%BE%E4%B8%80%E8%87%B4"><span class="toc-number">9.</span> <span class="toc-text">命令执行环境：保持工具链一致</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%B8%8E%E8%B5%84%E6%BA%90%E8%BE%B9%E7%95%8C"><span class="toc-number">10.</span> <span class="toc-text">安全与资源边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E-Pi-%E5%92%8C%E5%85%B6%E4%BB%96-AI-%E5%8D%8F%E4%BD%9C%E5%AE%8C%E6%88%90-DIY"><span class="toc-number">11.</span> <span class="toc-text">与 Pi 和其他 AI 协作完成 DIY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A9-Pi-%E6%9B%B4%E8%B4%B4%E8%BF%91%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-number">12.</span> <span class="toc-text">让 Pi 更贴近自己的工作方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">13.</span> <span class="toc-text">参考资料</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E7%95%8C%E9%9D%A2%EF%BC%9A%E4%B8%BB%E9%A2%98%E3%80%81%E5%AD%97%E4%BD%93%E4%B8%8E-Fullscreen-%E5%90%84%E5%8F%B8%E5%85%B6%E8%81%8C"><span class="toc-number">1.</span> <span class="toc-text">阅读界面：主题、字体与 Fullscreen 各司其职</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E5%A5%97%E4%B8%BB%E9%A2%98%EF%BC%8C%E5%85%B1%E7%94%A8%E4%B8%80%E5%A5%97%E9%98%85%E8%AF%BB%E5%B1%82%E7%BA%A7"><span class="toc-number">1.1.</span> <span class="toc-text">四套主题，共用一套阅读层级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E7%9C%8B%E4%BC%9A%E8%AF%9D%EF%BC%8C%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%94%9F%E8%83%BD%E5%8A%9B"><span class="toc-number">1.2.</span> <span class="toc-text">回看会话，直接使用原生能力</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E4%B8%8E%E8%AE%A1%E6%97%B6%EF%BC%9A%E7%9F%A5%E9%81%93%E5%AE%83%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%8C%E4%B9%9F%E7%9F%A5%E9%81%93%E4%BF%A1%E6%81%AF%E5%B1%9E%E4%BA%8E%E5%93%AA%E4%B8%80%E6%AC%A1%E5%B7%A5%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">状态与计时：知道它在做什么，也知道信息属于哪一次工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%88%90%E7%8A%B6%E6%80%81%E5%BF%85%E9%A1%BB%E5%8F%AF%E4%BF%A1"><span class="toc-number">2.1.</span> <span class="toc-text">完成状态必须可信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E4%BF%A1%E6%81%AF%E5%88%86%E6%88%90%E4%B8%89%E4%B8%AA%E5%B0%BA%E5%BA%A6"><span class="toc-number">2.2.</span> <span class="toc-text">时间信息分成三个尺度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%88%90%E6%8F%90%E9%86%92%EF%BC%9A%E8%AE%A9%E4%BA%BA%E5%8F%AF%E4%BB%A5%E5%AE%89%E5%BF%83%E7%A6%BB%E5%BC%80%E7%BB%88%E7%AB%AF"><span class="toc-number">3.</span> <span class="toc-text">完成提醒：让人可以安心离开终端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%94%B5%E8%84%91%E9%99%84%E8%BF%91%EF%BC%8C%E7%94%A8-BEL-%E5%B0%B1%E5%A4%9F%E4%BA%86"><span class="toc-number">3.1.</span> <span class="toc-text">在电脑附近，用 BEL 就够了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E5%BC%80%E7%94%B5%E8%84%91%E5%90%8E%EF%BC%8C%E7%94%A8-ntfy-%E6%8E%A8%E9%80%81"><span class="toc-number">3.2.</span> <span class="toc-text">离开电脑后，用 ntfy 推送</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%81%94%E7%BD%91%EF%BC%9A%E4%B8%A4%E6%9D%A1%E8%B7%AF%E7%BA%BF%EF%BC%8C%E8%A7%A3%E5%86%B3%E4%B8%8D%E5%90%8C%E7%9A%84%E6%8E%A5%E5%85%A5%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">模型联网：两条路线，解决不同的接入问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenAI-%E8%B7%AF%E7%BA%BF%EF%BC%9A%E5%9C%A8%E4%B8%BB%E8%AF%B7%E6%B1%82%E4%B8%AD%E5%A3%B0%E6%98%8E%E6%89%98%E7%AE%A1%E6%90%9C%E7%B4%A2"><span class="toc-number">4.1.</span> <span class="toc-text">OpenAI 路线：在主请求中声明托管搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kiro-%E8%B7%AF%E7%BA%BF%EF%BC%9A%E7%94%A8%E7%8B%AC%E7%AB%8B-helper-%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C"><span class="toc-number">4.2.</span> <span class="toc-text">Kiro 路线：用独立 helper 返回结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A5%E6%BA%90%E8%A6%81%E8%83%BD%E5%9B%9E%E7%9C%8B%EF%BC%8C%E4%B9%9F%E8%A6%81%E8%83%BD%E6%A0%B8%E5%AF%B9"><span class="toc-number">4.3.</span> <span class="toc-text">来源要能回看，也要能核对</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Footer-%E4%B8%8E%E5%81%8F%E5%A5%BD%EF%BC%9A%E5%B1%95%E7%A4%BA%E7%AD%96%E7%95%A5%EF%BC%8C%E4%B8%8D%E5%86%92%E5%85%85%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">5.</span> <span class="toc-text">Footer 与偏好：展示策略，不冒充执行结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E6%9C%8D%E5%8A%A1%E4%B8%8E%E5%B7%A5%E4%BD%9C%E8%A7%84%E5%88%99%EF%BC%9AMCP-%E6%8E%A5%E5%85%A5%EF%BC%8CSkills-%E6%8C%87%E5%AF%BC"><span class="toc-number">6.</span> <span class="toc-text">外部服务与工作规则：MCP 接入，Skills 指导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-%E5%B7%A5%E5%85%B7%E9%93%BE%EF%BC%9A%E5%87%8F%E5%B0%91%E7%8E%AF%E5%A2%83%E9%87%8C%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E6%AD%A7%E4%B9%89"><span class="toc-number">7.</span> <span class="toc-text">Windows 工具链：减少环境里不必要的歧义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E4%B8%8E%E8%B5%84%E6%BA%90%EF%BC%9A%E8%A7%84%E5%88%99%E6%98%8E%E7%A1%AE%EF%BC%8C%E5%A4%96%E5%9B%B4%E8%83%BD%E5%8A%9B%E4%BF%9D%E6%8C%81%E8%BD%BB%E9%87%8F"><span class="toc-number">8.</span> <span class="toc-text">安全与资源：规则明确，外围能力保持轻量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%80%9F%E5%8A%A9-Agent%EF%BC%8C%E6%8A%8A%E8%AE%BE%E8%AE%A1%E5%8F%98%E6%88%90%E5%8F%AF%E9%87%87%E7%94%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">9.</span> <span class="toc-text">借助 Agent，把设计变成可采用的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AC%E5%BC%80%E5%8F%82%E8%80%83%E5%AE%9E%E7%8E%B0%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8"><span class="toc-number">9.1.</span> <span class="toc-text">公开参考实现怎么使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%AF%8F%E5%A4%A9%E9%81%87%E5%88%B0%E7%9A%84%E5%B0%8F%E9%9C%80%E6%B1%82%E5%BC%80%E5%A7%8B"><span class="toc-number">10.</span> <span class="toc-text">从每天遇到的小需求开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">11.</span> <span class="toc-text">参考资料</span></a></li></ol>
     </div>
   </section>
 
@@ -3876,7 +3906,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/019.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/018.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/029.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/013.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/003.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/034.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/038.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/048.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/020.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/024.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/045.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/023.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/006.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/010.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/031.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/039.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/008.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/041.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/040.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/056.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/051.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/030.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/049.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/005.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/055.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/027.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/037.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/033.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/016.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/014.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/017.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/036.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/007.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/025.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/044.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/043.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/002.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/022.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/009.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/052.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/057.jpg","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/012.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/035.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/050.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/042.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/001.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/053.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/047.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/004.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/028.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/015.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/011.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/054.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/046.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/032.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/026.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/021.webp"];
+  let imgs = ["https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/038.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/010.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/055.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/021.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/035.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/007.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/057.jpg","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/046.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/004.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/049.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/054.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/017.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/041.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/018.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/003.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/006.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/009.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/028.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/047.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/042.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/001.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/013.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/037.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/027.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/012.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/051.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/011.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/019.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/044.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/045.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/043.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/030.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/002.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/033.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/039.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/025.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/052.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/023.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/015.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/048.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/020.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/050.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/026.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/036.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/014.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/016.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/056.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/053.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/040.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/008.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/032.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/031.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/024.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/029.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/034.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/022.webp","https://gcore.jsdelivr.net/gh/HenryK39B5/Blogverse@master/img/005.webp"];
   let index = 0;
   let IntervalParallax = null;
 
@@ -4103,7 +4133,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's Cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/Tools/","name":"Tools"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/Tools/AI/","name":"AI"}},{"@type":"ListItem","position":3,"item":{"@id":"https://henryk39b5.github.io//2026/09/10/Tools/AI/pi-agent-diy-design-and-implementation/","name":"打造更顺手的 Pi Agent：我的 DIY 设计与实现"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},"publisher":{"@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"打造更顺手的 Pi Agent：我的 DIY 设计与实现","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryk39b5.github.io/2026/09/10/Tools/AI/pi-agent-diy-design-and-implementation/"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's Cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://henryk39b5.github.io/2026/09/10/Tools/AI/pi-agent-diy-design-and-implementation/","wordCount":0,"datePublished":"2026-09-10T08:45:00.000Z","dateModified":"2026-09-24T15:11:33.488Z","articleSection":"Tools","keywords":"AI 工具,Pi Agent,Coding Agent,Extension,DIY","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","sameAs":["https://github.com/volantis-x"],"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://henryk39b5.github.io/","name":"Henry's Cabin"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/Tools/","name":"Tools"}},{"@type":"ListItem","position":2,"item":{"@id":"https://henryk39b5.github.io/categories/Tools/AI/","name":"AI"}},{"@type":"ListItem","position":3,"item":{"@id":"https://henryk39b5.github.io//2026/09/10/Tools/AI/pi-agent-diy-design-and-implementation/","name":"打造更顺手的 Pi Agent：我的 DIY 设计与实现"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","keywords":null,"description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。"},"publisher":{"@type":"Organization","name":"Henry's Cabin","url":"https://henryk39b5.github.io/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://henryk39b5.github.io?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"打造更顺手的 Pi Agent：我的 DIY 设计与实现","description":"Henry 的个人博客，记录 AI 工具、开发实践、写作、阅读与生活中的思考。","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://henryk39b5.github.io/2026/09/10/Tools/AI/pi-agent-diy-design-and-implementation/"},"author":{"@type":"Person","name":"Henry","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://henryk39b5.github.io/"},"publisher":{"@type":"Organization","name":"Henry's Cabin","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://henryk39b5.github.io/2026/09/10/Tools/AI/pi-agent-diy-design-and-implementation/","wordCount":0,"datePublished":"2026-09-10T08:45:00.000Z","dateModified":"2026-10-01T12:43:26.296Z","articleSection":"Tools","keywords":"AI 工具,Pi Agent,Coding Agent,Extension,DIY","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
